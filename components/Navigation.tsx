@@ -44,12 +44,12 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-[#1D4ED8] flex items-center justify-center group-hover:bg-[#F59E0B] transition-colors duration-300">
+            <div className="w-9 h-9 rounded-lg bg-[#1D4ED8] flex items-center justify-center group-hover:bg-[#D4AF37] transition-colors duration-300">
               <Zap className="w-5 h-5 text-white" fill="currentColor" />
             </div>
             <span className="text-white font-bold text-lg tracking-tight">
               Ryan Judy
-              <span className="text-[#F59E0B] ml-0.5">.</span>
+              <span className="text-[#D4AF37] ml-0.5">.</span>
             </span>
           </Link>
 
@@ -62,7 +62,7 @@ export default function Navigation() {
                 className={clsx(
                   "animated-underline text-sm font-medium transition-colors duration-200",
                   pathname === link.href
-                    ? "text-[#F59E0B]"
+                    ? "text-[#D4AF37]"
                     : "text-white/80 hover:text-white"
                 )}
               >
@@ -110,7 +110,7 @@ export default function Navigation() {
                 className={clsx(
                   "px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200",
                   pathname === link.href
-                    ? "text-[#F59E0B] bg-white/5"
+                    ? "text-[#D4AF37] bg-white/5"
                     : "text-white/80 hover:text-white hover:bg-white/5"
                 )}
               >

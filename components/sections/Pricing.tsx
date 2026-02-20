@@ -76,7 +76,7 @@ export default function Pricing() {
             Honest pricing,{" "}
             <span className="text-[#1D4ED8]">real results</span>
           </h2>
-          <p className="text-[#64748B] text-lg leading-relaxed">
+          <p className="text-[#475569] text-lg leading-relaxed">
             Every engagement is scoped to your specific business and goals.
             These packages are a starting framework — your actual plan will be
             custom-built for you.
@@ -106,14 +106,14 @@ export default function Pricing() {
                 <h3 className="text-[#0A1628] font-bold text-2xl mb-1">
                   {plan.name}
                 </h3>
-                <p className="text-[#64748B] text-sm">{plan.tagline}</p>
+                <p className="text-[#475569] text-sm">{plan.tagline}</p>
               </div>
 
               <div className="mb-6 pb-6 border-b border-gray-100">
                 <div className="text-3xl font-bold text-[#0A1628]">
                   {plan.price}
                 </div>
-                <div className="text-[#94A3B8] text-sm mt-0.5">
+                <div className="text-[#475569] text-sm mt-0.5">
                   {plan.priceNote}
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function Pricing() {
         </div>
 
         {/* Note */}
-        <p className="text-center text-[#94A3B8] text-sm mt-8">
+        <p className="text-center text-[#475569] text-sm mt-8">
           All engagements include a free initial consultation and honest scoping.
           No lock-in contracts — I earn your business every month.
         </p>

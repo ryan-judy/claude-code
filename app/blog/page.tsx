@@ -6,9 +6,9 @@ import { Calendar, Clock, ArrowRight, BookOpen, Tag } from "lucide-react";
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Blog | Ryan Judy — Digital Marketing Insights for Ohio Businesses",
+  title: "Blog | Ryan Judy — Digital Marketing Insights for Columbus Businesses",
   description:
-    "Practical digital marketing insights, Ohio business tips, and expert takes on websites, AI, SEO, and paid search. Written by Ryan Judy.",
+    "Practical digital marketing insights, Columbus business tips, and expert takes on websites, AI, SEO, and paid search. Written by Ryan Judy.",
 };
 
 interface Post {
@@ -43,7 +43,7 @@ const categoryLabels: Record<string, string> = {
   ai: "AI & Automation",
   strategy: "Digital Strategy",
   analytics: "Analytics",
-  ohio: "Ohio Business",
+  ohio: "Columbus Business",
 };
 
 function formatDate(dateString: string) {
@@ -58,7 +58,7 @@ function formatDate(dateString: string) {
 const placeholderPosts: Post[] = [
   {
     _id: "placeholder-1",
-    title: "Why Your Ohio Business Website Might Be Costing You Customers",
+    title: "Why Your Columbus Business Website Might Be Costing You Customers",
     slug: { current: "placeholder-1" },
     excerpt:
       "Most small business websites are built to look good at launch — not to convert visitors into customers. Here's what to audit first and what to fix.",
@@ -69,7 +69,7 @@ const placeholderPosts: Post[] = [
   },
   {
     _id: "placeholder-2",
-    title: "The Ohio Business Owner's Guide to Google Ads in 2025",
+    title: "The Columbus Business Owner's Guide to Google Ads in 2025",
     slug: { current: "placeholder-2" },
     excerpt:
       "Google Ads can be a gold mine or a money pit depending on how they're set up. Here's what to know before you spend a single dollar.",
@@ -109,7 +109,7 @@ const placeholderPosts: Post[] = [
   },
   {
     _id: "placeholder-6",
-    title: "5 GA4 Reports Every Ohio Business Owner Should Check Monthly",
+    title: "5 GA4 Reports Every Columbus Business Owner Should Check Monthly",
     slug: { current: "placeholder-6" },
     excerpt:
       "Google Analytics 4 is powerful — but only if you know what to look at. Here are the five reports that matter most for understanding your website's performance.",
@@ -138,17 +138,17 @@ export default async function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="hero-gradient dot-pattern pt-36 pb-20">
+      <section className="hero-gradient pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-8">
-              <BookOpen className="w-4 h-4 text-[#F59E0B]" />
+              <BookOpen className="w-4 h-4 text-[#D4AF37]" />
               The Blog
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
               Digital marketing insights
               <br />
-              <span className="text-[#F59E0B]">for Ohio businesses</span>
+              <span className="text-[#D4AF37]">for Ohio businesses</span>
             </h1>
             <p className="text-white/70 text-xl leading-relaxed">
               Practical, no-fluff articles on websites, AI, SEO, paid search,
@@ -205,7 +205,7 @@ export default async function BlogPage() {
                         {categoryLabels[featured.category] || featured.category}
                       </span>
                     )}
-                    <span className="text-[#94A3B8] text-xs font-medium px-2.5 py-1 rounded-full bg-[#F1F5F9]">
+                    <span className="text-[#475569] text-xs font-medium px-2.5 py-1 rounded-full bg-[#F1F5F9]">
                       Featured
                     </span>
                   </div>
@@ -213,11 +213,11 @@ export default async function BlogPage() {
                     {featured.title}
                   </h2>
                   {featured.excerpt && (
-                    <p className="text-[#64748B] leading-relaxed mb-6">
+                    <p className="text-[#475569] leading-relaxed mb-6">
                       {featured.excerpt}
                     </p>
                   )}
-                  <div className="flex items-center gap-4 text-[#94A3B8] text-sm">
+                  <div className="flex items-center gap-4 text-[#475569] text-sm">
                     {featured.publishedAt && (
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-4 h-4" />
@@ -275,7 +275,7 @@ export default async function BlogPage() {
                       </span>
                     )}
                     {post.readTime && (
-                      <div className="flex items-center gap-1 text-[#94A3B8] text-xs">
+                      <div className="flex items-center gap-1 text-[#475569] text-xs">
                         <Clock className="w-3 h-3" />
                         {post.readTime} min
                       </div>
@@ -287,14 +287,14 @@ export default async function BlogPage() {
                   </h3>
 
                   {post.excerpt && (
-                    <p className="text-[#64748B] text-sm leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-[#475569] text-sm leading-relaxed mb-4 line-clamp-2">
                       {post.excerpt}
                     </p>
                   )}
 
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     {post.publishedAt && (
-                      <div className="flex items-center gap-1.5 text-[#94A3B8] text-xs">
+                      <div className="flex items-center gap-1.5 text-[#475569] text-xs">
                         <Calendar className="w-3 h-3" />
                         {formatDate(post.publishedAt)}
                       </div>

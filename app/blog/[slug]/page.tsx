@@ -39,7 +39,7 @@ const categoryLabels: Record<string, string> = {
   ai: "AI & Automation",
   strategy: "Digital Strategy",
   analytics: "Analytics",
-  ohio: "Ohio Business",
+  ohio: "Columbus Business",
 };
 
 function formatDate(dateString: string) {
@@ -92,7 +92,7 @@ const portableTextComponents = {
       <h4 className="text-xl font-bold text-[#0A1628] mt-6 mb-2">{children}</h4>
     ),
     blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-[#F59E0B] pl-6 my-6 italic text-[#64748B] text-lg">
+      <blockquote className="border-l-4 border-[#D4AF37] pl-6 my-6 italic text-[#475569] text-lg">
         {children}
       </blockquote>
     ),
@@ -144,7 +144,7 @@ const portableTextComponents = {
             className="w-full rounded-xl border border-gray-100"
           />
           {value.caption && (
-            <figcaption className="text-center text-[#94A3B8] text-sm mt-2">
+            <figcaption className="text-center text-[#475569] text-sm mt-2">
               {value.caption}
             </figcaption>
           )}
@@ -173,7 +173,7 @@ export default async function BlogPostPage({
   return (
     <>
       {/* Hero */}
-      <section className="hero-gradient dot-pattern pt-36 pb-12">
+      <section className="hero-gradient pt-36 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
@@ -253,7 +253,7 @@ export default async function BlogPostPage({
               />
             </div>
           ) : (
-            <div className="text-center py-12 text-[#64748B]">
+            <div className="text-center py-12 text-[#475569]">
               <p>This post&apos;s content hasn&apos;t been published yet.</p>
             </div>
           )}
@@ -267,10 +267,10 @@ export default async function BlogPostPage({
               <div>
                 <div className="font-bold text-[#0A1628] mb-1">Ryan Judy</div>
                 <div className="text-[#1D4ED8] text-sm font-medium mb-2">
-                  Digital Marketing Strategist — Columbus, Ohio
+                  Digital Marketing Strategist — Columbus, Columbus
                 </div>
-                <p className="text-[#64748B] text-sm leading-relaxed">
-                  10+ years helping Ohio businesses grow through websites, SEO,
+                <p className="text-[#475569] text-sm leading-relaxed">
+                  10+ years helping Columbus businesses grow through websites, SEO,
                   SEM, AI, and digital strategy. Based in Columbus, focused on
                   real results for real businesses.
                 </p>

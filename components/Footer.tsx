@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <p className="text-lg font-bold text-white">
-                Ready to grow your Ohio business online?
+                Ready to grow your Columbus business online?
               </p>
               <p className="text-blue-200 text-sm mt-1">
                 Let&apos;s talk — no pressure, no fluff, just honest strategy.
@@ -57,19 +57,19 @@ export default function Footer() {
                 <Zap className="w-5 h-5 text-white" fill="currentColor" />
               </div>
               <span className="text-white font-bold text-lg tracking-tight">
-                Ryan Judy<span className="text-[#F59E0B]">.</span>
+                Ryan Judy<span className="text-[#D4AF37]">.</span>
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Digital marketing strategist helping Ohio businesses build powerful
+              Digital marketing strategist helping Columbus businesses build powerful
               online presences — from websites to AI and everything in between.
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
-              <MapPin className="w-4 h-4 text-[#F59E0B] shrink-0" />
-              <span>Columbus, Ohio &bull; Serving all of Ohio</span>
+              <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
+              <span>Columbus, OH</span>
             </div>
             <div className="flex items-center gap-2 text-white/60 text-sm">
-              <Mail className="w-4 h-4 text-[#F59E0B] shrink-0" />
+              <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
               <a
                 href="mailto:ryan@ryanjudy.com"
                 className="hover:text-white transition-colors"
@@ -80,7 +80,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="https://linkedin.com/in/ryanjudy"
+                href="https://linkedin.com/in/rjudy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1D4ED8] flex items-center justify-center transition-colors duration-200"
@@ -110,7 +110,7 @@ export default function Footer() {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="text-white/60 hover:text-[#F59E0B] text-sm transition-colors duration-200"
+                    className="text-white/60 hover:text-[#D4AF37] text-sm transition-colors duration-200"
                   >
                     {s.label}
                   </Link>
@@ -129,7 +129,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-white/60 hover:text-[#F59E0B] text-sm transition-colors duration-200"
+                    className="text-white/60 hover:text-[#D4AF37] text-sm transition-colors duration-200"
                   >
                     {l.label}
                   </Link>
@@ -145,7 +145,7 @@ export default function Footer() {
             </h3>
             <p className="text-white/60 text-sm mb-4">
               Monthly insights on digital marketing, AI, and what&apos;s working
-              for Ohio businesses.
+              for Columbus businesses.
             </p>
             <form className="flex flex-col gap-2">
               <input
@@ -165,19 +165,19 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm">
+          <p className="text-white/60 text-sm">
             &copy; {year} Ryan Judy Digital Marketing. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              className="text-white/60 hover:text-white/80 text-sm transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              className="text-white/60 hover:text-white/80 text-sm transition-colors"
             >
               Terms
             </Link>

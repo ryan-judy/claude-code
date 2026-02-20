@@ -8,18 +8,18 @@ export default function CTA() {
         <div className="relative bg-gradient-to-br from-[#0A1628] via-[#1a2a45] to-[#1D4ED8] rounded-3xl overflow-hidden px-8 md:px-16 py-16 md:py-20">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-white opacity-5 blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/3" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#F59E0B] opacity-10 blur-3xl pointer-events-none -translate-x-1/4 translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#D4AF37] opacity-10 blur-3xl pointer-events-none -translate-x-1/4 translate-y-1/3" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="max-w-xl text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
                 Now accepting new clients
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
                 Ready to grow your
                 <br />
-                <span className="text-[#F59E0B]">Ohio business online?</span>
+                <span className="text-[#D4AF37]">Columbus business online?</span>
               </h2>
               <p className="text-white/70 text-lg leading-relaxed">
                 Start with a free website audit. No commitment, no pitch deck —
@@ -40,7 +40,7 @@ export default function CTA() {
                   href="mailto:ryan@ryanjudy.com"
                   className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#F59E0B]" />
+                  <Mail className="w-4 h-4 text-[#D4AF37]" />
                   ryan@ryanjudy.com
                 </a>
                 <span className="text-white/30">|</span>
@@ -48,11 +48,11 @@ export default function CTA() {
                   href="tel:+16145550100"
                   className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#F59E0B]" />
+                  <Phone className="w-4 h-4 text-[#D4AF37]" />
                   (614) 555-0100
                 </a>
               </div>
-              <p className="text-white/40 text-xs text-center">
+              <p className="text-white/60 text-xs text-center">
                 Free audit takes less than 48 hours to deliver.
               </p>
             </div>

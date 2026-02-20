@@ -51,7 +51,7 @@ export default function Industries() {
             Deep experience across{" "}
             <span className="text-[#1D4ED8]">industries that matter</span>
           </h2>
-          <p className="text-[#64748B] text-lg leading-relaxed">
+          <p className="text-[#475569] text-lg leading-relaxed">
             Every industry has its nuances. I&apos;ve spent over a decade learning
             the marketing dynamics across multiple verticals — so I bring relevant
             context from day one.
@@ -74,7 +74,7 @@ export default function Industries() {
                   <h3 className="text-[#0A1628] font-bold text-lg">{industry.name}</h3>
                 </div>
 
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
+                <p className="text-[#475569] text-sm leading-relaxed mb-4">
                   {industry.description}
                 </p>
 

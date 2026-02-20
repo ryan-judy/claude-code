@@ -4,7 +4,7 @@ import { MapPin, Mail, Phone, Clock, Linkedin, Twitter, MessageCircle } from "lu
 export const metadata: Metadata = {
   title: "Contact Ryan Judy | Free Website Audit — Columbus, Ohio",
   description:
-    "Get a free website audit or start a conversation about your digital marketing. Columbus, Ohio based — serving businesses across Ohio.",
+    "Get a free website audit or start a conversation about your digital marketing. Based in Columbus, OH.",
 };
 
 const services = [
@@ -21,17 +21,17 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="hero-gradient dot-pattern pt-36 pb-20">
+      <section className="hero-gradient pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-8">
-              <MessageCircle className="w-4 h-4 text-[#F59E0B]" />
+              <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
               Let&apos;s Talk
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
               Start the conversation.
               <br />
-              <span className="text-[#F59E0B]">No pressure, ever.</span>
+              <span className="text-[#D4AF37]">No pressure, ever.</span>
             </h1>
             <p className="text-white/70 text-xl leading-relaxed">
               Whether you want a free website audit or just want to talk through
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 <h2 className="text-3xl font-bold text-[#0A1628] mb-2">
                   Get in touch
                 </h2>
-                <p className="text-[#64748B] leading-relaxed">
+                <p className="text-[#475569] leading-relaxed">
                   I respond to all inquiries within one business day. For a free
                   website audit, include your URL in the form and I&apos;ll deliver
                   a detailed report within 48 hours.
@@ -66,7 +66,7 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <div className="text-[#64748B] text-xs font-medium uppercase tracking-wider">
+                    <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">
                       Email
                     </div>
                     <a
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <div className="text-[#64748B] text-xs font-medium uppercase tracking-wider">
+                    <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">
                       Phone
                     </div>
                     <a
@@ -100,14 +100,14 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <div className="text-[#64748B] text-xs font-medium uppercase tracking-wider">
+                    <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">
                       Location
                     </div>
                     <div className="text-[#0A1628] font-semibold">
                       Columbus, Ohio
                     </div>
-                    <div className="text-[#64748B] text-sm">
-                      Serving all of Ohio
+                    <div className="text-[#475569] text-sm">
+                      Serving Columbus &amp; beyond
                     </div>
                   </div>
                 </div>
@@ -117,13 +117,13 @@ export default function ContactPage() {
                     <Clock className="w-5 h-5 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <div className="text-[#64748B] text-xs font-medium uppercase tracking-wider">
+                    <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">
                       Response Time
                     </div>
                     <div className="text-[#0A1628] font-semibold">
                       Within 1 business day
                     </div>
-                    <div className="text-[#64748B] text-sm">
+                    <div className="text-[#475569] text-sm">
                       Free audit: within 48 hours
                     </div>
                   </div>
@@ -132,12 +132,12 @@ export default function ContactPage() {
 
               {/* Social */}
               <div>
-                <div className="text-[#64748B] text-sm font-semibold uppercase tracking-wider mb-3">
+                <div className="text-[#475569] text-sm font-semibold uppercase tracking-wider mb-3">
                   Connect
                 </div>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://linkedin.com/in/ryanjudy"
+                    href="https://linkedin.com/in/rjudy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-white hover:bg-[#1D4ED8] text-[#0A1628] hover:text-white border border-gray-200 hover:border-[#1D4ED8] font-medium text-sm px-4 py-2.5 rounded-lg transition-all duration-200"
@@ -164,7 +164,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold text-[#0A1628] mb-2">
                   Send me a message
                 </h2>
-                <p className="text-[#64748B] text-sm mb-8">
+                <p className="text-[#475569] text-sm mb-8">
                   Tell me about your business and what you&apos;re looking to
                   accomplish. The more context you give, the more useful my
                   response will be.
@@ -290,7 +290,7 @@ export default function ContactPage() {
                       <div className="text-[#0A1628] font-semibold text-sm">
                         Yes, I&apos;d like a free website audit
                       </div>
-                      <div className="text-[#64748B] text-xs mt-0.5">
+                      <div className="text-[#475569] text-xs mt-0.5">
                         I&apos;ll analyze your site and send a detailed report within 48 hours.
                       </div>
                     </div>
@@ -303,7 +303,7 @@ export default function ContactPage() {
                     Send Message
                   </button>
 
-                  <p className="text-[#94A3B8] text-xs text-center">
+                  <p className="text-[#475569] text-xs text-center">
                     No spam, ever. Your information is kept private and I respond
                     to every message personally.
                   </p>

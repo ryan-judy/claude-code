@@ -13,9 +13,9 @@ import {
 import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Services | Ryan Judy Digital Marketing — Ohio",
+  title: "Services | Ryan Judy Digital Marketing — Columbus, OH",
   description:
-    "Full-stack digital marketing services for Ohio businesses: websites, AI integration, SEM, SEO, content strategy, analytics, and more.",
+    "Full-stack digital marketing services for Columbus businesses: websites, AI integration, SEM, SEO, content strategy, analytics, and more.",
 };
 
 const services = [
@@ -88,7 +88,7 @@ const services = [
       "Keyword strategy and content planning",
       "On-page optimization",
       "Blog and content creation",
-      "Local SEO for Ohio businesses",
+      "Local SEO for Columbus businesses",
       "Link building and digital PR",
       "Monthly SEO reporting",
     ],
@@ -139,7 +139,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="hero-gradient dot-pattern pt-36 pb-20">
+      <section className="hero-gradient pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-8">
@@ -149,12 +149,12 @@ export default function ServicesPage() {
               Every service you need
               <br />
               to{" "}
-              <span className="text-[#F59E0B]">dominate online</span>
+              <span className="text-[#D4AF37]">dominate online</span>
             </h1>
             <p className="text-white/70 text-xl leading-relaxed mb-10">
               From your first website to a full digital marketing engine — I
               bring deep expertise across every channel and discipline that
-              matters for growing Ohio businesses.
+              matters for growing Columbus businesses.
             </p>
             {/* Quick nav */}
             <div className="flex flex-wrap gap-2">
@@ -202,7 +202,7 @@ export default function ServicesPage() {
                     <p className="text-[#1D4ED8] font-semibold text-lg mb-4">
                       {service.tagline}
                     </p>
-                    <p className="text-[#64748B] text-base leading-relaxed mb-8">
+                    <p className="text-[#475569] text-base leading-relaxed mb-8">
                       {service.description}
                     </p>
                     <Link

@@ -3,9 +3,9 @@ import { ShieldCheck, Users, Lightbulb, LineChart, MapPin, Clock } from "lucide-
 const reasons = [
   {
     icon: MapPin,
-    title: "Ohio-First Mindset",
+    title: "Columbus-First Mindset",
     description:
-      "I live here, I work here, I know Ohio markets. Local knowledge means better strategies, better connections, and a genuine investment in your success.",
+      "I live here, I work here, I know Columbus markets. Local knowledge means better strategies, better connections, and a genuine investment in your success.",
   },
   {
     icon: ShieldCheck,
@@ -55,19 +55,19 @@ export default function Why() {
               without the{" "}
               <span className="text-[#1D4ED8]">agency markup</span>
             </h2>
-            <p className="text-[#64748B] text-lg leading-relaxed mb-8">
+            <p className="text-[#475569] text-lg leading-relaxed mb-8">
               Big agencies have big overhead — account managers, layers of
               approvals, junior staff executing on your account. With me, you
               get a seasoned digital marketing veteran working directly on your
               business. Period.
             </p>
-            <blockquote className="border-l-4 border-[#F59E0B] pl-5 py-2">
+            <blockquote className="border-l-4 border-[#D4AF37] pl-5 py-2">
               <p className="text-[#0A1628] font-medium italic text-lg">
-                &ldquo;I started this business because I kept seeing Ohio companies
+                &ldquo;I started this business because I kept seeing Columbus companies
                 underserved by agencies that were too big to care and too busy
                 to listen.&rdquo;
               </p>
-              <footer className="text-[#64748B] text-sm mt-2">
+              <footer className="text-[#475569] text-sm mt-2">
                 — Ryan Judy, Founder
               </footer>
             </blockquote>
@@ -88,7 +88,7 @@ export default function Why() {
                       {reason.title}
                     </h3>
                   </div>
-                  <p className="text-[#64748B] text-xs leading-relaxed">
+                  <p className="text-[#475569] text-xs leading-relaxed">
                     {reason.description}
                   </p>
                 </div>

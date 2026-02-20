@@ -85,7 +85,7 @@ export default function Services() {
             Full-stack digital marketing,{" "}
             <span className="text-[#1D4ED8]">start to finish</span>
           </h2>
-          <p className="text-[#64748B] text-lg leading-relaxed">
+          <p className="text-[#475569] text-lg leading-relaxed">
             Whether you need one thing done right or a complete digital
             transformation, I bring deep expertise across every channel that
             matters for your business.
@@ -112,7 +112,7 @@ export default function Services() {
                 <h3 className="text-[#0A1628] font-bold text-xl mb-3">
                   {service.title}
                 </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-5 flex-1">
+                <p className="text-[#475569] text-sm leading-relaxed mb-5 flex-1">
                   {service.description}
                 </p>
 
