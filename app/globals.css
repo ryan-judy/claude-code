@@ -56,9 +56,12 @@ body {
   background-clip: text;
 }
 
-/* Hero gradient */
+/* Hero gradient — combines the dark gradient AND dot pattern in one declaration
+   so that the dot-pattern class cannot override the gradient background-image */
 .hero-gradient {
-  background: linear-gradient(135deg, #0A1628 0%, #1a2a45 40%, #1D4ED8 100%);
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(135deg, #0A1628 0%, #1a2a45 40%, #1D4ED8 100%);
 }
 
 /* Card hover lift */
@@ -89,7 +92,7 @@ body {
   width: 100%;
 }
 
-/* Pattern overlay */
+/* Pattern overlay — standalone use only; do NOT combine with hero-gradient */
 .dot-pattern {
   background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
   background-size: 24px 24px;

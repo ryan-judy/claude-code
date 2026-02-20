@@ -6,22 +6,22 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Ryan Judy | Digital Marketing for Ohio Businesses",
+  title: "Ryan Judy | Digital Marketing for Columbus Businesses",
   description:
-    "10+ years of digital marketing experience helping Ohio businesses grow online. Specializing in websites, AI integration, SEM, SEO, and full digital marketing strategy.",
+    "10+ years of digital marketing experience helping Columbus businesses grow online. Specializing in websites, AI integration, SEM, SEO, and full digital marketing strategy.",
   keywords: [
     "digital marketing Columbus Ohio",
     "website design Columbus Ohio",
     "SEO Columbus Ohio",
-    "SEM agency Ohio",
-    "AI marketing Ohio",
-    "digital marketing strategy Ohio",
+    "SEM Columbus Ohio",
+    "AI marketing Columbus",
+    "digital marketing strategy Columbus",
   ],
   authors: [{ name: "Ryan Judy" }],
   openGraph: {
-    title: "Ryan Judy | Digital Marketing for Ohio Businesses",
+    title: "Ryan Judy | Digital Marketing for Columbus Businesses",
     description:
-      "10+ years of digital marketing expertise. Helping Ohio businesses dominate their digital presence.",
+      "10+ years of digital marketing expertise. Helping Columbus businesses dominate their digital presence.",
     type: "website",
     locale: "en_US",
   },

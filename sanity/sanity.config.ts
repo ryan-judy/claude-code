@@ -2,8 +2,9 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
+import { codeInput } from '@sanity/code-input' // Import the plugin
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "crs7qrfh";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
     types: schemaTypes,
   },
   plugins: [
+    codeInput(),
     structureTool({
       structure: (S) =>
         S.list()

@@ -5,18 +5,18 @@ const stats = [
     description: "Across agencies, in-house, and consulting",
   },
   {
-    value: "5",
-    label: "Verticals Mastered",
-    description: "Finance, education, real estate, clean tech & startups",
-  },
-  {
-    value: "3x",
-    label: "Avg. Traffic Growth",
-    description: "For clients who complete a 6-month engagement",
+    value: "$2M+",
+    label: "Ad Spend Managed",
+    description: "Across Google, Meta, Bing, and programmatic channels",
   },
   {
     value: "100%",
-    label: "Ohio Focused",
+    label: "Senior-Level Execution",
+    description: "You work directly with me — no junior handoffs, ever",
+  },
+  {
+    value: "Columbus",
+    label: "OH Based & Focused",
     description: "I live here, I know these markets, I'm invested in your win",
   },
 ];
@@ -31,7 +31,7 @@ export default function Stats() {
               key={i}
               className="bg-[#0A1628] p-8 hover:bg-[#1a2a45] transition-colors duration-200 text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-[#F59E0B] mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-[#D4AF37] mb-2">
                 {stat.value}
               </div>
               <div className="text-white font-semibold text-sm md:text-base mb-1">
