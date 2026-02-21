@@ -6,7 +6,14 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
-const navLinks = [
+export interface NavData {
+  logoText?: string;
+  navLinks?: { label: string; href: string }[];
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const defaultLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
@@ -14,10 +21,17 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Navigation() {
+export default function Navigation({ data }: { data?: NavData | null }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const logoText = data?.logoText ?? "Ryan Judy";
+  const navLinks = data?.navLinks?.length
+    ? data.navLinks.map((l) => ({ href: l.href, label: l.label }))
+    : defaultLinks;
+  const ctaText = data?.ctaText ?? "Get a Free Audit";
+  const ctaHref = data?.ctaHref ?? "/contact";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -48,7 +62,7 @@ export default function Navigation() {
               <Zap className="w-5 h-5 text-white" fill="currentColor" />
             </div>
             <span className="text-white font-bold text-lg tracking-tight">
-              Ryan Judy
+              {logoText}
               <span className="text-[#D4AF37] ml-0.5">.</span>
             </span>
           </Link>
@@ -74,10 +88,10 @@ export default function Navigation() {
           {/* CTA */}
           <div className="hidden md:block">
             <Link
-              href="/contact"
+              href={ctaHref}
               className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25"
             >
-              Get a Free Audit
+              {ctaText}
             </Link>
           </div>
 
@@ -87,11 +101,7 @@ export default function Navigation() {
             className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -118,10 +128,10 @@ export default function Navigation() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={ctaHref}
               className="mt-3 mx-4 text-center bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-semibold text-sm px-5 py-3 rounded-lg transition-colors duration-200"
             >
-              Get a Free Audit
+              {ctaText}
             </Link>
           </div>
         </div>

@@ -1,51 +1,47 @@
-const steps = [
-  {
-    number: "01",
-    title: "Discovery & Audit",
-    description:
-      "We start with a deep dive into your business, goals, competition, and current digital presence. No cookie-cutter templates — I want to understand what actually makes your business tick and where the biggest opportunities live.",
-    deliverable: "Free audit report + opportunity map",
-  },
-  {
-    number: "02",
-    title: "Strategy & Roadmap",
-    description:
-      "Based on the audit, I build a clear, prioritized roadmap. You'll know exactly what we're doing, why, and what success looks like. Strategy is worthless without execution clarity.",
-    deliverable: "90-day roadmap + KPI framework",
-  },
-  {
-    number: "03",
-    title: "Build & Execute",
-    description:
-      "Hands-on execution — whether that's designing and launching a new website, standing up ad campaigns, implementing AI tools, or producing content. I do the work, not just the advising.",
-    deliverable: "Monthly deliverables + progress tracking",
-  },
-  {
-    number: "04",
-    title: "Measure & Optimize",
-    description:
-      "Data drives everything. Monthly reporting shows exactly what's performing and what needs adjustment. I continuously test, iterate, and optimize to compound results over time.",
-    deliverable: "Monthly reporting + optimization log",
-  },
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+  deliverable: string;
+}
+
+export interface ProcessData {
+  badge?: string;
+  headline?: string;
+  headlineHighlight?: string;
+  subheadline?: string;
+  steps?: ProcessStep[];
+}
+
+const defaultSteps: ProcessStep[] = [
+  { number: "01", title: "Discovery & Audit", description: "We start with a deep dive into your business, goals, competition, and current digital presence. No cookie-cutter templates — I want to understand what actually makes your business tick and where the biggest opportunities live.", deliverable: "Free audit report + opportunity map" },
+  { number: "02", title: "Strategy & Roadmap", description: "Based on the audit, I build a clear, prioritized roadmap. You'll know exactly what we're doing, why, and what success looks like. Strategy is worthless without execution clarity.", deliverable: "90-day roadmap + KPI framework" },
+  { number: "03", title: "Build & Execute", description: "Hands-on execution — whether that's designing and launching a new website, standing up ad campaigns, implementing AI tools, or producing content. I do the work, not just the advising.", deliverable: "Monthly deliverables + progress tracking" },
+  { number: "04", title: "Measure & Optimize", description: "Data drives everything. Monthly reporting shows exactly what's performing and what needs adjustment. I continuously test, iterate, and optimize to compound results over time.", deliverable: "Monthly reporting + optimization log" },
 ];
 
-export default function Process() {
+export default function Process({ data }: { data?: ProcessData | null }) {
+  const badge = data?.badge ?? "How I Work";
+  const headline = data?.headline ?? "A process built for";
+  const headlineHighlight = data?.headlineHighlight ?? "real results";
+  const subheadline =
+    data?.subheadline ??
+    "No black boxes, no agency speak. A clear, transparent process that keeps you informed and in control at every step.";
+  const steps = data?.steps?.length ? data.steps : defaultSteps;
+
   return (
     <section className="section-padding bg-[#0A1628]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            How I Work
+            {badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            A process built for{" "}
-            <span className="text-[#D4AF37]">real results</span>
+            {headline}{" "}
+            <span className="text-[#D4AF37]">{headlineHighlight}</span>
           </h2>
-          <p className="text-white/60 text-lg leading-relaxed">
-            No black boxes, no agency speak. A clear, transparent process that
-            keeps you informed and in control at every step.
-          </p>
+          <p className="text-white/60 text-lg leading-relaxed">{subheadline}</p>
         </div>
 
         {/* Steps */}
@@ -63,18 +59,12 @@ export default function Process() {
                   {step.number}
                 </div>
 
-                <h3 className="text-white font-bold text-lg mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-white/60 text-sm leading-relaxed flex-1 mb-4">
-                  {step.description}
-                </p>
+                <h3 className="text-white font-bold text-lg mb-3">{step.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed flex-1 mb-4">{step.description}</p>
 
                 {/* Deliverable */}
                 <div className="bg-[#1D4ED8]/20 border border-[#1D4ED8]/30 rounded-lg px-3 py-2">
-                  <p className="text-[#93C5FD] text-xs font-medium">
-                    Deliverable: {step.deliverable}
-                  </p>
+                  <p className="text-[#93C5FD] text-xs font-medium">Deliverable: {step.deliverable}</p>
                 </div>
               </div>
             </div>

@@ -1,0 +1,57 @@
+import {
+  MapPin,
+  ShieldCheck,
+  Lightbulb,
+  LineChart,
+  Users,
+  Clock,
+  Globe,
+  Bot,
+  Search,
+  TrendingUp,
+  BarChart2,
+  Megaphone,
+  Building2,
+  GraduationCap,
+  Home,
+  Leaf,
+  Rocket,
+  Heart,
+  Award,
+  CheckCircle2,
+  Mail,
+  Phone,
+  MessageCircle,
+  type LucideIcon,
+} from "lucide-react";
+
+export const iconMap: Record<string, LucideIcon> = {
+  MapPin,
+  ShieldCheck,
+  Lightbulb,
+  LineChart,
+  Users,
+  Clock,
+  Globe,
+  Bot,
+  Search,
+  TrendingUp,
+  BarChart2,
+  Megaphone,
+  Building2,
+  GraduationCap,
+  Home,
+  Leaf,
+  Rocket,
+  Heart,
+  Award,
+  CheckCircle2,
+  Mail,
+  Phone,
+  MessageCircle,
+};
+
+export function getIcon(name: string | undefined): LucideIcon | null {
+  if (!name) return null;
+  return iconMap[name] ?? null;
+}

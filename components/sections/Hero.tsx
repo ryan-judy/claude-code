@@ -3,7 +3,31 @@
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-export default function Hero() {
+export interface HeroData {
+  badge?: string;
+  headline?: string;
+  headlineHighlight?: string;
+  subheadline?: string;
+  primaryCtaText?: string;
+  secondaryCtaText?: string;
+  proofStats?: { value: string; label: string }[];
+}
+
+export default function Hero({ data }: { data?: HeroData | null }) {
+  const badge = data?.badge ?? "Based in Columbus, OH \u2022 Serving businesses across the region";
+  const headline = data?.headline ?? "Your Columbus Business Deserves to";
+  const headlineHighlight = data?.headlineHighlight ?? "Dominate Online";
+  const subheadline =
+    data?.subheadline ??
+    "10+ years of digital marketing expertise \u2014 websites, AI, SEM, SEO, and strategy \u2014 helping Columbus businesses at every stage turn their digital presence into a genuine competitive advantage.";
+  const primaryCtaText = data?.primaryCtaText ?? "Get Your Free Website Audit";
+  const secondaryCtaText = data?.secondaryCtaText ?? "Explore Services";
+  const proofStats = data?.proofStats ?? [
+    { value: "10+", label: "Years Experience" },
+    { value: "$2M+", label: "Ad Spend Managed" },
+    { value: "Columbus", label: "OH Based" },
+  ];
+
   const scrollToServices = () => {
     document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -19,24 +43,19 @@ export default function Hero() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-            Based in Columbus, OH &bull; Serving businesses across the region
+            {badge}
           </div>
 
           {/* Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6">
-            Your Columbus Business{" "}
+            {headline}{" "}
             <br className="hidden sm:block" />
-            Deserves to{" "}
-            <span className="gradient-text">Dominate</span>
-            <br className="hidden sm:block" />
-            Online
+            <span className="gradient-text">{headlineHighlight}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-            10+ years of digital marketing expertise — websites, AI, SEM, SEO,
-            and strategy — helping Columbus businesses at every stage turn their
-            digital presence into a genuine competitive advantage.
+            {subheadline}
           </p>
 
           {/* CTAs */}
@@ -45,29 +64,23 @@ export default function Hero() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 group"
             >
-              Get Your Free Website Audit
+              {primaryCtaText}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="/services"
               className="inline-flex items-center gap-2 text-white font-semibold text-base px-4 py-4 transition-colors duration-200 border-b border-white/20 hover:border-white/60"
             >
-              Explore Services
+              {secondaryCtaText}
             </Link>
           </div>
 
           {/* Stats proof */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <div className="flex items-center gap-6">
-              {[
-                { value: "10+", label: "Years Experience" },
-                { value: "$2M+", label: "Ad Spend Managed" },
-                { value: "Columbus", label: "OH Based" },
-              ].map((stat) => (
+              {proofStats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-white font-bold text-lg leading-none">
-                    {stat.value}
-                  </div>
+                  <div className="text-white font-bold text-lg leading-none">{stat.value}</div>
                   <div className="text-white/60 text-xs mt-0.5">{stat.label}</div>
                 </div>
               ))}

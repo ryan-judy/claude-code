@@ -1,6 +1,17 @@
 import Link from "next/link";
 import { Zap, MapPin, Mail, Linkedin, Twitter, ArrowRight } from "lucide-react";
 
+export interface SiteSettingsData {
+  siteName?: string;
+  email?: string;
+  phone?: string;
+  phoneHref?: string;
+  location?: string;
+  locationSubtext?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
 const services = [
   { label: "Website Design & Development", href: "/services#websites" },
   { label: "AI Integration", href: "/services#ai" },
@@ -19,8 +30,15 @@ const quickLinks = [
   { label: "Free Website Audit", href: "/contact" },
 ];
 
-export default function Footer() {
+export default function Footer({ data }: { data?: SiteSettingsData | null }) {
   const year = new Date().getFullYear();
+
+  const siteName = data?.siteName ?? "Ryan Judy";
+  const email = data?.email ?? "ryan@ryanjudy.com";
+  const location = data?.location ?? "Columbus, OH";
+  const locationSubtext = data?.locationSubtext ?? "Serving Columbus & beyond";
+  const linkedin = data?.linkedin ?? "https://linkedin.com/in/rjudy";
+  const twitter = data?.twitter ?? "https://twitter.com/ryanjudy";
 
   return (
     <footer className="bg-[#0A1628] text-white">
@@ -57,7 +75,7 @@ export default function Footer() {
                 <Zap className="w-5 h-5 text-white" fill="currentColor" />
               </div>
               <span className="text-white font-bold text-lg tracking-tight">
-                Ryan Judy<span className="text-[#D4AF37]">.</span>
+                {siteName}<span className="text-[#D4AF37]">.</span>
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
@@ -66,21 +84,18 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
               <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
-              <span>Columbus, OH</span>
+              <span>{location}</span>
             </div>
             <div className="flex items-center gap-2 text-white/60 text-sm">
               <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
-              <a
-                href="mailto:ryan@ryanjudy.com"
-                className="hover:text-white transition-colors"
-              >
-                ryan@ryanjudy.com
+              <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                {email}
               </a>
             </div>
             {/* Social */}
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="https://linkedin.com/in/rjudy"
+                href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1D4ED8] flex items-center justify-center transition-colors duration-200"
@@ -89,7 +104,7 @@ export default function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com/ryanjudy"
+                href={twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1D4ED8] flex items-center justify-center transition-colors duration-200"
@@ -166,19 +181,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/60 text-sm">
-            &copy; {year} Ryan Judy Digital Marketing. All rights reserved.
+            &copy; {year} {siteName} Digital Marketing. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link
-              href="/privacy"
-              className="text-white/60 hover:text-white/80 text-sm transition-colors"
-            >
+            <Link href="/privacy" className="text-white/60 hover:text-white/80 text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link
-              href="/terms"
-              className="text-white/60 hover:text-white/80 text-sm transition-colors"
-            >
+            <Link href="/terms" className="text-white/60 hover:text-white/80 text-sm transition-colors">
               Terms
             </Link>
           </div>

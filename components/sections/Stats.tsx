@@ -1,27 +1,19 @@
-const stats = [
-  {
-    value: "10+",
-    label: "Years in Digital Marketing",
-    description: "Across agencies, in-house, and consulting",
-  },
-  {
-    value: "$2M+",
-    label: "Ad Spend Managed",
-    description: "Across Google, Meta, Bing, and programmatic channels",
-  },
-  {
-    value: "100%",
-    label: "Senior-Level Execution",
-    description: "You work directly with me — no junior handoffs, ever",
-  },
-  {
-    value: "Columbus",
-    label: "OH Based & Focused",
-    description: "I live here, I know these markets, I'm invested in your win",
-  },
+export interface StatItem {
+  value: string;
+  label: string;
+  description: string;
+}
+
+const defaultStats: StatItem[] = [
+  { value: "10+", label: "Years in Digital Marketing", description: "Across agencies, in-house, and consulting" },
+  { value: "$2M+", label: "Ad Spend Managed", description: "Across Google, Meta, Bing, and programmatic channels" },
+  { value: "100%", label: "Senior-Level Execution", description: "You work directly with me — no junior handoffs, ever" },
+  { value: "Columbus", label: "OH Based & Focused", description: "I live here, I know these markets, I'm invested in your win" },
 ];
 
-export default function Stats() {
+export default function Stats({ data }: { data?: StatItem[] | null }) {
+  const stats = data?.length ? data : defaultStats;
+
   return (
     <section className="bg-[#0A1628] py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,15 +23,9 @@ export default function Stats() {
               key={i}
               className="bg-[#0A1628] p-8 hover:bg-[#1a2a45] transition-colors duration-200 text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-[#D4AF37] mb-2">
-                {stat.value}
-              </div>
-              <div className="text-white font-semibold text-sm md:text-base mb-1">
-                {stat.label}
-              </div>
-              <div className="text-white/50 text-xs md:text-sm leading-snug">
-                {stat.description}
-              </div>
+              <div className="text-4xl md:text-5xl font-bold text-[#D4AF37] mb-2">{stat.value}</div>
+              <div className="text-white font-semibold text-sm md:text-base mb-1">{stat.label}</div>
+              <div className="text-white/50 text-xs md:text-sm leading-snug">{stat.description}</div>
             </div>
           ))}
         </div>

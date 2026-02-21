@@ -1,7 +1,32 @@
 import Link from "next/link";
 import { ArrowRight, Phone, Mail } from "lucide-react";
 
-export default function CTA() {
+export interface CtaData {
+  badge?: string;
+  headline?: string;
+  headlineHighlight?: string;
+  body?: string;
+  primaryCtaText?: string;
+  ctaFinePrint?: string;
+  // Contact info passed from siteSettings
+  email?: string;
+  phone?: string;
+  phoneHref?: string;
+}
+
+export default function CTA({ data }: { data?: CtaData | null }) {
+  const badge = data?.badge ?? "Now accepting new clients";
+  const headline = data?.headline ?? "Ready to grow your";
+  const headlineHighlight = data?.headlineHighlight ?? "Columbus business online?";
+  const body =
+    data?.body ??
+    "Start with a free website audit. No commitment, no pitch deck \u2014 just an honest look at where you stand and where you can go.";
+  const primaryCtaText = data?.primaryCtaText ?? "Get My Free Website Audit";
+  const ctaFinePrint = data?.ctaFinePrint ?? "Free audit takes less than 48 hours to deliver.";
+  const email = data?.email ?? "ryan@ryanjudy.com";
+  const phone = data?.phone ?? "(614) 555-0100";
+  const phoneHref = data?.phoneHref ?? "+16145550100";
+
   return (
     <section className="section-padding bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,17 +39,14 @@ export default function CTA() {
             <div className="max-w-xl text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                Now accepting new clients
+                {badge}
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                Ready to grow your
+                {headline}
                 <br />
-                <span className="text-[#D4AF37]">Columbus business online?</span>
+                <span className="text-[#D4AF37]">{headlineHighlight}</span>
               </h2>
-              <p className="text-white/70 text-lg leading-relaxed">
-                Start with a free website audit. No commitment, no pitch deck —
-                just an honest look at where you stand and where you can go.
-              </p>
+              <p className="text-white/70 text-lg leading-relaxed">{body}</p>
             </div>
 
             <div className="flex flex-col gap-4 w-full lg:w-auto min-w-[280px]">
@@ -32,29 +54,27 @@ export default function CTA() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 group text-base"
               >
-                Get My Free Website Audit
+                {primaryCtaText}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <div className="flex items-center gap-4 justify-center">
                 <a
-                  href="mailto:ryan@ryanjudy.com"
+                  href={`mailto:${email}`}
                   className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#D4AF37]" />
-                  ryan@ryanjudy.com
+                  {email}
                 </a>
                 <span className="text-white/30">|</span>
                 <a
-                  href="tel:+16145550100"
+                  href={`tel:${phoneHref}`}
                   className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#D4AF37]" />
-                  (614) 555-0100
+                  {phone}
                 </a>
               </div>
-              <p className="text-white/60 text-xs text-center">
-                Free audit takes less than 48 hours to deliver.
-              </p>
+              <p className="text-white/60 text-xs text-center">{ctaFinePrint}</p>
             </div>
           </div>
         </div>
