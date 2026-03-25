@@ -84,7 +84,7 @@ export default function WhoIHelp() {
             </p>
           </div>
           <Link
-            href="/contact"
+            href="/audit"
             className="shrink-0 inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 group"
           >
             Get a Free Audit
