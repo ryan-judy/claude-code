@@ -1,53 +1,13 @@
-"use client";
-
-import { useState } from "react";
-import { Zap, CheckCircle2 } from "lucide-react";
+import { Zap } from "lucide-react";
 
 export default function AuditForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(false);
-    const formData = new FormData(e.currentTarget);
-    try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
-      });
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setError(true);
-      }
-    } catch {
-      setError(true);
-    }
-  };
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center text-center py-12 gap-4">
-        <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center">
-          <CheckCircle2 className="w-8 h-8 text-green-500" />
-        </div>
-        <h3 className="text-2xl font-bold text-[#0A1628]">Audit request received!</h3>
-        <p className="text-[#475569] max-w-sm">
-          I'll personally review your site and send a detailed report within 48 hours.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <form
       name="audit"
       method="POST"
+      action="/thank-you"
       data-netlify="true"
       className="space-y-5"
-      onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="audit" />
 
@@ -134,15 +94,9 @@ export default function AuditForm() {
         </select>
       </div>
 
-      {error && (
-        <p className="text-red-500 text-sm text-center">
-          Something went wrong. Please try again or email me at ryan@sparkstreet.digital.
-        </p>
-      )}
-
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg group"
+        className="w-full inline-flex items-center justify-center gap-2 bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg"
       >
         <Zap className="w-5 h-5 fill-current" />
         Request My Free Audit
