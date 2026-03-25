@@ -1,4 +1,4 @@
-import { MapPin, Mail, Clock, Linkedin, Twitter } from "lucide-react";
+import { MapPin, Mail, Clock, Linkedin } from "lucide-react";
 
 export interface ContactFormData {
   contactInfoHeadline?: string;
@@ -19,7 +19,6 @@ export interface ContactFormData {
   responseTime?: string;
   auditDeliveryTime?: string;
   linkedin?: string;
-  twitter?: string;
 }
 
 const defaultServiceOptions = [
@@ -59,7 +58,6 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
   const locationSubtext = data?.locationSubtext ?? "Serving locally owned Ohio businesses";
   const responseTime = data?.responseTime ?? "Within 1 business day";
   const linkedin = data?.linkedin ?? "https://linkedin.com/in/rjudy";
-  const twitter = data?.twitter ?? "https://twitter.com/ryanjudy";
 
   return (
     <section className="py-20 bg-[#F8FAFC]">
@@ -119,15 +117,6 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
-                </a>
-                <a
-                  href={twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white hover:bg-[#0A1628] text-[#0A1628] hover:text-white border border-gray-200 hover:border-[#0A1628] font-medium text-sm px-4 py-2.5 rounded-lg transition-all duration-200"
-                >
-                  <Twitter className="w-4 h-4" />
-                  Twitter / X
                 </a>
               </div>
             </div>
