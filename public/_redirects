@@ -1,9 +1,0 @@
-# Netlify URL routing for static Next.js export
-/thank-you    /thank-you.html    200
-/about        /about.html        200
-/audit        /audit.html        200
-/contact      /contact.html      200
-/services     /services.html     200
-/resources    /resources.html    200
-/privacy      /privacy.html      200
-/terms        /terms.html        200
