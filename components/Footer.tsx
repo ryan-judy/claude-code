@@ -163,9 +163,18 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
               Monthly insights on digital marketing, AI, and what&apos;s working
               for Ohio businesses.
             </p>
-            <form className="flex flex-col gap-2">
+            <form
+              name="newsletter"
+              method="POST"
+              action="/thank-you"
+              data-netlify="true"
+              className="flex flex-col gap-2"
+            >
+              <input type="hidden" name="form-name" value="newsletter" />
               <input
                 type="email"
+                name="email"
+                required
                 placeholder="your@email.com"
                 className="bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm px-4 py-2.5 rounded-lg focus:outline-none focus:border-[#3B82F6] transition-colors"
               />
