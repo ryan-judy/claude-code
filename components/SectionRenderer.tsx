@@ -124,7 +124,6 @@ export default function SectionRenderer({
                   responseTime: siteSettings?.responseTime,
                   auditDeliveryTime: siteSettings?.auditDeliveryTime,
                   linkedin: siteSettings?.linkedin,
-                  twitter: siteSettings?.twitter,
                 }}
               />
             );
