@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog/posts";
 
+export const dynamic = "force-static";
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sparkstreet.digital";
 
 export default function sitemap(): MetadataRoute.Sitemap {
