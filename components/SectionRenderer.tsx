@@ -14,6 +14,7 @@ import Experience, { type ExperienceData } from "@/components/sections/Experienc
 import Values, { type ValuesData } from "@/components/sections/Values";
 import ServicesDetail, { type ServiceDetailItem } from "@/components/sections/ServicesDetail";
 import ContactForm, { type ContactFormData } from "@/components/sections/ContactForm";
+import WhoIHelp from "@/components/sections/WhoIHelp";
 
 export interface SiteSettingsForRenderer {
   email?: string;
@@ -105,6 +106,9 @@ export default function SectionRenderer({
 
           case "servicesDetailSection":
             return <ServicesDetail key={key} data={(section.services as ServiceDetailItem[]) ?? null} />;
+
+          case "whoIHelpSection":
+            return <WhoIHelp key={key} />;
 
           case "contactFormSection":
             return (

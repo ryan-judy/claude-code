@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Zap, MapPin, Mail, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { MapPin, Mail, Linkedin, Twitter, ArrowRight } from "lucide-react";
 
 export interface SiteSettingsData {
   siteName?: string;
@@ -13,11 +13,14 @@ export interface SiteSettingsData {
 }
 
 const services = [
+  { label: "Website Modernization", href: "/services#modernization" },
   { label: "Website Design & Development", href: "/services#websites" },
-  { label: "AI Integration", href: "/services#ai" },
-  { label: "Search Engine Marketing", href: "/services#sem" },
-  { label: "SEO & Content Strategy", href: "/services#seo" },
-  { label: "Digital Marketing Strategy", href: "/services#strategy" },
+  { label: "AI for Business", href: "/services#ai" },
+  { label: "Integrations & Automation", href: "/services#automation" },
+  { label: "Paid Media", href: "/services#sem" },
+  { label: "SEO, GEO & AEO", href: "/services#seo" },
+  { label: "Content Strategy", href: "/services#content" },
+  { label: "Digital Marketing Support", href: "/services#strategy" },
   { label: "Analytics & Reporting", href: "/services#analytics" },
 ];
 
@@ -25,18 +28,18 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "About Ryan", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },
-  { label: "Free Website Audit", href: "/contact" },
+  { label: "Free Website Audit", href: "/audit" },
 ];
 
 export default function Footer({ data }: { data?: SiteSettingsData | null }) {
   const year = new Date().getFullYear();
 
-  const siteName = data?.siteName ?? "Ryan Judy";
-  const email = data?.email ?? "ryan@ryanjudy.com";
+  const siteName = data?.siteName ?? "Spark Street Digital";
+  const email = data?.email ?? "ryan@sparkstreet.digital";
   const location = data?.location ?? "Columbus, OH";
-  const locationSubtext = data?.locationSubtext ?? "Serving Columbus & beyond";
+  const locationSubtext = data?.locationSubtext ?? "Serving locally owned Ohio businesses";
   const linkedin = data?.linkedin ?? "https://linkedin.com/in/rjudy";
   const twitter = data?.twitter ?? "https://twitter.com/ryanjudy";
 
@@ -48,14 +51,14 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <p className="text-lg font-bold text-white">
-                Ready to grow your Columbus business online?
+                Ready to grow your Ohio business online?
               </p>
               <p className="text-blue-200 text-sm mt-1">
                 Let&apos;s talk — no pressure, no fluff, just honest strategy.
               </p>
             </div>
             <Link
-              href="/contact"
+              href="/audit"
               className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 whitespace-nowrap"
             >
               Get Your Free Audit
@@ -71,15 +74,13 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-[#1D4ED8] flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" fill="currentColor" />
-              </div>
+              <img src="/logo.svg" alt="Spark Street Digital" className="h-9 w-auto" />
               <span className="text-white font-bold text-lg tracking-tight">
-                {siteName}<span className="text-[#D4AF37]">.</span>
+                {siteName}<span className="text-[#F59E0B]">.</span>
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Digital marketing strategist helping Columbus businesses build powerful
+              Digital marketing strategist helping locally owned Ohio businesses build powerful
               online presences — from websites to AI and everything in between.
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
@@ -160,7 +161,7 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
             </h3>
             <p className="text-white/60 text-sm mb-4">
               Monthly insights on digital marketing, AI, and what&apos;s working
-              for Columbus businesses.
+              for Ohio businesses.
             </p>
             <form className="flex flex-col gap-2">
               <input
@@ -181,7 +182,7 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/60 text-sm">
-            &copy; {year} {siteName} Digital Marketing. All rights reserved.
+            &copy; {year} {siteName}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-white/60 hover:text-white/80 text-sm transition-colors">

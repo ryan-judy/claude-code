@@ -19,13 +19,12 @@ export default function Hero({ data }: { data?: HeroData | null }) {
   const headlineHighlight = data?.headlineHighlight ?? "Dominate Online";
   const subheadline =
     data?.subheadline ??
-    "10+ years of digital marketing expertise \u2014 websites, AI, SEM, SEO, and strategy \u2014 helping Columbus businesses at every stage turn their digital presence into a genuine competitive advantage.";
+    "Helping locally owned Ohio businesses get found online, attract more customers, and grow \u2014 through websites, SEO, paid media, and hands-on digital support.";
   const primaryCtaText = data?.primaryCtaText ?? "Get Your Free Website Audit";
   const secondaryCtaText = data?.secondaryCtaText ?? "Explore Services";
   const proofStats = data?.proofStats ?? [
     { value: "10+", label: "Years Experience" },
-    { value: "$2M+", label: "Ad Spend Managed" },
-    { value: "Columbus", label: "OH Based" },
+    { value: "Ohio", label: "Locally Focused" },
   ];
 
   const scrollToServices = () => {

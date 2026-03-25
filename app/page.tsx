@@ -1,39 +1,21 @@
 import type { Metadata } from "next";
-import { client } from "@/lib/sanity/client";
-import { homePageQuery, siteSettingsQuery } from "@/lib/sanity/queries";
 import SectionRenderer, { type SanitySection } from "@/components/SectionRenderer";
 
-export async function generateMetadata(): Promise<Metadata> {
-  try {
-    const page = await client.fetch(homePageQuery);
-    return {
-      title: page?.seoTitle ?? undefined,
-      description: page?.seoDescription ?? undefined,
-    };
-  } catch {
-    return {};
-  }
-}
+export const metadata: Metadata = {
+  title: "Spark Street Digital | Digital Marketing for Ohio Businesses",
+  description:
+    "Websites, SEO & GEO/AEO, paid media, and strategy for locally owned Ohio businesses. Senior-level digital marketing without the agency overhead.",
+};
 
-// Fallback sections — render the full homepage layout when Sanity has no content
-const defaultSections: SanitySection[] = [
+const sections: SanitySection[] = [
   { _type: "heroSection", _key: "hero" },
-  { _type: "statsSection", _key: "stats" },
   { _type: "servicesSection", _key: "services" },
+  { _type: "whoIHelpSection", _key: "whoihelp" },
   { _type: "processSection", _key: "process" },
-  { _type: "industriesSection", _key: "industries" },
   { _type: "whySection", _key: "why" },
-  { _type: "pricingSection", _key: "pricing" },
   { _type: "ctaSection", _key: "cta" },
 ];
 
-export default async function Home() {
-  const [page, settings] = await Promise.all([
-    client.fetch(homePageQuery).catch(() => null),
-    client.fetch(siteSettingsQuery).catch(() => null),
-  ]);
-
-  const sections: SanitySection[] = page?.sections?.length ? page.sections : defaultSections;
-
-  return <SectionRenderer sections={sections} siteSettings={settings} />;
+export default function Home() {
+  return <SectionRenderer sections={sections} />;
 }

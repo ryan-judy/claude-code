@@ -5,10 +5,10 @@ export interface StatItem {
 }
 
 const defaultStats: StatItem[] = [
-  { value: "10+", label: "Years in Digital Marketing", description: "Across agencies, in-house, and consulting" },
-  { value: "$2M+", label: "Ad Spend Managed", description: "Across Google, Meta, Bing, and programmatic channels" },
+  { value: "10+", label: "Years in Digital Marketing", description: "Across agencies, in-house, and professional roles" },
   { value: "100%", label: "Senior-Level Execution", description: "You work directly with me — no junior handoffs, ever" },
-  { value: "Columbus", label: "OH Based & Focused", description: "I live here, I know these markets, I'm invested in your win" },
+  { value: "Ohio", label: "Locally Focused", description: "I live here, I know these markets, I'm invested in your win" },
+  { value: "Any Size", label: "Any Local Business", description: "From solo operators to established Ohio businesses" },
 ];
 
 export default function Stats({ data }: { data?: StatItem[] | null }) {

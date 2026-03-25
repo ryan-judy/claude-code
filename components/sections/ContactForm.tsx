@@ -1,4 +1,4 @@
-import { MapPin, Mail, Phone, Clock, Linkedin, Twitter } from "lucide-react";
+import { MapPin, Mail, Clock, Linkedin, Twitter } from "lucide-react";
 
 export interface ContactFormData {
   contactInfoHeadline?: string;
@@ -23,11 +23,14 @@ export interface ContactFormData {
 }
 
 const defaultServiceOptions = [
+  "Website Modernization",
   "Website Design & Development",
-  "AI Integration & Automation",
-  "Search Engine Marketing (SEM)",
-  "SEO & Content Strategy",
-  "Digital Marketing Strategy",
+  "AI for Business",
+  "Integrations & Automation",
+  "Paid Media",
+  "SEO, GEO & AEO",
+  "Content Strategy",
+  "Digital Marketing Support",
   "Analytics & Reporting",
   "General Inquiry / Not Sure Yet",
 ];
@@ -51,11 +54,9 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
   const formFinePrint =
     data?.formFinePrint ??
     "No spam, ever. Your information is kept private and I respond to every message personally.";
-  const email = data?.email ?? "ryan@ryanjudy.com";
-  const phone = data?.phone ?? "(614) 555-0100";
-  const phoneHref = data?.phoneHref ?? "tel:+16145550100";
+  const email = data?.email ?? "ryan@sparkstreet.digital";
   const location = data?.location ?? "Columbus, Ohio";
-  const locationSubtext = data?.locationSubtext ?? "Serving Columbus & beyond";
+  const locationSubtext = data?.locationSubtext ?? "Serving locally owned Ohio businesses";
   const responseTime = data?.responseTime ?? "Within 1 business day";
   const linkedin = data?.linkedin ?? "https://linkedin.com/in/rjudy";
   const twitter = data?.twitter ?? "https://twitter.com/ryanjudy";
@@ -80,18 +81,6 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
                   <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">Email</div>
                   <a href={`mailto:${email}`} className="text-[#0A1628] font-semibold hover:text-[#1D4ED8] transition-colors">
                     {email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100">
-                <div className="w-10 h-10 rounded-lg bg-[#EFF6FF] flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 text-[#1D4ED8]" />
-                </div>
-                <div>
-                  <div className="text-[#475569] text-xs font-medium uppercase tracking-wider">Phone</div>
-                  <a href={phoneHref} className="text-[#0A1628] font-semibold hover:text-[#1D4ED8] transition-colors">
-                    {phone}
                   </a>
                 </div>
               </div>

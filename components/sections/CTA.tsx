@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 export interface CtaData {
   badge?: string;
@@ -23,9 +23,7 @@ export default function CTA({ data }: { data?: CtaData | null }) {
     "Start with a free website audit. No commitment, no pitch deck \u2014 just an honest look at where you stand and where you can go.";
   const primaryCtaText = data?.primaryCtaText ?? "Get My Free Website Audit";
   const ctaFinePrint = data?.ctaFinePrint ?? "Free audit takes less than 48 hours to deliver.";
-  const email = data?.email ?? "ryan@ryanjudy.com";
-  const phone = data?.phone ?? "(614) 555-0100";
-  const phoneHref = data?.phoneHref ?? "+16145550100";
+  const email = data?.email ?? "ryan@sparkstreet.digital";
 
   return (
     <section className="section-padding bg-[#F8FAFC]">
@@ -51,7 +49,7 @@ export default function CTA({ data }: { data?: CtaData | null }) {
 
             <div className="flex flex-col gap-4 w-full lg:w-auto min-w-[280px]">
               <Link
-                href="/contact"
+                href="/audit"
                 className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 group text-base"
               >
                 {primaryCtaText}
@@ -64,14 +62,6 @@ export default function CTA({ data }: { data?: CtaData | null }) {
                 >
                   <Mail className="w-4 h-4 text-[#D4AF37]" />
                   {email}
-                </a>
-                <span className="text-white/30">|</span>
-                <a
-                  href={`tel:${phoneHref}`}
-                  className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-[#D4AF37]" />
-                  {phone}
                 </a>
               </div>
               <p className="text-white/60 text-xs text-center">{ctaFinePrint}</p>

@@ -22,6 +22,10 @@ import {
   Mail,
   Phone,
   MessageCircle,
+  RefreshCw,
+  Wrench,
+  Sparkles,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 
@@ -49,6 +53,10 @@ export const iconMap: Record<string, LucideIcon> = {
   Mail,
   Phone,
   MessageCircle,
+  RefreshCw,
+  Wrench,
+  Sparkles,
+  Zap,
 };
 
 export function getIcon(name: string | undefined): LucideIcon | null {

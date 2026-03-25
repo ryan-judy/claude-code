@@ -19,9 +19,9 @@ export interface ProfileStoryData {
 export default function ProfileStory({ data }: { data?: ProfileStoryData | null }) {
   const profileBadge = data?.profileBadge ?? "Columbus, OH based";
   const storyBadge = data?.storyBadge ?? "My Story";
-  const storyHeadline = data?.storyHeadline ?? "Built from";
-  const storyHeadlineHighlight = data?.storyHeadlineHighlight ?? "real experience,";
-  const storyHeadlineLine2 = data?.storyHeadlineLine2 ?? "not theory";
+  const storyHeadline = data?.storyHeadline ?? "Real expertise,";
+  const storyHeadlineHighlight = data?.storyHeadlineHighlight ?? "focused on you,";
+  const storyHeadlineLine2 = data?.storyHeadlineLine2 ?? "not agency overhead";
   const storyCtaText = data?.storyCtaText ?? "Let\u2019s Work Together";
   const storyLinkedinText = data?.storyLinkedinText ?? "View LinkedIn";
   const storyLinkedinUrl = data?.storyLinkedinUrl ?? "https://linkedin.com/in/rjudy";
@@ -94,29 +94,29 @@ export default function ProfileStory({ data }: { data?: ProfileStoryData | null 
               ) : (
                 <>
                   <p>
-                    I started my career in digital marketing over a decade ago —
-                    back when &quot;digital marketing&quot; was mostly just email
-                    blasts and basic SEO. I&apos;ve grown with the industry through
-                    every major shift: social media, mobile-first, content
-                    marketing, programmatic advertising, and now AI.
+                    I&apos;ve spent over a decade in digital marketing —
+                    growing alongside every major shift in the industry:
+                    SEO, paid search, content strategy, analytics, and now AI.
+                    I&apos;ve seen what works, what wastes money, and what
+                    actually moves the needle for real businesses.
                   </p>
                   <p>
-                    Over the years I&apos;ve worked across financial services,
-                    higher education, real estate, and startups — managing
-                    multi-million dollar ad budgets, leading digital strategy, and
-                    seeing what actually works for real businesses.
+                    My professional background gave me a front-row seat to
+                    how smart digital strategy transforms an organization.
+                    I brought that same mindset to Spark Street Digital —
+                    focused entirely on locally owned Ohio businesses that deserve
+                    that same level of expertise.
                   </p>
                   <p>
-                    What I noticed over and over again: Columbus businesses were
-                    getting underserved. Either they couldn&apos;t afford agency
-                    prices, or they were paying for strategy they never saw
-                    executed, or they were handed off to junior staff who didn&apos;t
-                    know their market.
+                    What I kept seeing: great local businesses with untapped
+                    potential online. Either they were invisible on search,
+                    running ads with no strategy, or paying agency prices for
+                    work done by someone who&apos;d never heard of their town.
                   </p>
                   <p className="font-semibold text-[#0A1628]">
-                    So I started Ryan Judy Digital Marketing to fix that.
-                    Columbus businesses deserve access to senior-level digital
-                    marketing expertise — and that&apos;s exactly what I provide.
+                    I started this to fix that. If you run a locally owned
+                    business anywhere in Ohio, you deserve senior-level
+                    digital marketing — and that&apos;s exactly what I provide.
                   </p>
                 </>
               )}

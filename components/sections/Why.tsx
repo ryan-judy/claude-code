@@ -17,7 +17,7 @@ export interface WhyData {
 }
 
 const defaultReasons: WhyReason[] = [
-  { icon: "MapPin", title: "Columbus-First Mindset", description: "I live here, I work here, I know Columbus markets. Local knowledge means better strategies, better connections, and a genuine investment in your success." },
+  { icon: "MapPin", title: "Ohio-First Mindset", description: "I live and work in Ohio. Local knowledge means better strategies, better connections, and a genuine investment in your success." },
   { icon: "ShieldCheck", title: "No Fluff, Just Results", description: "I'm not selling you a retainer to run basic reports. Every hour goes toward moving your business forward with honest, transparent communication." },
   { icon: "Lightbulb", title: "Strategy Meets Execution", description: "Most consultants strategize. Most agencies execute. I do both — bringing senior-level thinking and hands-on implementation without the overhead." },
   { icon: "LineChart", title: "Data-Driven Everything", description: "Decisions based on data, not gut feelings or trends. I set up proper measurement from day one so you always know what's actually working." },
@@ -26,7 +26,7 @@ const defaultReasons: WhyReason[] = [
 ];
 
 export default function Why({ data }: { data?: WhyData | null }) {
-  const badge = data?.badge ?? "Why Ryan Judy";
+  const badge = data?.badge ?? "Why Spark Street Digital";
   const headline = data?.headline ?? "Senior expertise without the";
   const headlineHighlight = data?.headlineHighlight ?? "agency markup";
   const body =
@@ -34,7 +34,7 @@ export default function Why({ data }: { data?: WhyData | null }) {
     "Big agencies have big overhead — account managers, layers of approvals, junior staff executing on your account. With me, you get a seasoned digital marketing veteran working directly on your business. Period.";
   const quote =
     data?.quote ??
-    "\u201cI started this business because I kept seeing Columbus companies underserved by agencies that were too big to care and too busy to listen.\u201d";
+    "\u201cI started Spark Street Digital because I kept seeing Ohio companies underserved by agencies that were too big to care and too busy to listen.\u201d";
   const quoteAuthor = data?.quoteAuthor ?? "Ryan Judy, Founder";
   const reasons = data?.reasons?.length ? data.reasons : defaultReasons;
 
