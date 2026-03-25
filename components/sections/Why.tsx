@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getIcon } from "@/lib/iconMap";
 
 export interface WhyReason {
@@ -53,10 +55,17 @@ export default function Why({ data }: { data?: WhyData | null }) {
               <span className="text-[#1D4ED8]">{headlineHighlight}</span>
             </h2>
             <p className="text-[#475569] text-lg leading-relaxed mb-8">{body}</p>
-            <blockquote className="border-l-4 border-[#F59E0B] pl-5 py-2">
+            <blockquote className="border-l-4 border-[#F59E0B] pl-5 py-2 mb-8">
               <p className="text-[#0A1628] font-medium italic text-lg">{quote}</p>
               <footer className="text-[#475569] text-sm mt-2">— {quoteAuthor}</footer>
             </blockquote>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-[#1D4ED8] font-semibold hover:gap-3 transition-all duration-200"
+            >
+              Meet the team
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
           {/* Right: Reasons grid */}
