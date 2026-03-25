@@ -102,7 +102,7 @@ export default function AuditForm() {
         Request My Free Audit
       </button>
       <p className="text-center text-xs text-[#94A3B8]">
-        No spam, no sales pitch. I respond to every request personally within one business day.
+        No spam, no sales pitch. We respond to every request personally within one business day.
       </p>
     </form>
   );

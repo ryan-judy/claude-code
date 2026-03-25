@@ -39,20 +39,20 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
   const auditDeliveryTime = data?.auditDeliveryTime ?? "within 48 hours";
   const contactInfoSubheadline =
     data?.contactInfoSubheadline ??
-    `I respond to all inquiries within one business day. For a free website audit, include your URL in the form and I'll deliver a detailed report ${auditDeliveryTime}.`;
-  const formHeadline = data?.formHeadline ?? "Send me a message";
+    `We respond to all inquiries within one business day. For a free website audit, include your URL in the form and we'll deliver a detailed report ${auditDeliveryTime}.`;
+  const formHeadline = data?.formHeadline ?? "Send us a message";
   const formSubheadline =
     data?.formSubheadline ??
-    "Tell me about your business and what you're looking to accomplish. The more context you give, the more useful my response will be.";
+    "Tell us about your business and what you're looking to accomplish. The more context you give, the more useful our response will be.";
   const serviceOptions = data?.serviceOptions?.length ? data.serviceOptions : defaultServiceOptions;
   const submitText = data?.submitText ?? "Send Message";
   const auditCheckboxLabel = data?.auditCheckboxLabel ?? "Yes, I'd like a free website audit";
   const auditCheckboxSub =
     data?.auditCheckboxSub ??
-    `I'll analyze your site and send a detailed report ${auditDeliveryTime}.`;
+    `We'll analyze your site and send a detailed report ${auditDeliveryTime}.`;
   const formFinePrint =
     data?.formFinePrint ??
-    "No spam, ever. Your information is kept private and I respond to every message personally.";
+    "No spam, ever. Your information is kept private and we respond to every message personally.";
   const email = data?.email ?? "ryan@sparkstreet.digital";
   const location = data?.location ?? "Columbus, Ohio";
   const locationSubtext = data?.locationSubtext ?? "Serving locally owned Ohio businesses";

@@ -14,15 +14,15 @@ export interface ValuesData {
 }
 
 const defaultItems: ValueItem[] = [
-  { icon: "Heart", title: "Genuine Care", description: "I treat every client\u2019s business like it\u2019s my own. Your success is my success \u2014 this isn\u2019t just a job." },
-  { icon: "TrendingUp", title: "Results Over Activity", description: "I don\u2019t bill you for being busy. Every action connects to an outcome that matters to your business." },
-  { icon: "Users", title: "True Partnership", description: "I\u2019m not a vendor. I\u2019m an extension of your team \u2014 available, responsive, and invested." },
-  { icon: "Award", title: "Continuous Learning", description: "Digital marketing never stops evolving. I stay ahead of the curve so you don\u2019t have to." },
+  { icon: "Heart", title: "Genuine Care", description: "We treat every client\u2019s business like it\u2019s our own. Your success is our success \u2014 this isn\u2019t just a job." },
+  { icon: "TrendingUp", title: "Results Over Activity", description: "We don\u2019t bill you for being busy. Every action connects to an outcome that matters to your business." },
+  { icon: "Users", title: "True Partnership", description: "We\u2019re not a vendor. We\u2019re an extension of your team \u2014 available, responsive, and invested." },
+  { icon: "Award", title: "Continuous Learning", description: "Digital marketing never stops evolving. We stay ahead of the curve so you don\u2019t have to." },
 ];
 
 export default function Values({ data }: { data?: ValuesData | null }) {
-  const badge = data?.badge ?? "How I Operate";
-  const headline = data?.headline ?? "What I believe about";
+  const badge = data?.badge ?? "How We Operate";
+  const headline = data?.headline ?? "What we believe about";
   const headlineHighlight = data?.headlineHighlight ?? "great marketing";
   const items = data?.items?.length ? data.items : defaultItems;
 

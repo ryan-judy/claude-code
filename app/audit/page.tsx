@@ -93,20 +93,20 @@ const steps = [
   },
   {
     number: "02",
-    title: "I do the work",
-    desc: "I personally review your site across all 10 areas — no automated tool, no junior staff. You get a real analysis from someone who knows what they're looking at.",
+    title: "We do the work",
+    desc: "We personally review your site across all 10 areas — no automated tool, no junior staff. You get a real analysis from someone who knows what they're looking at.",
   },
   {
     number: "03",
     title: "You get your report",
-    desc: "Within 48 hours, I send you a detailed written report with findings and prioritized recommendations. No sales pitch attached — just honest insight.",
+    desc: "Within 48 hours, we send you a detailed written report with findings and prioritized recommendations. No sales pitch attached — just honest insight.",
   },
 ];
 
 const faqs = [
   {
     q: "Is the audit really free?",
-    a: "Yes, completely. There's no catch, no hidden fee, and no obligation to hire me afterward. I offer it because it's a useful way for business owners to understand where they stand — and for me to show you what I actually know.",
+    a: "Yes, completely. There's no catch, no hidden fee, and no obligation to hire us afterward. We offer it because it's a useful way for business owners to understand where they stand — and for us to show you what we actually know.",
   },
   {
     q: "How is this different from an automated audit tool?",
@@ -118,11 +118,11 @@ const faqs = [
   },
   {
     q: "How long does it take?",
-    a: "I deliver most audits within 48 hours of receiving your request. If I need more time, I'll let you know upfront.",
+    a: "We deliver most audits within 48 hours of receiving your request. If we need more time, we'll let you know upfront.",
   },
   {
     q: "Do I need to be an Ohio business?",
-    a: "I focus on locally owned Ohio businesses, but I'm happy to help any small business owner who wants an honest look at their digital presence.",
+    a: "We focus on locally owned Ohio businesses, but we're happy to help any small business owner who wants an honest look at their digital presence.",
   },
 ];
 
@@ -329,8 +329,8 @@ export default function AuditPage() {
                 <span className="text-[#1D4ED8]">actually doing.</span>
               </h2>
               <p className="text-[#475569] text-lg leading-relaxed mb-8">
-                Fill out the form and I&apos;ll get started within one business day.
-                The more context you give me about your business, the more useful
+                Fill out the form and we&apos;ll get started within one business day.
+                The more context you give us about your business, the more useful
                 the audit will be.
               </p>
               <div className="space-y-4">
@@ -339,7 +339,7 @@ export default function AuditPage() {
                   "Delivered as a written report within 48 hours",
                   "Covers all 10 areas listed above",
                   "Specific to your site — not a generic checklist",
-                  "I respond to every request personally",
+                  "We respond to every request personally",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#1D4ED8] shrink-0 mt-0.5" />

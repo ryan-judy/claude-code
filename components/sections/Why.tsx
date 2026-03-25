@@ -17,12 +17,12 @@ export interface WhyData {
 }
 
 const defaultReasons: WhyReason[] = [
-  { icon: "MapPin", title: "Ohio-First Mindset", description: "I live and work in Ohio. Local knowledge means better strategies, better connections, and a genuine investment in your success." },
-  { icon: "ShieldCheck", title: "No Fluff, Just Results", description: "I'm not selling you a retainer to run basic reports. Every hour goes toward moving your business forward with honest, transparent communication." },
-  { icon: "Lightbulb", title: "Strategy Meets Execution", description: "Most consultants strategize. Most agencies execute. I do both — bringing senior-level thinking and hands-on implementation without the overhead." },
-  { icon: "LineChart", title: "Data-Driven Everything", description: "Decisions based on data, not gut feelings or trends. I set up proper measurement from day one so you always know what's actually working." },
-  { icon: "Users", title: "Real Partnership", description: "You get direct access to me — not account managers or junior staff. I treat your business like I'm a member of your team, not a vendor." },
-  { icon: "Clock", title: "10+ Years, No Fluff", description: "A decade of experience means I've already made (and learned from) the mistakes you don't want to pay for. You get senior expertise from day one." },
+  { icon: "MapPin", title: "Ohio-First Mindset", description: "We live and work in Ohio. Local knowledge means better strategies, better connections, and a genuine investment in your success." },
+  { icon: "ShieldCheck", title: "No Fluff, Just Results", description: "We're not selling you a retainer to run basic reports. Every hour goes toward moving your business forward with honest, transparent communication." },
+  { icon: "Lightbulb", title: "Strategy Meets Execution", description: "Most consultants strategize. Most agencies execute. We do both — bringing senior-level thinking and hands-on implementation without the overhead." },
+  { icon: "LineChart", title: "Data-Driven Everything", description: "Decisions based on data, not gut feelings or trends. We set up proper measurement from day one so you always know what's actually working." },
+  { icon: "Users", title: "Real Partnership", description: "You get direct access to us — not account managers or junior staff. We treat your business like we're a member of your team, not a vendor." },
+  { icon: "Clock", title: "10+ Years, No Fluff", description: "A decade of experience means we've already made (and learned from) the mistakes you don't want to pay for. You get senior expertise from day one." },
 ];
 
 export default function Why({ data }: { data?: WhyData | null }) {
@@ -31,7 +31,7 @@ export default function Why({ data }: { data?: WhyData | null }) {
   const headlineHighlight = data?.headlineHighlight ?? "agency markup";
   const body =
     data?.body ??
-    "Big agencies have big overhead — account managers, layers of approvals, junior staff executing on your account. With me, you get a seasoned digital marketing veteran working directly on your business. Period.";
+    "Big agencies have big overhead — account managers, layers of approvals, junior staff executing on your account. With us, you get seasoned digital marketing veterans working directly on your business. Period.";
   const quote =
     data?.quote ??
     "\u201cI started Spark Street Digital because I kept seeing Ohio companies underserved by agencies that were too big to care and too busy to listen.\u201d";
