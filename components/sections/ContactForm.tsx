@@ -1,4 +1,7 @@
-import { MapPin, Mail, Clock, Linkedin, Twitter } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { MapPin, Mail, Clock, Linkedin, Twitter, CheckCircle2 } from "lucide-react";
 
 export interface ContactFormData {
   contactInfoHeadline?: string;
@@ -36,6 +39,9 @@ const defaultServiceOptions = [
 ];
 
 export default function ContactForm({ data }: { data?: ContactFormData | null }) {
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
   const contactInfoHeadline = data?.contactInfoHeadline ?? "Get in touch";
   const auditDeliveryTime = data?.auditDeliveryTime ?? "within 48 hours";
   const contactInfoSubheadline =
@@ -60,6 +66,26 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
   const responseTime = data?.responseTime ?? "Within 1 business day";
   const linkedin = data?.linkedin ?? "https://linkedin.com/in/rjudy";
   const twitter = data?.twitter ?? "https://twitter.com/ryanjudy";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(false);
+    const formData = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    }
+  };
 
   return (
     <section className="py-20 bg-[#F8FAFC]">
@@ -136,129 +162,157 @@ export default function ContactForm({ data }: { data?: ContactFormData | null })
           {/* Form */}
           <div className="lg:col-span-3">
             <div className="bg-white rounded-2xl p-8 md:p-10 border border-gray-100 shadow-sm">
-              <h2 className="text-2xl font-bold text-[#0A1628] mb-2">{formHeadline}</h2>
-              <p className="text-[#475569] text-sm mb-8">{formSubheadline}</p>
-
-              <form className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                      First Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      required
-                      placeholder="Jane"
-                      className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
-                    />
+              {submitted ? (
+                <div className="flex flex-col items-center justify-center text-center py-12 gap-4">
+                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8 text-green-500" />
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                      Last Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      required
-                      placeholder="Smith"
-                      className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
-                    />
-                  </div>
+                  <h3 className="text-2xl font-bold text-[#0A1628]">Message received!</h3>
+                  <p className="text-[#475569] max-w-sm">
+                    Thanks for reaching out. I'll be in touch within one business day.
+                  </p>
                 </div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-bold text-[#0A1628] mb-2">{formHeadline}</h2>
+                  <p className="text-[#475569] text-sm mb-8">{formSubheadline}</p>
 
-                <div>
-                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    Business Email <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="you@yourbusiness.com"
-                    className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">Company Name</label>
-                    <input
-                      type="text"
-                      name="company"
-                      placeholder="Acme Co."
-                      className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-[#374151] mb-1.5">Website URL</label>
-                    <input
-                      type="url"
-                      name="website"
-                      placeholder="https://yourbusiness.com"
-                      className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    What can I help you with? <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    name="service"
-                    required
-                    className="w-full border border-gray-200 text-[#0A1628] text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors bg-white"
+                  <form
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    className="space-y-5"
+                    onSubmit={handleSubmit}
                   >
-                    <option value="" disabled>Select a service...</option>
-                    {serviceOptions.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                </div>
+                    <input type="hidden" name="form-name" value="contact" />
 
-                <div>
-                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    Tell me about your business and goals <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder="Describe your business, what you're currently doing for marketing, and what you're hoping to achieve..."
-                    className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors resize-none"
-                  />
-                </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                          First Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          required
+                          placeholder="Jane"
+                          className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                          Last Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          required
+                          placeholder="Smith"
+                          className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
+                        />
+                      </div>
+                    </div>
 
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <div className="relative mt-0.5">
-                    <input type="checkbox" name="wantAudit" className="sr-only peer" />
-                    <div className="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-[#1D4ED8] peer-checked:border-[#1D4ED8] transition-colors" />
-                    <svg
-                      className="absolute top-0.5 left-0.5 w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={3}
+                    <div>
+                      <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                        Business Email <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="you@yourbusiness.com"
+                        className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-[#374151] mb-1.5">Company Name</label>
+                        <input
+                          type="text"
+                          name="company"
+                          placeholder="Acme Co."
+                          className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-[#374151] mb-1.5">Website URL</label>
+                        <input
+                          type="url"
+                          name="website"
+                          placeholder="https://yourbusiness.com"
+                          className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                        What can I help you with? <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        name="service"
+                        required
+                        className="w-full border border-gray-200 text-[#0A1628] text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors bg-white"
+                      >
+                        <option value="" disabled>Select a service...</option>
+                        {serviceOptions.map((s) => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                        Tell me about your business and goals <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        name="message"
+                        required
+                        rows={5}
+                        placeholder="Describe your business, what you're currently doing for marketing, and what you're hoping to achieve..."
+                        className="w-full border border-gray-200 text-[#0A1628] placeholder-gray-400 text-sm px-4 py-3 rounded-xl focus:outline-none focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/10 transition-colors resize-none"
+                      />
+                    </div>
+
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <div className="relative mt-0.5">
+                        <input type="checkbox" name="wantAudit" className="sr-only peer" />
+                        <div className="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-[#1D4ED8] peer-checked:border-[#1D4ED8] transition-colors" />
+                        <svg
+                          className="absolute top-0.5 left-0.5 w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={3}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-[#0A1628] font-semibold text-sm">{auditCheckboxLabel}</div>
+                        <div className="text-[#475569] text-xs mt-0.5">{auditCheckboxSub}</div>
+                      </div>
+                    </label>
+
+                    {error && (
+                      <p className="text-red-500 text-sm text-center">
+                        Something went wrong. Please try again or email me directly at {email}.
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="w-full bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-200"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[#0A1628] font-semibold text-sm">{auditCheckboxLabel}</div>
-                    <div className="text-[#475569] text-xs mt-0.5">{auditCheckboxSub}</div>
-                  </div>
-                </label>
+                      {submitText}
+                    </button>
 
-                <button
-                  type="submit"
-                  className="w-full bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-200"
-                >
-                  {submitText}
-                </button>
-
-                <p className="text-[#475569] text-xs text-center">{formFinePrint}</p>
-              </form>
+                    <p className="text-[#475569] text-xs text-center">{formFinePrint}</p>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>
