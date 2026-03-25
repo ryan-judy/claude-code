@@ -36,7 +36,7 @@ export default function Why({ data }: { data?: WhyData | null }) {
     "Big agencies have big overhead — account managers, layers of approvals, junior staff executing on your account. With us, you get seasoned digital marketing veterans working directly on your business. Period.";
   const quote =
     data?.quote ??
-    "\u201cI started Spark Street Digital because I kept seeing Ohio companies underserved by agencies that were too big to care and too busy to listen.\u201d";
+    "\u201cI started Spark Street Digital because I believe local and small businesses should take advantage of digital services to sustain and grow their company.\u201d";
   const quoteAuthor = data?.quoteAuthor ?? "Ryan Judy, Founder";
   const reasons = data?.reasons?.length ? data.reasons : defaultReasons;
 
