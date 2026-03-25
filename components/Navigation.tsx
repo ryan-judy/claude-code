@@ -75,7 +75,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <img src="/logo.svg" alt="Spark Street Digital" className="h-9 w-auto" />
+            <img src="/logo.png" alt="Spark Street Digital" className="h-9 w-auto" />
             <span className="text-white font-bold text-lg tracking-tight">
               {logoText}<span className="text-[#F59E0B] ml-0.5">.</span>
             </span>
@@ -88,7 +88,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
               href="/"
               className={clsx(
                 "animated-underline text-sm font-medium transition-colors duration-200",
-                pathname === "/" ? "text-[#D4AF37]" : "text-white/80 hover:text-white"
+                pathname === "/" ? "text-[#F59E0B]" : "text-white/80 hover:text-white"
               )}
             >
               Home
@@ -103,7 +103,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
               <button
                 className={clsx(
                   "flex items-center gap-1 text-sm font-medium transition-colors duration-200",
-                  isServices || megaOpen ? "text-[#D4AF37]" : "text-white/80 hover:text-white"
+                  isServices || megaOpen ? "text-[#F59E0B]" : "text-white/80 hover:text-white"
                 )}
                 aria-expanded={megaOpen}
               >
@@ -165,7 +165,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
                 href={link.href}
                 className={clsx(
                   "animated-underline text-sm font-medium transition-colors duration-200",
-                  pathname === link.href ? "text-[#D4AF37]" : "text-white/80 hover:text-white"
+                  pathname === link.href ? "text-[#F59E0B]" : "text-white/80 hover:text-white"
                 )}
               >
                 {link.label}
@@ -205,7 +205,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
               href="/"
               className={clsx(
                 "px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200",
-                pathname === "/" ? "text-[#D4AF37] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
+                pathname === "/" ? "text-[#F59E0B] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
               )}
             >
               Home
@@ -216,7 +216,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
               className={clsx(
                 "flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 w-full text-left",
-                isServices ? "text-[#D4AF37] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
+                isServices ? "text-[#F59E0B] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
               )}
             >
               Services
@@ -248,7 +248,7 @@ export default function Navigation({ data }: { data?: NavData | null }) {
                 href={link.href}
                 className={clsx(
                   "px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200",
-                  pathname === link.href ? "text-[#D4AF37] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
+                  pathname === link.href ? "text-[#F59E0B] bg-white/5" : "text-white/80 hover:text-white hover:bg-white/5"
                 )}
               >
                 {link.label}

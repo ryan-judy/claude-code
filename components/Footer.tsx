@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Mail, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { MapPin, Mail, Linkedin, Twitter, Zap } from "lucide-react";
 
 export interface SiteSettingsData {
   siteName?: string;
@@ -61,8 +61,8 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
               href="/audit"
               className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 whitespace-nowrap"
             >
+              <Zap className="w-4 h-4 fill-current" />
               Get Your Free Audit
-              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <img src="/logo.svg" alt="Spark Street Digital" className="h-9 w-auto" />
+              <img src="/logo.png" alt="Spark Street Digital" className="h-9 w-auto" />
               <span className="text-white font-bold text-lg tracking-tight">
                 {siteName}<span className="text-[#F59E0B]">.</span>
               </span>
@@ -84,11 +84,11 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
               online presences — from websites to AI and everything in between.
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
-              <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
+              <MapPin className="w-4 h-4 text-[#F59E0B] shrink-0" />
               <span>{location}</span>
             </div>
             <div className="flex items-center gap-2 text-white/60 text-sm">
-              <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
+              <Mail className="w-4 h-4 text-[#F59E0B] shrink-0" />
               <a href={`mailto:${email}`} className="hover:text-white transition-colors">
                 {email}
               </a>
@@ -126,7 +126,7 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="text-white/60 hover:text-[#D4AF37] text-sm transition-colors duration-200"
+                    className="text-white/60 hover:text-[#F59E0B] text-sm transition-colors duration-200"
                   >
                     {s.label}
                   </Link>
@@ -145,7 +145,7 @@ export default function Footer({ data }: { data?: SiteSettingsData | null }) {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-white/60 hover:text-[#D4AF37] text-sm transition-colors duration-200"
+                    className="text-white/60 hover:text-[#F59E0B] text-sm transition-colors duration-200"
                   >
                     {l.label}
                   </Link>

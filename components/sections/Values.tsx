@@ -35,7 +35,7 @@ export default function Values({ data }: { data?: ValuesData | null }) {
           </div>
           <h2 className="text-4xl font-bold text-white mb-4">
             {headline}{" "}
-            <span className="text-[#D4AF37]">{headlineHighlight}</span>
+            <span className="text-[#F59E0B]">{headlineHighlight}</span>
           </h2>
         </div>
 
@@ -48,10 +48,10 @@ export default function Values({ data }: { data?: ValuesData | null }) {
                 className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#1D4ED8]/40 rounded-xl p-6 text-center transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#1D4ED8]/20 flex items-center justify-center mx-auto mb-4">
-                  {Icon && <Icon className="w-6 h-6 text-[#D4AF37]" />}
+                  {Icon && <Icon className="w-6 h-6 text-[#F59E0B]" />}
                 </div>
                 <h3 className="text-white font-bold mb-2">{value.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{value.description}</p>
+                <p className="text-white text-sm leading-relaxed">{value.description}</p>
               </div>
             );
           })}

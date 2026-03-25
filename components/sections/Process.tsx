@@ -39,7 +39,7 @@ export default function Process({ data }: { data?: ProcessData | null }) {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {headline}{" "}
-            <span className="text-[#D4AF37]">{headlineHighlight}</span>
+            <span className="text-[#F59E0B]">{headlineHighlight}</span>
           </h2>
           <p className="text-white/60 text-lg leading-relaxed">{subheadline}</p>
         </div>
@@ -55,7 +55,7 @@ export default function Process({ data }: { data?: ProcessData | null }) {
 
               <div className="relative z-10 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#1D4ED8]/40 rounded-2xl p-6 transition-all duration-300 h-full flex flex-col">
                 {/* Step number */}
-                <div className="text-5xl font-bold text-[#1D4ED8]/30 group-hover:text-[#D4AF37]/50 transition-colors duration-300 mb-4 leading-none">
+                <div className="text-5xl font-bold text-[#1D4ED8]/30 group-hover:text-[#F59E0B]/50 transition-colors duration-300 mb-4 leading-none">
                   {step.number}
                 </div>
 

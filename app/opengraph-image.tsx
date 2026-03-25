@@ -63,7 +63,7 @@ export default function OGImage() {
           }}
         >
           Digital Marketing for{" "}
-          <span style={{ color: "#D4AF37" }}>Ohio Businesses</span>
+          <span style={{ color: "#F59E0B" }}>Ohio Businesses</span>
         </div>
 
         {/* Subhead */}

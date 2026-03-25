@@ -97,9 +97,7 @@ export default async function BlogPostPage({
 
           <div className="flex items-center gap-5 text-white/50 text-sm">
             <div className="flex items-center gap-1.5">
-              <div className="w-7 h-7 rounded-full bg-[#1D4ED8] flex items-center justify-center text-white font-bold text-xs">
-                RJ
-              </div>
+              <img src="/headshot.png" alt="Ryan Judy" className="w-7 h-7 rounded-full object-cover object-top" />
               <span>Ryan Judy</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -114,6 +112,21 @@ export default async function BlogPostPage({
         </div>
       </section>
 
+      {/* Cover image */}
+      {post.coverImage && (
+        <div className="bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
+            <div className="aspect-[2/1] rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Article body */}
       <article className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,9 +135,7 @@ export default async function BlogPostPage({
           {/* Author bio */}
           <div className="mt-16 pt-8 border-t border-gray-100">
             <div className="flex items-start gap-4 bg-[#F8FAFC] rounded-2xl p-6">
-              <div className="w-14 h-14 rounded-full bg-[#1D4ED8] flex items-center justify-center text-white font-bold text-xl shrink-0">
-                RJ
-              </div>
+              <img src="/headshot.png" alt="Ryan Judy" className="w-14 h-14 rounded-full object-cover object-top shrink-0" />
               <div>
                 <div className="font-bold text-[#0A1628] mb-1">Ryan Judy</div>
                 <div className="text-[#1D4ED8] text-sm font-medium mb-2">

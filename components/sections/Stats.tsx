@@ -23,7 +23,7 @@ export default function Stats({ data }: { data?: StatItem[] | null }) {
               key={i}
               className="bg-[#0A1628] p-8 hover:bg-[#1a2a45] transition-colors duration-200 text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-[#D4AF37] mb-2">{stat.value}</div>
+              <div className="text-4xl md:text-5xl font-bold text-[#F59E0B] mb-2">{stat.value}</div>
               <div className="text-white font-semibold text-sm md:text-base mb-1">{stat.label}</div>
               <div className="text-white/50 text-xs md:text-sm leading-snug">{stat.description}</div>
             </div>

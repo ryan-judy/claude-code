@@ -133,14 +133,14 @@ export default function AuditPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
               Free — No obligation — Delivered within 48 hours
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6">
               Find out exactly what&apos;s holding your{" "}
               <span className="gradient-text">website back.</span>
             </h1>
-            <p className="text-white/80 text-xl leading-relaxed mb-10 max-w-2xl">
+            <p className="text-white text-xl leading-relaxed mb-10 max-w-2xl">
               A free, hands-on audit of your website across 10 key areas —
               performance, SEO, GEO/AEO, mobile, content, conversions, and more.
               Written by a real person, not a robot.
@@ -150,8 +150,8 @@ export default function AuditPage() {
                 href="#request"
                 className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 group"
               >
+                <Zap className="w-5 h-5 fill-current" />
                 Get My Free Audit
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#whats-included"
@@ -208,14 +208,14 @@ export default function AuditPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm font-semibold px-4 py-2 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/10 text-white text-sm font-semibold px-4 py-2 rounded-full mb-6">
                 The deliverable
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
                 A report you can actually{" "}
-                <span className="text-[#D4AF37]">do something with.</span>
+                <span className="text-[#F59E0B]">do something with.</span>
               </h2>
-              <p className="text-white/70 text-lg leading-relaxed mb-8">
+              <p className="text-white text-lg leading-relaxed mb-8">
                 You won&apos;t get a 40-page PDF full of screenshots and technical
                 scores. You&apos;ll get a clear, written report that tells you what
                 matters, what to fix first, and what to invest in next.
@@ -223,8 +223,8 @@ export default function AuditPage() {
               <ul className="space-y-3">
                 {deliverables.map((d, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
-                    <span className="text-white/80 text-sm">{d}</span>
+                    <CheckCircle2 className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
+                    <span className="text-white text-sm">{d}</span>
                   </li>
                 ))}
               </ul>
@@ -252,12 +252,12 @@ export default function AuditPage() {
                 { area: "Competitor Snapshot", status: "3 gaps identified", color: "text-amber-400" },
               ].map((row, i) => (
                 <div key={i} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
-                  <span className="text-white/70 text-sm">{row.area}</span>
+                  <span className="text-white text-sm">{row.area}</span>
                   <span className={`text-xs font-semibold ${row.color}`}>{row.status}</span>
                 </div>
               ))}
               <div className="mt-6 bg-[#1D4ED8]/20 border border-[#1D4ED8]/30 rounded-xl p-4">
-                <p className="text-white/70 text-xs leading-relaxed">
+                <p className="text-white text-xs leading-relaxed">
                   <strong className="text-white">Note:</strong> This is a sample illustration. Your actual report will include specific findings, recommendations, and a prioritized action plan based on your site.
                 </p>
               </div>
@@ -438,8 +438,8 @@ export default function AuditPage() {
                   type="submit"
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg group"
                 >
+                  <Zap className="w-5 h-5 fill-current" />
                   Request My Free Audit
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <p className="text-center text-xs text-[#94A3B8]">
                   No spam, no sales pitch. I respond to every request personally within one business day.

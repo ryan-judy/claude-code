@@ -25,7 +25,7 @@ export interface ExperienceData {
 }
 
 const accentMap: Record<string, { border: string; dot: string }> = {
-  gold: { border: "border-[#D4AF37] bg-[#D4AF37]/5", dot: "bg-[#D4AF37]" },
+  gold: { border: "border-[#F59E0B] bg-[#F59E0B]/5", dot: "bg-[#F59E0B]" },
   blue: { border: "border-[#1D4ED8] bg-[#EFF6FF]", dot: "bg-[#1D4ED8]" },
   gray: { border: "border-gray-200 bg-[#F8FAFC]", dot: "bg-[#64748B]" },
 };

@@ -9,6 +9,7 @@ export interface BlogPost {
   category: string;
   readTime: number;
   featured?: boolean;
+  coverImage?: string;
   body: React.ReactNode;
 }
 
@@ -29,6 +30,7 @@ export const posts: BlogPost[] = [
     category: "websites",
     readTime: 7,
     featured: true,
+    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>
@@ -111,6 +113,7 @@ export const posts: BlogPost[] = [
     publishedAt: "2025-01-08",
     category: "sem",
     readTime: 9,
+    coverImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>
@@ -193,6 +196,7 @@ export const posts: BlogPost[] = [
     publishedAt: "2024-12-20",
     category: "ai",
     readTime: 8,
+    coverImage: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>
@@ -267,6 +271,7 @@ export const posts: BlogPost[] = [
     publishedAt: "2024-12-10",
     category: "seo",
     readTime: 11,
+    coverImage: "https://images.unsplash.com/photo-1562577309-2592ab84b1bc?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>
@@ -370,6 +375,7 @@ export const posts: BlogPost[] = [
     publishedAt: "2024-11-25",
     category: "strategy",
     readTime: 6,
+    coverImage: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>
@@ -446,6 +452,7 @@ export const posts: BlogPost[] = [
     publishedAt: "2024-11-12",
     category: "analytics",
     readTime: 5,
+    coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     body: (
       <>
         <p className={p}>

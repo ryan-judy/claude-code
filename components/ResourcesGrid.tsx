@@ -82,8 +82,18 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
             href={`/resources/${featured.slug}`}
             className="group grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#BFDBFE] hover:shadow-xl transition-all duration-300"
           >
-            <div className="aspect-[16/9] lg:aspect-auto bg-gradient-to-br from-[#1D4ED8] to-[#0A1628] flex items-center justify-center min-h-[240px]">
-              <div className="text-white/20 text-6xl font-bold">RJ</div>
+            <div className="aspect-[16/9] lg:aspect-auto bg-gradient-to-br from-[#1D4ED8] to-[#0A1628] min-h-[240px] overflow-hidden">
+              {featured.coverImage ? (
+                <img
+                  src={featured.coverImage}
+                  alt={featured.title}
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="text-white/20 text-6xl font-bold">SD</div>
+                </div>
+              )}
             </div>
             <div className="p-8 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-4">
@@ -133,8 +143,18 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
               href={`/resources/${post.slug}`}
               className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-300 flex flex-col"
             >
-              <div className="aspect-[16/9] bg-gradient-to-br from-[#1D4ED8]/80 to-[#0A1628] flex items-center justify-center">
-                <div className="text-white/20 text-4xl font-bold">RJ</div>
+              <div className="aspect-[16/9] bg-gradient-to-br from-[#1D4ED8]/80 to-[#0A1628] overflow-hidden">
+                {post.coverImage ? (
+                  <img
+                    src={post.coverImage}
+                    alt={post.title}
+                    className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-white/20 text-4xl font-bold">SD</div>
+                  </div>
+                )}
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center justify-between mb-3">

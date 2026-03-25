@@ -32,47 +32,34 @@ export default function ProfileStory({ data }: { data?: ProfileStoryData | null 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Profile image or SVG fallback */}
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden">
-              {data?.profileImage?.asset?.url ? (
-                <img
-                  src={data.profileImage.asset.url}
-                  alt={data.profileImage.alt ?? "Ryan Judy — Digital Marketing Strategist"}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <svg
-                  viewBox="0 0 400 500"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full"
-                  aria-label="Ryan Judy - Digital Marketing Strategist"
-                >
-                  <defs>
-                    <linearGradient id="bgGrad" x1="0" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stopColor="#0A1628" />
-                      <stop offset="70%" stopColor="#1a2a45" />
-                      <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.6" />
-                    </linearGradient>
-                    <pattern id="dotPat" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <circle cx="2" cy="2" r="1" fill="white" fillOpacity="0.04" />
-                    </pattern>
-                  </defs>
-                  <rect width="400" height="500" fill="url(#bgGrad)" />
-                  <rect width="400" height="500" fill="url(#dotPat)" />
-                  <circle cx="370" cy="40" r="110" fill="#1D4ED8" fillOpacity="0.15" />
-                  <circle cx="30" cy="470" r="130" fill="#D4AF37" fillOpacity="0.07" />
-                  <path d="M 12 12 L 44 12 L 44 16 L 16 16 L 16 44 L 12 44 Z" fill="#D4AF37" fillOpacity="0.7" />
-                  <path d="M 388 12 L 356 12 L 356 16 L 384 16 L 384 44 L 388 44 Z" fill="#D4AF37" fillOpacity="0.7" />
-                  <rect x="20" y="420" width="360" height="64" rx="12" fill="white" fillOpacity="0.1" />
-                  <rect x="20" y="420" width="360" height="64" rx="12" stroke="white" strokeOpacity="0.15" strokeWidth="1" />
-                  <text x="40" y="448" fill="white" fontSize="13" fontWeight="700" fontFamily="system-ui, sans-serif">Ryan Judy</text>
-                  <text x="40" y="466" fill="white" fontSize="11" fillOpacity="0.6" fontFamily="system-ui, sans-serif">Digital Strategist &amp; Marketing Technologist</text>
-                  <circle cx="356" cy="452" r="16" fill="#D4AF37" fillOpacity="0.2" />
-                  <text x="356" y="456" fill="#D4AF37" fontSize="16" textAnchor="middle" fontWeight="700" fontFamily="system-ui, sans-serif">✦</text>
-                </svg>
-              )}
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
+              {/* Background */}
+              <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+                <defs>
+                  <linearGradient id="bgGrad" x1="0" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0A1628" />
+                    <stop offset="70%" stopColor="#1a2a45" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.6" />
+                  </linearGradient>
+                  <pattern id="dotPat" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1" fill="white" fillOpacity="0.04" />
+                  </pattern>
+                </defs>
+                <rect width="400" height="500" fill="url(#bgGrad)" />
+                <rect width="400" height="500" fill="url(#dotPat)" />
+                <circle cx="370" cy="40" r="110" fill="#1D4ED8" fillOpacity="0.15" />
+                <circle cx="30" cy="470" r="130" fill="#F59E0B" fillOpacity="0.07" />
+                <path d="M 12 12 L 44 12 L 44 16 L 16 16 L 16 44 L 12 44 Z" fill="#F59E0B" fillOpacity="0.7" />
+                <path d="M 388 12 L 356 12 L 356 16 L 384 16 L 384 44 L 388 44 Z" fill="#F59E0B" fillOpacity="0.7" />
+              </svg>
+              {/* Headshot overlaid on background */}
+              <img
+                src="/headshot.png"
+                alt="Ryan Judy — Founder, Spark Street Digital"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
             </div>
-            <div className="absolute -top-4 -right-4 bg-[#D4AF37] text-[#0A1628] font-bold text-sm px-5 py-3 rounded-xl shadow-lg">
+            <div className="absolute -top-4 -right-4 bg-[#F59E0B] text-[#0A1628] font-bold text-sm px-5 py-3 rounded-xl shadow-lg">
               {profileBadge}
             </div>
           </div>

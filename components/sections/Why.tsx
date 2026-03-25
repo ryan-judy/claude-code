@@ -53,7 +53,7 @@ export default function Why({ data }: { data?: WhyData | null }) {
               <span className="text-[#1D4ED8]">{headlineHighlight}</span>
             </h2>
             <p className="text-[#475569] text-lg leading-relaxed mb-8">{body}</p>
-            <blockquote className="border-l-4 border-[#D4AF37] pl-5 py-2">
+            <blockquote className="border-l-4 border-[#F59E0B] pl-5 py-2">
               <p className="text-[#0A1628] font-medium italic text-lg">{quote}</p>
               <footer className="text-[#475569] text-sm mt-2">— {quoteAuthor}</footer>
             </blockquote>
