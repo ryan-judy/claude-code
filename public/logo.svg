@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" fill="none">
-  <!-- Upper half: top-left notch + S top arm + D upper bowl -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <!-- Upper half: top arm going right → bracket down at top-right → arc sweeping left/down -->
   <path
-    d="M 108 136 L 108 78 L 296 78 Q 382 78 382 174 Q 382 268 296 268 L 144 268"
+    d="M 445 148 L 445 58 L 115 58 A 95 95 0 0 0 115 248 L 255 248"
     stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"
   />
-  <!-- Lower half: D lower bowl + S lower bowl + bottom-right notch -->
+  <!-- Lower half: arc sweeping right/down → bottom arm going left → bracket up at bottom-left -->
   <path
-    d="M 296 252 L 144 252 Q 58 252 58 348 Q 58 444 144 444 L 332 444 L 332 384"
+    d="M 255 252 L 385 252 A 95 95 0 0 1 385 442 L 55 442 L 55 348"
     stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"
   />
   <!-- Lightning bolt through center -->
   <path
-    d="M 318 78 L 194 252 L 230 252 L 162 444 L 302 270 L 260 270 Z"
+    d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z"
     fill="#F59E0B"
   />
 </svg>
