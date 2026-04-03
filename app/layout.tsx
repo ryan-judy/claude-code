@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sparkstreet.digital"),
   title: "Spark Street Digital | Digital Marketing for Ohio Businesses",
   description:
     "Senior-level digital marketing for locally owned Ohio businesses. Websites, SEO & GEO/AEO, paid media, AI, and strategy — without the agency overhead.",
