@@ -7,6 +7,8 @@ import servicesPage from "./servicesPage";
 import contactPage from "./contactPage";
 import flexPage from "./flexPage";
 import { sectionTypes } from "./sections";
+import auditSection from "./auditSection";
+import auditReport from "./auditReport";
 
 export const schemaTypes = [
   // Singletons
@@ -22,4 +24,7 @@ export const schemaTypes = [
   ...sectionTypes,
   // Documents
   post,
+  // Audit reports
+  auditSection,
+  auditReport,
 ];

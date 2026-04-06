@@ -112,6 +112,18 @@ export default defineConfig({
                   .filter('_type == "post"')
                   .defaultOrdering([{ field: "publishedAt", direction: "desc" }])
               ),
+
+            S.divider(),
+
+            // ── Audit Reports ─────────────────────────────
+            S.listItem()
+              .title("Audit Reports")
+              .child(
+                S.documentList()
+                  .title("Audit Reports")
+                  .filter('_type == "auditReport"')
+                  .defaultOrdering([{ field: "preparedAt", direction: "desc" }])
+              ),
           ]),
     }),
     visionTool(),
