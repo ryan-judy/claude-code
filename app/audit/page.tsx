@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 
 const auditAreas = [
   {
+    icon: Smartphone,
+    color: "bg-blue-50 text-blue-600",
+    title: "User Experience",
+    desc: "How your site looks, feels, and functions — overall design quality, layout, readability, and mobile responsiveness. First impressions matter, and this is where most visitors decide to stay or leave.",
+  },
+  {
     icon: Zap,
     color: "bg-amber-50 text-amber-600",
     title: "Website Performance & Speed",
     desc: "Core Web Vitals, load times, hosting quality, and what's slowing you down. Slow sites lose visitors before they even read a word.",
-  },
-  {
-    icon: Smartphone,
-    color: "bg-blue-50 text-blue-600",
-    title: "Mobile Experience",
-    desc: "How your site looks, feels, and functions on phones and tablets. Over 60% of local searches happen on mobile — this one matters.",
   },
   {
     icon: Search,
@@ -53,8 +53,8 @@ const auditAreas = [
   {
     icon: MessageSquare,
     color: "bg-teal-50 text-teal-600",
-    title: "Content & Messaging",
-    desc: "Whether your site clearly communicates who you are, what you do, who you serve, and why someone should choose you over everyone else.",
+    title: "Content & Site Structure",
+    desc: "Whether your site clearly communicates who you are, what you do, and who you serve — and whether it's organized in a way that makes sense to both visitors and search engines.",
   },
   {
     icon: MousePointerClick,
@@ -65,8 +65,8 @@ const auditAreas = [
   {
     icon: BarChart2,
     color: "bg-indigo-50 text-indigo-600",
-    title: "Analytics & Tracking",
-    desc: "Whether GA4 is set up correctly, key events are being tracked, and you actually have the data needed to make good decisions.",
+    title: "Tech Stack",
+    desc: "What your site is built on, how it's hosted, and whether the underlying tools are serving you well — or creating hidden limitations on performance, flexibility, and growth.",
   },
   {
     icon: Users,
@@ -241,15 +241,15 @@ export default function AuditPage() {
                 </div>
               </div>
               {[
+                { area: "User Experience", status: "Needs attention", color: "text-amber-400" },
                 { area: "Performance & Speed", status: "Issues found", color: "text-red-400" },
-                { area: "Mobile Experience", status: "Needs attention", color: "text-amber-400" },
                 { area: "Technical SEO", status: "Issues found", color: "text-red-400" },
                 { area: "On-Page SEO", status: "Opportunities", color: "text-amber-400" },
                 { area: "GEO & AEO", status: "Not optimized", color: "text-red-400" },
                 { area: "Google Business Profile", status: "Incomplete", color: "text-amber-400" },
-                { area: "Content & Messaging", status: "Needs work", color: "text-amber-400" },
+                { area: "Content & Site Structure", status: "Needs work", color: "text-amber-400" },
                 { area: "Conversion Optimization", status: "Issues found", color: "text-red-400" },
-                { area: "Analytics & Tracking", status: "Not set up", color: "text-red-400" },
+                { area: "Tech Stack", status: "Review needed", color: "text-amber-400" },
                 { area: "Competitor Snapshot", status: "3 gaps identified", color: "text-amber-400" },
               ].map((row, i) => (
                 <div key={i} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
