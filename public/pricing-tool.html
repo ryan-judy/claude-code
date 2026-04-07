@@ -203,6 +203,7 @@
 
     /* ── Print ── */
     @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       .toolbar, .add-section-bar, .section-add-row, .del-btn, .catalog-select, .btn { display: none !important; }
       body { background: white; }
       .proposal { padding: 0; max-width: 100%; }
@@ -340,54 +341,54 @@
 // ═══════════════════════════════════════════════════════════════════
 const CATALOG = {
   "— Website —": null,
-  "Discovery & Strategy Session":        { hours: 3,  rate: 150, fixed: false, desc: "Deep-dive into goals, audience, competitors, and current presence." },
-  "Website Modernization (Audit + Fixes)":{ hours: 12, rate: 125, fixed: false, desc: "Audit existing site and implement targeted improvements." },
-  "Custom Website Design (UI/UX)":       { hours: 20, rate: 150, fixed: false, desc: "Full custom design including wireframes and visual design." },
-  "Website Development":                 { hours: 40, rate: 125, fixed: false, desc: "Front-end and CMS development, responsive and performance-optimized." },
-  "Landing Page Design & Dev":           { hours: 8,  rate: 125, fixed: false, desc: "Single conversion-focused landing page." },
-  "CMS Setup & Client Training":         { hours: 4,  rate: 125, fixed: false, desc: "Configure CMS and train client on content management." },
-  "Speed & Core Web Vitals Optimization":{ hours: 6,  rate: 125, fixed: false, desc: "Performance audit and targeted improvements." },
-  "Website Launch & QA":                 { hours: 4,  rate: 125, fixed: false, desc: "Cross-browser QA, launch checklist, and DNS/hosting handoff." },
+  "Discovery & Strategy Session":        { hours: 3,  rate: 125, fixed: false, desc: "Deep-dive into goals, audience, competitors, and current presence." },
+  "Website Modernization (Audit + Fixes)":{ hours: 12, rate: 100, fixed: false, desc: "Audit existing site and implement targeted improvements." },
+  "Custom Website Design (UI/UX)":       { hours: 20, rate: 125, fixed: false, desc: "Full custom design including wireframes and visual design." },
+  "Website Development":                 { hours: 40, rate: 100, fixed: false, desc: "Front-end and CMS development, responsive and performance-optimized." },
+  "Landing Page Design & Dev":           { hours: 8,  rate: 100, fixed: false, desc: "Single conversion-focused landing page." },
+  "CMS Setup & Client Training":         { hours: 4,  rate: 100, fixed: false, desc: "Configure CMS and train client on content management." },
+  "Speed & Core Web Vitals Optimization":{ hours: 6,  rate: 100, fixed: false, desc: "Performance audit and targeted improvements." },
+  "Website Launch & QA":                 { hours: 4,  rate: 100, fixed: false, desc: "Cross-browser QA, launch checklist, and DNS/hosting handoff." },
 
   "— SEO & Content —": null,
-  "Technical SEO Audit":                 { hours: 6,  rate: 150, fixed: false, desc: "Full technical audit covering crawlability, indexing, schema, and site structure." },
-  "On-Page SEO Optimization":            { hours: 8,  rate: 125, fixed: false, desc: "Page-by-page optimization of titles, headings, content, and internal links." },
-  "Local SEO Setup":                     { hours: 5,  rate: 125, fixed: false, desc: "GBP optimization, local citations, and local landing page optimization." },
-  "GEO & AEO Optimization":             { hours: 6,  rate: 150, fixed: false, desc: "Optimize for AI-generated search results and featured snippets." },
-  "Keyword Research & Strategy":         { hours: 4,  rate: 150, fixed: false, desc: "Comprehensive keyword research and content gap analysis." },
-  "SEO Management (monthly)":            { hours: 8,  rate: 125, fixed: false, desc: "Ongoing SEO monitoring, optimization, and reporting." },
+  "Technical SEO Audit":                 { hours: 6,  rate: 125, fixed: false, desc: "Full technical audit covering crawlability, indexing, schema, and site structure." },
+  "On-Page SEO Optimization":            { hours: 8,  rate: 100, fixed: false, desc: "Page-by-page optimization of titles, headings, content, and internal links." },
+  "Local SEO Setup":                     { hours: 5,  rate: 100, fixed: false, desc: "GBP optimization, local citations, and local landing page optimization." },
+  "GEO & AEO Optimization":             { hours: 6,  rate: 125, fixed: false, desc: "Optimize for AI-generated search results and featured snippets." },
+  "Keyword Research & Strategy":         { hours: 4,  rate: 125, fixed: false, desc: "Comprehensive keyword research and content gap analysis." },
+  "SEO Management (monthly)":            { hours: 8,  rate: 100, fixed: false, desc: "Ongoing SEO monitoring, optimization, and reporting." },
   "Blog Article (per article)":          { hours: 3,  rate: 100, fixed: false, desc: "Research, write, and optimize a long-form blog post." },
-  "Content Strategy & Editorial Calendar":{ hours: 5,  rate: 150, fixed: false, desc: "Topic research, content plan, and 3–6 month editorial calendar." },
-  "Content Audit":                       { hours: 4,  rate: 125, fixed: false, desc: "Review existing content for performance, gaps, and opportunities." },
+  "Content Strategy & Editorial Calendar":{ hours: 5,  rate: 125, fixed: false, desc: "Topic research, content plan, and 3–6 month editorial calendar." },
+  "Content Audit":                       { hours: 4,  rate: 100, fixed: false, desc: "Review existing content for performance, gaps, and opportunities." },
 
   "— Paid Media —": null,
-  "Google Ads Campaign Setup":           { hours: 8,  rate: 150, fixed: false, desc: "Full campaign build: keyword research, ad copy, targeting, and tracking." },
-  "Google Ads Management (monthly)":     { hours: 6,  rate: 125, fixed: false, desc: "Ongoing campaign management, optimization, and monthly reporting." },
-  "Bing/Microsoft Ads Setup":            { hours: 4,  rate: 125, fixed: false, desc: "Campaign setup mirrored from Google Ads with platform-specific adjustments." },
-  "Remarketing Setup":                   { hours: 3,  rate: 125, fixed: false, desc: "Audience setup, pixel configuration, and remarketing campaign build." },
-  "Landing Page for Paid Campaigns":     { hours: 6,  rate: 125, fixed: false, desc: "Conversion-focused landing page tied to specific ad campaigns." },
+  "Google Ads Campaign Setup":           { hours: 8,  rate: 125, fixed: false, desc: "Full campaign build: keyword research, ad copy, targeting, and tracking." },
+  "Google Ads Management (monthly)":     { hours: 6,  rate: 100, fixed: false, desc: "Ongoing campaign management, optimization, and monthly reporting." },
+  "Bing/Microsoft Ads Setup":            { hours: 4,  rate: 100, fixed: false, desc: "Campaign setup mirrored from Google Ads with platform-specific adjustments." },
+  "Remarketing Setup":                   { hours: 3,  rate: 100, fixed: false, desc: "Audience setup, pixel configuration, and remarketing campaign build." },
+  "Landing Page for Paid Campaigns":     { hours: 6,  rate: 100, fixed: false, desc: "Conversion-focused landing page tied to specific ad campaigns." },
 
   "— AI & Automation —": null,
-  "AI Opportunity Assessment":           { hours: 4,  rate: 150, fixed: false, desc: "Review business operations and identify highest-ROI AI applications." },
-  "AI Tool Setup & Integration":         { hours: 6,  rate: 125, fixed: false, desc: "Configure and integrate selected AI tools into existing workflow." },
-  "Workflow Automation Setup":           { hours: 8,  rate: 125, fixed: false, desc: "Map and automate repetitive processes using Zapier, Make, or native integrations." },
-  "AI Chatbot / Assistant Setup":        { hours: 5,  rate: 125, fixed: false, desc: "Customer-facing or internal AI assistant configuration and testing." },
+  "AI Opportunity Assessment":           { hours: 4,  rate: 125, fixed: false, desc: "Review business operations and identify highest-ROI AI applications." },
+  "AI Tool Setup & Integration":         { hours: 6,  rate: 100, fixed: false, desc: "Configure and integrate selected AI tools into existing workflow." },
+  "Workflow Automation Setup":           { hours: 8,  rate: 100, fixed: false, desc: "Map and automate repetitive processes using Zapier, Make, or native integrations." },
+  "AI Chatbot / Assistant Setup":        { hours: 5,  rate: 100, fixed: false, desc: "Customer-facing or internal AI assistant configuration and testing." },
 
   "— Analytics —": null,
-  "GA4 Setup & Configuration":           { hours: 4,  rate: 125, fixed: false, desc: "Full GA4 property setup, event tracking, and goal configuration." },
-  "Google Tag Manager Implementation":   { hours: 3,  rate: 125, fixed: false, desc: "GTM container setup with conversion and tracking tags." },
-  "Dashboard Setup (Looker Studio)":     { hours: 4,  rate: 125, fixed: false, desc: "Custom Looker Studio reporting dashboard connected to GA4 and GSC." },
-  "Analytics & Reporting (monthly)":     { hours: 3,  rate: 125, fixed: false, desc: "Monthly performance report with insights and recommendations." },
+  "GA4 Setup & Configuration":           { hours: 4,  rate: 100, fixed: false, desc: "Full GA4 property setup, event tracking, and goal configuration." },
+  "Google Tag Manager Implementation":   { hours: 3,  rate: 100, fixed: false, desc: "GTM container setup with conversion and tracking tags." },
+  "Dashboard Setup (Looker Studio)":     { hours: 4,  rate: 100, fixed: false, desc: "Custom Looker Studio reporting dashboard connected to GA4 and GSC." },
+  "Analytics & Reporting (monthly)":     { hours: 3,  rate: 100, fixed: false, desc: "Monthly performance report with insights and recommendations." },
 
   "— Strategy —": null,
-  "Digital Marketing Audit":             { hours: 6,  rate: 150, fixed: false, desc: "Comprehensive review of all digital channels with prioritized recommendations." },
-  "Strategy & 90-Day Roadmap":           { hours: 5,  rate: 150, fixed: false, desc: "Custom digital marketing strategy and prioritized 90-day action plan." },
-  "Competitive Analysis":                { hours: 4,  rate: 150, fixed: false, desc: "Deep competitor research across SEO, content, ads, and digital presence." },
-  "Quarterly Strategy Review":           { hours: 2,  rate: 150, fixed: false, desc: "Quarterly performance review and roadmap adjustment session." },
-  "Strategy & Support (monthly)":        { hours: 4,  rate: 150, fixed: false, desc: "Ongoing strategic advisory, questions, and direction." },
+  "Digital Marketing Audit":             { hours: 6,  rate: 125, fixed: false, desc: "Comprehensive review of all digital channels with prioritized recommendations." },
+  "Strategy & 90-Day Roadmap":           { hours: 5,  rate: 125, fixed: false, desc: "Custom digital marketing strategy and prioritized 90-day action plan." },
+  "Competitive Analysis":                { hours: 4,  rate: 125, fixed: false, desc: "Deep competitor research across SEO, content, ads, and digital presence." },
+  "Quarterly Strategy Review":           { hours: 2,  rate: 125, fixed: false, desc: "Quarterly performance review and roadmap adjustment session." },
+  "Strategy & Support (monthly)":        { hours: 4,  rate: 125, fixed: false, desc: "Ongoing strategic advisory, questions, and direction." },
 
   "— Custom —": null,
-  "Custom Line Item":                    { hours: 1,  rate: 125, fixed: false, desc: "" },
+  "Custom Line Item":                    { hours: 1,  rate: 100, fixed: false, desc: "" },
 };
 
 // ═══════════════════════════════════════════════════════════════════
@@ -445,7 +446,7 @@ function addFromCatalog(sectionId) {
 }
 
 function addBlankItem(sectionId) {
-  addItem(sectionId, { desc: "", subDesc: "", hours: 1, rate: 125, fixed: false });
+  addItem(sectionId, { desc: "", subDesc: "", hours: 1, rate: 100, fixed: false });
 }
 
 function addItem(sectionId, data) {
