@@ -59,10 +59,6 @@ export type AuditReport = {
 
 // ── Queries ───────────────────────────────────────────────────────────────────
 
-export const auditReportSlugsQuery = groq`
-  *[_type == "auditReport"] { "slug": slug.current }
-`;
-
 export const auditReportBySlugQuery = groq`
   *[_type == "auditReport" && slug.current == $slug][0] {
     _id,
