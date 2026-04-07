@@ -29,6 +29,9 @@ import {
   Monitor,
   ThumbsDown,
   EyeOff,
+  Smartphone,
+  MessageSquare,
+  MousePointerClick,
   type LucideIcon,
 } from "lucide-react";
 
@@ -63,6 +66,9 @@ export const iconMap: Record<string, LucideIcon> = {
   Monitor,
   ThumbsDown,
   EyeOff,
+  Smartphone,
+  MessageSquare,
+  MousePointerClick,
 };
 
 export function getIcon(name: string | undefined): LucideIcon | null {

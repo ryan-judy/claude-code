@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Proposal Builder — Spark Street Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0A1628;
+      --navy2:  #0F1F3D;
+      --blue:   #1D4ED8;
+      --blue-l: #EFF6FF;
+      --amber:  #F59E0B;
+      --slate:  #475569;
+      --bg:     #F1F5F9;
+      --white:  #ffffff;
+      --border: #E2E8F0;
+      --radius: 10px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: #1E293B; font-size: 14px; line-height: 1.5; }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      position: sticky; top: 0; z-index: 100;
+      background: white; border-bottom: 1px solid var(--border);
+      padding: 10px 24px; display: flex; align-items: center; gap: 10px;
+    }
+    .toolbar-title { font-weight: 700; color: var(--navy); font-size: 13px; margin-right: auto; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 7px; border: none; cursor: pointer; transition: all .15s; }
+    .btn-primary { background: var(--blue); color: white; }
+    .btn-primary:hover { background: #1e40af; }
+    .btn-amber { background: var(--amber); color: var(--navy); }
+    .btn-amber:hover { background: #d97706; }
+    .btn-ghost { background: white; color: var(--slate); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-danger { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+    .btn-danger:hover { background: #FEE2E2; }
+
+    /* ── Proposal wrap ── */
+    .proposal { max-width: 860px; margin: 0 auto; padding: 28px 24px 60px; }
+
+    /* ── Header ── */
+    .proposal-header {
+      background: var(--navy); border-radius: var(--radius) var(--radius) 0 0;
+      padding: 24px 28px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-brand img { width: 40px; height: 40px; object-fit: contain; }
+    .brand-name { color: white; font-weight: 700; font-size: 14px; }
+    .brand-sub  { color: rgba(255,255,255,.4); font-size: 11px; margin-top: 1px; }
+    .header-right { text-align: right; }
+    .proposal-label { color: rgba(255,255,255,.45); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+    .proposal-title { color: white; font-size: 20px; font-weight: 700; }
+    .proposal-num   { color: var(--amber); font-size: 12px; font-weight: 600; margin-top: 2px; }
+
+    /* ── Client bar ── */
+    .client-bar {
+      background: var(--navy2); padding: 16px 28px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px 20px;
+    }
+    .field-group label { display: block; color: rgba(255,255,255,.4); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+    .field-group input {
+      background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,.15);
+      color: white; font-family: inherit; font-size: 13px; font-weight: 500;
+      width: 100%; padding: 2px 0; outline: none;
+    }
+    .field-group input:focus { border-bottom-color: var(--amber); }
+    .field-group input::placeholder { color: rgba(255,255,255,.25); }
+
+    /* ── Body ── */
+    .proposal-body { background: white; padding: 28px; border-radius: 0 0 var(--radius) var(--radius); }
+
+    /* ── Sections ── */
+    .section-card { border: 1px solid var(--border); border-radius: 9px; overflow: hidden; margin-bottom: 16px; }
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: #F8FAFC; border-bottom: 1px solid var(--border);
+    }
+    .section-header-left { display: flex; align-items: center; gap: 10px; }
+    .section-type-badge {
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .badge-project  { background: #EFF6FF; color: #1D4ED8; }
+    .badge-retainer { background: #F0FDF4; color: #15803D; }
+    .badge-hourly   { background: #FFFBEB; color: #92400E; }
+    .section-title-input {
+      background: transparent; border: none; font-family: inherit; font-size: 14px;
+      font-weight: 600; color: var(--navy); outline: none; min-width: 200px;
+    }
+    .section-title-input::placeholder { color: #94A3B8; }
+
+    /* ── Line items table ── */
+    .line-items { width: 100%; }
+    .line-items-head {
+      display: grid; gap: 8px; padding: 8px 16px;
+      background: #F8FAFC; border-bottom: 1px solid var(--border);
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: #94A3B8;
+    }
+    .li-row {
+      display: grid; gap: 8px; padding: 10px 16px;
+      border-bottom: 1px solid #F1F5F9; align-items: start;
+    }
+    .li-row:last-child { border-bottom: none; }
+
+    /* columns: desc | hours | rate | total | del */
+    .col-grid { grid-template-columns: 1fr 72px 88px 88px 32px; }
+
+    .li-input {
+      background: transparent; border: none; font-family: inherit; font-size: 13px;
+      color: var(--navy); outline: none; width: 100%;
+    }
+    .li-input::placeholder { color: #CBD5E1; }
+    .li-input:focus { background: #F8FAFC; border-radius: 4px; padding: 0 4px; }
+    .li-input.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    .li-total { font-size: 13px; font-weight: 600; color: var(--navy); text-align: right; font-variant-numeric: tabular-nums; padding-top: 1px; }
+    .li-fixed-tag { font-size: 10px; color: #94A3B8; text-align: right; }
+
+    .del-btn {
+      background: none; border: none; cursor: pointer; color: #CBD5E1; font-size: 16px;
+      line-height: 1; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px;
+    }
+    .del-btn:hover { color: #EF4444; background: #FEF2F2; }
+
+    .section-add-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-top: 1px dashed var(--border); background: #FAFAFA;
+    }
+    .catalog-select {
+      flex: 1; font-family: inherit; font-size: 12px; color: var(--slate);
+      border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px;
+      background: white; outline: none; max-width: 320px;
+    }
+    .catalog-select:focus { border-color: var(--blue); }
+
+    /* ── Section footer ── */
+    .section-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; background: #F8FAFC; border-top: 1px solid var(--border);
+    }
+    .section-subtotal { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .section-subtotal span { color: var(--slate); font-weight: 500; margin-right: 6px; }
+
+    /* ── Add section bar ── */
+    .add-section-bar {
+      display: flex; align-items: center; gap: 8px; margin: 16px 0;
+      padding: 12px; background: #F8FAFC; border: 1px dashed var(--border); border-radius: 9px;
+    }
+    .add-section-label { font-size: 12px; color: var(--slate); margin-right: 4px; }
+
+    /* ── Summary ── */
+    .summary-card { border: 1px solid var(--border); border-radius: 9px; overflow: hidden; margin-top: 20px; }
+    .summary-header { background: var(--navy); padding: 12px 16px; }
+    .summary-header-title { color: white; font-weight: 700; font-size: 13px; }
+    .summary-body { padding: 16px; }
+    .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+    .summary-row + .summary-row { border-top: 1px solid #F1F5F9; }
+    .summary-label { font-size: 13px; color: var(--slate); }
+    .summary-value { font-size: 13px; font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .summary-tag { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .tag-onetime  { background: #EFF6FF; color: #1D4ED8; }
+    .tag-monthly  { background: #F0FDF4; color: #15803D; }
+    .summary-divider { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+    .summary-total { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--navy); border-radius: 0 0 8px 8px; }
+    .total-label { color: rgba(255,255,255,.7); font-size: 12px; font-weight: 600; }
+    .total-value { color: white; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .total-monthly { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+    .total-monthly-val { color: var(--amber); font-size: 14px; font-weight: 700; }
+    .total-monthly-label { color: rgba(255,255,255,.45); font-size: 10px; }
+
+    .discount-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid #F1F5F9; }
+    .discount-label { font-size: 13px; color: var(--slate); flex: 1; }
+    .discount-input { width: 80px; border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-family: inherit; font-size: 13px; text-align: right; outline: none; }
+    .discount-input:focus { border-color: var(--blue); }
+    .discount-type { font-family: inherit; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; outline: none; background: white; }
+
+    /* ── Notes ── */
+    .notes-section { margin-top: 16px; }
+    .notes-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #94A3B8; margin-bottom: 6px; }
+    .notes-area {
+      width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 12px; font-family: inherit; font-size: 13px; color: var(--navy);
+      outline: none; resize: vertical; background: #FAFAFA;
+    }
+    .notes-area:focus { border-color: var(--blue); background: white; }
+    .notes-area::placeholder { color: #CBD5E1; }
+
+    /* ── Footer ── */
+    .proposal-footer {
+      background: var(--navy); border-radius: var(--radius); margin-top: 16px;
+      padding: 16px 28px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 8px; color: white; font-size: 13px; font-weight: 600; }
+    .footer-brand img { width: 20px; height: 20px; object-fit: contain; }
+    .footer-sub { color: rgba(255,255,255,.35); font-size: 11px; }
+
+    /* ── Print ── */
+    @media print {
+      .toolbar, .add-section-bar, .section-add-row, .del-btn, .catalog-select, .btn { display: none !important; }
+      body { background: white; }
+      .proposal { padding: 0; max-width: 100%; }
+      .proposal-header { border-radius: 0; }
+      .proposal-body { border-radius: 0; }
+      .proposal-footer { border-radius: 0; margin-top: 0; }
+      .section-card, .summary-card { page-break-inside: avoid; }
+      .li-input { color: #1E293B !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ TOOLBAR ════════════════════════════════════════════════════ -->
+<div class="toolbar">
+  <span class="toolbar-title">⚡ Proposal Builder</span>
+  <button class="btn btn-ghost" onclick="newProposal()">New Proposal</button>
+  <button class="btn btn-ghost" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<!-- ═══ PROPOSAL ═══════════════════════════════════════════════════ -->
+<div class="proposal">
+
+  <!-- Header -->
+  <div class="proposal-header">
+    <div class="header-brand">
+      <img src="/logo.png" alt="Spark Street Digital" />
+      <div>
+        <div class="brand-name">Spark Street Digital</div>
+        <div class="brand-sub">sparkstreet.digital</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="proposal-label">Service Proposal</div>
+      <div class="proposal-title">Pricing & Scope</div>
+      <div class="proposal-num" id="proposalNumDisplay">#001</div>
+    </div>
+  </div>
+
+  <!-- Client bar -->
+  <div class="client-bar">
+    <div class="field-group">
+      <label>Client / Business</label>
+      <input type="text" id="clientName" placeholder="Acme Co." oninput="save()" />
+    </div>
+    <div class="field-group">
+      <label>Website</label>
+      <input type="text" id="clientWebsite" placeholder="acme.com" oninput="save()" />
+    </div>
+    <div class="field-group">
+      <label>Contact</label>
+      <input type="text" id="clientContact" placeholder="Jane Smith" oninput="save()" />
+    </div>
+    <div class="field-group">
+      <label>Date Prepared</label>
+      <input type="date" id="proposalDate" oninput="save()" />
+    </div>
+    <div class="field-group">
+      <label>Valid Until</label>
+      <input type="date" id="validUntil" oninput="save()" />
+    </div>
+    <div class="field-group">
+      <label>Proposal #</label>
+      <input type="text" id="proposalNum" placeholder="001" oninput="save(); updateProposalNum()" />
+    </div>
+  </div>
+
+  <!-- Proposal body -->
+  <div class="proposal-body">
+
+    <!-- Sections container -->
+    <div id="sectionsContainer"></div>
+
+    <!-- Add section bar -->
+    <div class="add-section-bar">
+      <span class="add-section-label">Add engagement:</span>
+      <button class="btn btn-primary"   onclick="addSection('project')">+ One-Time Project</button>
+      <button class="btn btn-ghost"     onclick="addSection('retainer')" style="border-color:#16A34A;color:#15803D;">+ Monthly Retainer</button>
+      <button class="btn btn-ghost"     onclick="addSection('hourly')" style="border-color:#D97706;color:#92400E;">+ Hourly / Ad-Hoc</button>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-card" id="summaryCard">
+      <div class="summary-header"><span class="summary-header-title">Proposal Summary</span></div>
+      <div class="summary-body">
+        <div id="summaryRows"></div>
+
+        <div class="discount-row">
+          <span class="discount-label">Discount</span>
+          <select class="discount-type" id="discountType" onchange="recalc(); save()">
+            <option value="percent">%</option>
+            <option value="flat">$</option>
+          </select>
+          <input class="discount-input" type="number" id="discountVal" value="0" min="0" oninput="recalc(); save()" />
+        </div>
+      </div>
+      <div class="summary-total">
+        <div>
+          <div class="total-label">One-Time Total</div>
+          <div class="total-value" id="grandTotal">$0</div>
+        </div>
+        <div class="total-monthly" id="monthlyTotalWrap" style="display:none;">
+          <div class="total-monthly-val" id="monthlyTotal">$0/mo</div>
+          <div class="total-monthly-label">Recurring Monthly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="notes-section" style="margin-top:20px;">
+      <div class="notes-label">Scope Notes</div>
+      <textarea class="notes-area" id="scopeNotes" placeholder="Any additional context, assumptions, or scope clarifications..." oninput="save()"></textarea>
+    </div>
+    <div class="notes-section" style="margin-top:12px;">
+      <div class="notes-label">Terms & Conditions</div>
+      <textarea class="notes-area" id="termsNotes" placeholder="Payment terms, revision policy, what's not included..." oninput="save()"></textarea>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="proposal-footer">
+    <div class="footer-brand">
+      <img src="/logo.png" alt="Spark Street Digital" />
+      Spark Street Digital
+    </div>
+    <div class="footer-sub">sparkstreet.digital &nbsp;·&nbsp; ryan@sparkstreet.digital</div>
+  </div>
+
+</div><!-- /proposal -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// SERVICE CATALOG
+// ═══════════════════════════════════════════════════════════════════
+const CATALOG = {
+  "— Website —": null,
+  "Discovery & Strategy Session":        { hours: 3,  rate: 150, fixed: false, desc: "Deep-dive into goals, audience, competitors, and current presence." },
+  "Website Modernization (Audit + Fixes)":{ hours: 12, rate: 125, fixed: false, desc: "Audit existing site and implement targeted improvements." },
+  "Custom Website Design (UI/UX)":       { hours: 20, rate: 150, fixed: false, desc: "Full custom design including wireframes and visual design." },
+  "Website Development":                 { hours: 40, rate: 125, fixed: false, desc: "Front-end and CMS development, responsive and performance-optimized." },
+  "Landing Page Design & Dev":           { hours: 8,  rate: 125, fixed: false, desc: "Single conversion-focused landing page." },
+  "CMS Setup & Client Training":         { hours: 4,  rate: 125, fixed: false, desc: "Configure CMS and train client on content management." },
+  "Speed & Core Web Vitals Optimization":{ hours: 6,  rate: 125, fixed: false, desc: "Performance audit and targeted improvements." },
+  "Website Launch & QA":                 { hours: 4,  rate: 125, fixed: false, desc: "Cross-browser QA, launch checklist, and DNS/hosting handoff." },
+
+  "— SEO & Content —": null,
+  "Technical SEO Audit":                 { hours: 6,  rate: 150, fixed: false, desc: "Full technical audit covering crawlability, indexing, schema, and site structure." },
+  "On-Page SEO Optimization":            { hours: 8,  rate: 125, fixed: false, desc: "Page-by-page optimization of titles, headings, content, and internal links." },
+  "Local SEO Setup":                     { hours: 5,  rate: 125, fixed: false, desc: "GBP optimization, local citations, and local landing page optimization." },
+  "GEO & AEO Optimization":             { hours: 6,  rate: 150, fixed: false, desc: "Optimize for AI-generated search results and featured snippets." },
+  "Keyword Research & Strategy":         { hours: 4,  rate: 150, fixed: false, desc: "Comprehensive keyword research and content gap analysis." },
+  "SEO Management (monthly)":            { hours: 8,  rate: 125, fixed: false, desc: "Ongoing SEO monitoring, optimization, and reporting." },
+  "Blog Article (per article)":          { hours: 3,  rate: 100, fixed: false, desc: "Research, write, and optimize a long-form blog post." },
+  "Content Strategy & Editorial Calendar":{ hours: 5,  rate: 150, fixed: false, desc: "Topic research, content plan, and 3–6 month editorial calendar." },
+  "Content Audit":                       { hours: 4,  rate: 125, fixed: false, desc: "Review existing content for performance, gaps, and opportunities." },
+
+  "— Paid Media —": null,
+  "Google Ads Campaign Setup":           { hours: 8,  rate: 150, fixed: false, desc: "Full campaign build: keyword research, ad copy, targeting, and tracking." },
+  "Google Ads Management (monthly)":     { hours: 6,  rate: 125, fixed: false, desc: "Ongoing campaign management, optimization, and monthly reporting." },
+  "Bing/Microsoft Ads Setup":            { hours: 4,  rate: 125, fixed: false, desc: "Campaign setup mirrored from Google Ads with platform-specific adjustments." },
+  "Remarketing Setup":                   { hours: 3,  rate: 125, fixed: false, desc: "Audience setup, pixel configuration, and remarketing campaign build." },
+  "Landing Page for Paid Campaigns":     { hours: 6,  rate: 125, fixed: false, desc: "Conversion-focused landing page tied to specific ad campaigns." },
+
+  "— AI & Automation —": null,
+  "AI Opportunity Assessment":           { hours: 4,  rate: 150, fixed: false, desc: "Review business operations and identify highest-ROI AI applications." },
+  "AI Tool Setup & Integration":         { hours: 6,  rate: 125, fixed: false, desc: "Configure and integrate selected AI tools into existing workflow." },
+  "Workflow Automation Setup":           { hours: 8,  rate: 125, fixed: false, desc: "Map and automate repetitive processes using Zapier, Make, or native integrations." },
+  "AI Chatbot / Assistant Setup":        { hours: 5,  rate: 125, fixed: false, desc: "Customer-facing or internal AI assistant configuration and testing." },
+
+  "— Analytics —": null,
+  "GA4 Setup & Configuration":           { hours: 4,  rate: 125, fixed: false, desc: "Full GA4 property setup, event tracking, and goal configuration." },
+  "Google Tag Manager Implementation":   { hours: 3,  rate: 125, fixed: false, desc: "GTM container setup with conversion and tracking tags." },
+  "Dashboard Setup (Looker Studio)":     { hours: 4,  rate: 125, fixed: false, desc: "Custom Looker Studio reporting dashboard connected to GA4 and GSC." },
+  "Analytics & Reporting (monthly)":     { hours: 3,  rate: 125, fixed: false, desc: "Monthly performance report with insights and recommendations." },
+
+  "— Strategy —": null,
+  "Digital Marketing Audit":             { hours: 6,  rate: 150, fixed: false, desc: "Comprehensive review of all digital channels with prioritized recommendations." },
+  "Strategy & 90-Day Roadmap":           { hours: 5,  rate: 150, fixed: false, desc: "Custom digital marketing strategy and prioritized 90-day action plan." },
+  "Competitive Analysis":                { hours: 4,  rate: 150, fixed: false, desc: "Deep competitor research across SEO, content, ads, and digital presence." },
+  "Quarterly Strategy Review":           { hours: 2,  rate: 150, fixed: false, desc: "Quarterly performance review and roadmap adjustment session." },
+  "Strategy & Support (monthly)":        { hours: 4,  rate: 150, fixed: false, desc: "Ongoing strategic advisory, questions, and direction." },
+
+  "— Custom —": null,
+  "Custom Line Item":                    { hours: 1,  rate: 125, fixed: false, desc: "" },
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+let sections = [];
+let nextSectionId = 1;
+let nextItemId = 1;
+const STORAGE_KEY = "ssd_proposal_v1";
+
+const TYPE_META = {
+  project:  { label: "One-Time Project", badge: "badge-project",  color: "#1D4ED8" },
+  retainer: { label: "Monthly Retainer", badge: "badge-retainer", color: "#15803D" },
+  hourly:   { label: "Hourly / Ad-Hoc",  badge: "badge-hourly",   color: "#92400E" },
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// SECTIONS
+// ═══════════════════════════════════════════════════════════════════
+function addSection(type) {
+  const id = nextSectionId++;
+  sections.push({ id, type, title: "", items: [] });
+  renderSections();
+  save();
+  // Focus the title input
+  setTimeout(() => {
+    const el = document.getElementById(`section-title-${id}`);
+    if (el) el.focus();
+  }, 50);
+}
+
+function removeSection(id) {
+  sections = sections.filter(s => s.id !== id);
+  renderSections();
+  recalc();
+  save();
+}
+
+function updateSectionTitle(id, val) {
+  const s = sections.find(s => s.id === id);
+  if (s) s.title = val;
+  save();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LINE ITEMS
+// ═══════════════════════════════════════════════════════════════════
+function addFromCatalog(sectionId) {
+  const sel = document.getElementById(`catalog-${sectionId}`);
+  const name = sel.value;
+  if (!name || !CATALOG[name]) { sel.value = ""; return; }
+  const tpl = CATALOG[name];
+  addItem(sectionId, { desc: name, subDesc: tpl.desc, hours: tpl.hours, rate: tpl.rate, fixed: tpl.fixed });
+  sel.value = "";
+}
+
+function addBlankItem(sectionId) {
+  addItem(sectionId, { desc: "", subDesc: "", hours: 1, rate: 125, fixed: false });
+}
+
+function addItem(sectionId, data) {
+  const s = sections.find(s => s.id === sectionId);
+  if (!s) return;
+  s.items.push({ id: nextItemId++, ...data });
+  renderSections();
+  recalc();
+  save();
+}
+
+function removeItem(sectionId, itemId) {
+  const s = sections.find(s => s.id === sectionId);
+  if (!s) return;
+  s.items = s.items.filter(i => i.id !== itemId);
+  renderSections();
+  recalc();
+  save();
+}
+
+function updateItem(sectionId, itemId, field, value) {
+  const s = sections.find(s => s.id === sectionId);
+  if (!s) return;
+  const item = s.items.find(i => i.id === itemId);
+  if (!item) return;
+  if (field === 'hours' || field === 'rate') item[field] = parseFloat(value) || 0;
+  else if (field === 'fixed') item[field] = value;
+  else item[field] = value;
+  recalc();
+  save();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════════
+function renderSections() {
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = sections.map(s => renderSection(s)).join('');
+}
+
+function renderSection(s) {
+  const meta = TYPE_META[s.type];
+  const itemsHTML = s.items.map(item => renderItem(s.id, item, s.type)).join('');
+  const subtotal = calcSectionTotal(s);
+  const subtotalLabel = s.type === 'retainer' ? fmt(subtotal) + '/mo' : fmt(subtotal);
+
+  return `
+    <div class="section-card" id="section-${s.id}">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="section-type-badge ${meta.badge}">${meta.label}</span>
+          <input
+            class="section-title-input"
+            id="section-title-${s.id}"
+            type="text"
+            placeholder="e.g. Website Redesign — Acme Co."
+            value="${esc(s.title)}"
+            oninput="updateSectionTitle(${s.id}, this.value)"
+          />
+        </div>
+        <button class="del-btn" onclick="removeSection(${s.id})" title="Remove section">✕</button>
+      </div>
+
+      <div class="line-items">
+        <div class="line-items-head col-grid">
+          <span>Service / Description</span>
+          <span style="text-align:right">Hours</span>
+          <span style="text-align:right">Rate</span>
+          <span style="text-align:right">Total</span>
+          <span></span>
+        </div>
+        ${itemsHTML}
+      </div>
+
+      <div class="section-add-row">
+        <select class="catalog-select" id="catalog-${s.id}" onchange="addFromCatalog(${s.id})">
+          <option value="">+ Add from catalog…</option>
+          ${buildCatalogOptions()}
+        </select>
+        <button class="btn btn-ghost" style="font-size:11px;padding:5px 10px;" onclick="addBlankItem(${s.id})">+ Custom line</button>
+      </div>
+
+      <div class="section-footer">
+        <div></div>
+        <div class="section-subtotal">
+          <span>Subtotal</span>${subtotalLabel}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderItem(sectionId, item, sectionType) {
+  const lineTotal = item.fixed ? item.rate : (item.hours * item.rate);
+  const displayTotal = sectionType === 'retainer'
+    ? fmt(lineTotal) + '<br><span class="li-fixed-tag">/mo</span>'
+    : fmt(lineTotal);
+
+  return `
+    <div class="li-row col-grid" id="li-${item.id}">
+      <div>
+        <input class="li-input" type="text" placeholder="Service or deliverable description"
+          value="${esc(item.desc)}"
+          oninput="updateItem(${sectionId}, ${item.id}, 'desc', this.value)" />
+        <input class="li-input" type="text" placeholder="Details (optional)" style="font-size:11px;color:#94A3B8;margin-top:2px;"
+          value="${esc(item.subDesc || '')}"
+          oninput="updateItem(${sectionId}, ${item.id}, 'subDesc', this.value)" />
+      </div>
+      <input class="li-input num" type="number" min="0" step="0.5"
+        value="${item.fixed ? '' : item.hours}"
+        placeholder="${item.fixed ? '—' : '0'}"
+        ${item.fixed ? 'disabled style="color:#CBD5E1;"' : ''}
+        oninput="updateItem(${sectionId}, ${item.id}, 'hours', this.value)" />
+      <input class="li-input num" type="number" min="0"
+        value="${item.rate}"
+        oninput="updateItem(${sectionId}, ${item.id}, 'rate', this.value)" />
+      <div class="li-total">${displayTotal}</div>
+      <button class="del-btn" onclick="removeItem(${sectionId}, ${item.id})">✕</button>
+    </div>
+  `;
+}
+
+function buildCatalogOptions() {
+  return Object.entries(CATALOG).map(([name, val]) => {
+    if (!val) return `<option disabled>${name}</option>`;
+    return `<option value="${esc(name)}">${name}</option>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CALCULATIONS
+// ═══════════════════════════════════════════════════════════════════
+function calcSectionTotal(s) {
+  return s.items.reduce((sum, item) => {
+    return sum + (item.fixed ? item.rate : item.hours * item.rate);
+  }, 0);
+}
+
+function recalc() {
+  let oneTime = 0;
+  let monthly = 0;
+
+  const rowsHTML = sections.map(s => {
+    const total = calcSectionTotal(s);
+    const meta = TYPE_META[s.type];
+    const label = s.title || meta.label;
+    if (s.type === 'retainer') {
+      monthly += total;
+      return `<div class="summary-row">
+        <span class="summary-label">${esc(label)} <span class="summary-tag tag-monthly">monthly</span></span>
+        <span class="summary-value">${fmt(total)}<span style="color:#94A3B8;font-weight:500;">/mo</span></span>
+      </div>`;
+    } else {
+      oneTime += total;
+      return `<div class="summary-row">
+        <span class="summary-label">${esc(label)} <span class="summary-tag tag-onetime">one-time</span></span>
+        <span class="summary-value">${fmt(total)}</span>
+      </div>`;
+    }
+  }).join('');
+
+  // Discount
+  const discType = document.getElementById('discountType').value;
+  const discVal  = parseFloat(document.getElementById('discountVal').value) || 0;
+  let discountAmt = 0;
+  if (discVal > 0) {
+    discountAmt = discType === 'percent' ? oneTime * (discVal / 100) : discVal;
+  }
+  const finalOneTime = Math.max(0, oneTime - discountAmt);
+
+  document.getElementById('summaryRows').innerHTML = rowsHTML +
+    (discountAmt > 0 ? `<div class="summary-row"><span class="summary-label" style="color:#B91C1C;">Discount</span><span class="summary-value" style="color:#B91C1C;">− ${fmt(discountAmt)}</span></div>` : '');
+
+  document.getElementById('grandTotal').textContent = fmt(finalOneTime);
+
+  const mWrap = document.getElementById('monthlyTotalWrap');
+  if (monthly > 0) {
+    mWrap.style.display = 'flex';
+    document.getElementById('monthlyTotal').textContent = fmt(monthly) + '/mo';
+  } else {
+    mWrap.style.display = 'none';
+  }
+
+  // Also update section subtotals without full re-render
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════════════════════════════════
+function save() {
+  const data = {
+    clientName:    document.getElementById('clientName').value,
+    clientWebsite: document.getElementById('clientWebsite').value,
+    clientContact: document.getElementById('clientContact').value,
+    proposalDate:  document.getElementById('proposalDate').value,
+    validUntil:    document.getElementById('validUntil').value,
+    proposalNum:   document.getElementById('proposalNum').value,
+    scopeNotes:    document.getElementById('scopeNotes').value,
+    termsNotes:    document.getElementById('termsNotes').value,
+    discountType:  document.getElementById('discountType').value,
+    discountVal:   document.getElementById('discountVal').value,
+    sections,
+    nextSectionId,
+    nextItemId,
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function load() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) { recalc(); return; }
+  try {
+    const d = JSON.parse(raw);
+    document.getElementById('clientName').value    = d.clientName    || '';
+    document.getElementById('clientWebsite').value = d.clientWebsite || '';
+    document.getElementById('clientContact').value = d.clientContact || '';
+    document.getElementById('proposalDate').value  = d.proposalDate  || '';
+    document.getElementById('validUntil').value    = d.validUntil    || '';
+    document.getElementById('proposalNum').value   = d.proposalNum   || '';
+    document.getElementById('scopeNotes').value    = d.scopeNotes    || '';
+    document.getElementById('termsNotes').value    = d.termsNotes    || '';
+    document.getElementById('discountType').value  = d.discountType  || 'percent';
+    document.getElementById('discountVal').value   = d.discountVal   || '0';
+    sections      = d.sections      || [];
+    nextSectionId = d.nextSectionId || 1;
+    nextItemId    = d.nextItemId    || 1;
+    updateProposalNum();
+    renderSections();
+    recalc();
+  } catch(e) { recalc(); }
+}
+
+function newProposal() {
+  if (!confirm('Start a new proposal? This will clear all current content.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  sections = []; nextSectionId = 1; nextItemId = 1;
+  ['clientName','clientWebsite','clientContact','proposalDate','validUntil','proposalNum','scopeNotes','termsNotes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('discountVal').value = '0';
+  document.getElementById('proposalNumDisplay').textContent = '#001';
+  renderSections();
+  recalc();
+}
+
+function updateProposalNum() {
+  const val = document.getElementById('proposalNum').value.trim();
+  document.getElementById('proposalNumDisplay').textContent = val ? '#' + val : '#001';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════════
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Set today's date as default
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('proposalDate').value = today;
+  load();
+});
+</script>
+</body>
+</html>

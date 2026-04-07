@@ -8,7 +8,7 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "crs7qrfh";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 // Singletons — only one document of each type exists
-const singletons = ["siteSettings", "navigation", "homePage", "aboutPage", "servicesPage", "contactPage"];
+const singletons = ["siteSettings", "navigation", "homePage", "aboutPage", "servicesPage", "contactPage", "auditPage"];
 
 export default defineConfig({
   basePath: "/studio",
@@ -86,6 +86,14 @@ export default defineConfig({
                           .schemaType("contactPage")
                           .documentId("contactPage")
                           .title("Contact Page")
+                      ),
+                    S.listItem()
+                      .title("Audit Page")
+                      .child(
+                        S.document()
+                          .schemaType("auditPage")
+                          .documentId("auditPage")
+                          .title("Audit Page")
                       ),
                   ])
               ),

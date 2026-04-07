@@ -257,6 +257,26 @@ export const contactPageQuery = groq`
   }
 `;
 
+// ── Audit Page ────────────────────────────────────────────────────────────────
+
+export const auditPageQuery = groq`
+  *[_type == "auditPage" && _id == "auditPage"][0] {
+    seoTitle, seoDescription,
+    heroBadge, heroHeadline, heroHeadlineHighlight, heroSubheadline,
+    heroPrimaryCtaText, heroSecondaryCtaText,
+    includedBadge, includedHeadline, includedHeadlineHighlight, includedSubheadline,
+    auditAreas[] { icon, color, title, desc },
+    deliverableBadge, deliverableHeadline, deliverableHeadlineHighlight, deliverableBody,
+    deliverables,
+    stepsBadge, stepsHeadline, stepsHeadlineHighlight, stepsSubheadline,
+    steps[] { number, title, desc },
+    requestBadge, requestHeadline, requestHeadlineHighlight, requestBody,
+    requestBullets,
+    faqHeadline, faqSubheadline,
+    faqs[] { q, a }
+  }
+`;
+
 // ── Flexible Pages ────────────────────────────────────────────────────────────
 
 export const flexPageSlugsQuery = groq`

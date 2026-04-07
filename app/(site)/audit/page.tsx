@@ -1,132 +1,120 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight, CheckCircle2, Zap, Globe, Smartphone, Search, TrendingUp,
-  MapPin, MessageSquare, MousePointerClick, BarChart2, Users, Clock,
-  FileText, Shield, ChevronDown,
+  ArrowRight, CheckCircle2, Zap, ChevronDown, Clock, Shield, FileText,
 } from "lucide-react";
+import { client } from "@/lib/sanity/client";
+import { auditPageQuery } from "@/lib/sanity/queries";
+import { getIcon } from "@/lib/iconMap";
 import AuditForm from "@/components/AuditForm";
 
-export const metadata: Metadata = {
-  title: "Free Website Audit | Spark Street Digital — Ohio",
-  description:
-    "Get a free, no-fluff website audit covering 10 key areas: performance, SEO, GEO/AEO, mobile, content, conversions, and more. Delivered within 48 hours.",
-};
+// ── Fallback data ─────────────────────────────────────────────────────────────
 
-const auditAreas = [
-  {
-    icon: Smartphone,
-    color: "bg-blue-50 text-blue-600",
-    title: "User Experience",
-    desc: "How your site looks, feels, and functions — overall design quality, layout, readability, and mobile responsiveness. First impressions matter, and this is where most visitors decide to stay or leave.",
-  },
-  {
-    icon: Zap,
-    color: "bg-amber-50 text-amber-600",
-    title: "Website Performance & Speed",
-    desc: "Core Web Vitals, load times, hosting quality, and what's slowing you down. Slow sites lose visitors before they even read a word.",
-  },
-  {
-    icon: Search,
-    color: "bg-orange-50 text-orange-600",
-    title: "Technical SEO",
-    desc: "Crawlability, indexing, site structure, meta tags, schema markup, and the under-the-hood issues that keep you off Google's radar.",
-  },
-  {
-    icon: TrendingUp,
-    color: "bg-green-50 text-green-600",
-    title: "On-Page SEO & Content",
-    desc: "Keyword targeting, heading structure, internal linking, and whether your content is actually optimized for what your customers are searching for.",
-  },
-  {
-    icon: Globe,
-    color: "bg-purple-50 text-purple-600",
-    title: "GEO & AEO — AI Search Visibility",
-    desc: "How your business shows up in AI-powered search results (ChatGPT, Google AI Overviews, Perplexity). A growing source of traffic most businesses ignore.",
-  },
-  {
-    icon: MapPin,
-    color: "bg-red-50 text-red-600",
-    title: "Local Search & Google Business Profile",
-    desc: "Your GBP completeness, review profile, local citation consistency, and how you're showing up in map results and local pack rankings.",
-  },
-  {
-    icon: MessageSquare,
-    color: "bg-teal-50 text-teal-600",
-    title: "Content & Site Structure",
-    desc: "Whether your site clearly communicates who you are, what you do, and who you serve — and whether it's organized in a way that makes sense to both visitors and search engines.",
-  },
-  {
-    icon: MousePointerClick,
-    color: "bg-pink-50 text-pink-600",
-    title: "Conversion Optimization",
-    desc: "Your calls-to-action, contact forms, user flow, and whether your site is actually designed to turn visitors into leads — or just look nice.",
-  },
-  {
-    icon: BarChart2,
-    color: "bg-indigo-50 text-indigo-600",
-    title: "Tech Stack",
-    desc: "What your site is built on, how it's hosted, and whether the underlying tools are serving you well — or creating hidden limitations on performance, flexibility, and growth.",
-  },
-  {
-    icon: Users,
-    color: "bg-cyan-50 text-cyan-600",
-    title: "Competitor Snapshot",
-    desc: "A quick look at how your top local competitors are showing up online — so you can see exactly where the gap is and what's worth closing.",
-  },
+const fallbackAuditAreas = [
+  { icon: "Smartphone", color: "bg-blue-50 text-blue-600", title: "User Experience", desc: "How your site looks, feels, and functions — overall design quality, layout, readability, and mobile responsiveness. First impressions matter, and this is where most visitors decide to stay or leave." },
+  { icon: "Zap", color: "bg-amber-50 text-amber-600", title: "Website Performance & Speed", desc: "Core Web Vitals, load times, hosting quality, and what\u2019s slowing you down. Slow sites lose visitors before they even read a word." },
+  { icon: "Search", color: "bg-orange-50 text-orange-600", title: "Technical SEO", desc: "Crawlability, indexing, site structure, meta tags, schema markup, and the under-the-hood issues that keep you off Google\u2019s radar." },
+  { icon: "TrendingUp", color: "bg-green-50 text-green-600", title: "On-Page SEO & Content", desc: "Keyword targeting, heading structure, internal linking, and whether your content is actually optimized for what your customers are searching for." },
+  { icon: "Globe", color: "bg-purple-50 text-purple-600", title: "GEO & AEO \u2014 AI Search Visibility", desc: "How your business shows up in AI-powered search results (ChatGPT, Google AI Overviews, Perplexity). A growing source of traffic most businesses ignore." },
+  { icon: "MapPin", color: "bg-red-50 text-red-600", title: "Local Search & Google Business Profile", desc: "Your GBP completeness, review profile, local citation consistency, and how you\u2019re showing up in map results and local pack rankings." },
+  { icon: "MessageSquare", color: "bg-teal-50 text-teal-600", title: "Content & Site Structure", desc: "Whether your site clearly communicates who you are, what you do, and who you serve \u2014 and whether it\u2019s organized in a way that makes sense to both visitors and search engines." },
+  { icon: "MousePointerClick", color: "bg-pink-50 text-pink-600", title: "Conversion Optimization", desc: "Your calls-to-action, contact forms, user flow, and whether your site is actually designed to turn visitors into leads \u2014 or just look nice." },
+  { icon: "BarChart2", color: "bg-indigo-50 text-indigo-600", title: "Tech Stack", desc: "What your site is built on, how it\u2019s hosted, and whether the underlying tools are serving you well \u2014 or creating hidden limitations on performance, flexibility, and growth." },
+  { icon: "Users", color: "bg-cyan-50 text-cyan-600", title: "Competitor Snapshot", desc: "A quick look at how your top local competitors are showing up online \u2014 so you can see exactly where the gap is and what\u2019s worth closing." },
 ];
 
-const deliverables = [
+const fallbackDeliverables = [
   "A written report covering all 10 audit areas",
-  "Specific findings — not vague suggestions",
+  "Specific findings \u2014 not vague suggestions",
   "A prioritized list of what to fix first",
   "Quick wins you can act on immediately",
   "Bigger opportunities worth investing in",
   "A plain-English summary you can actually use",
 ];
 
-const steps = [
-  {
-    number: "01",
-    title: "Submit your URL",
-    desc: "Fill out the form below with your website URL and a little context about your business. The more you share, the more useful the audit.",
-  },
-  {
-    number: "02",
-    title: "We do the work",
-    desc: "We personally review your site across all 10 areas — no automated tool, no junior staff. You get a real analysis from someone who knows what they're looking at.",
-  },
-  {
-    number: "03",
-    title: "You get your report",
-    desc: "Within 48 hours, we send you a detailed written report with findings and prioritized recommendations. No sales pitch attached — just honest insight.",
-  },
+const fallbackSteps = [
+  { number: "01", title: "Submit your URL", desc: "Fill out the form below with your website URL and a little context about your business. The more you share, the more useful the audit." },
+  { number: "02", title: "We do the work", desc: "We personally review your site across all 10 areas \u2014 no automated tool, no junior staff. You get a real analysis from someone who knows what they\u2019re looking at." },
+  { number: "03", title: "You get your report", desc: "Within 48 hours, we send you a detailed written report with findings and prioritized recommendations. No sales pitch attached \u2014 just honest insight." },
 ];
 
-const faqs = [
-  {
-    q: "Is the audit really free?",
-    a: "Yes, completely. There's no catch, no hidden fee, and no obligation to hire us afterward. We offer it because it's a useful way for business owners to understand where they stand — and for us to show you what we actually know.",
-  },
-  {
-    q: "How is this different from an automated audit tool?",
-    a: "Automated tools flag technical issues — they can't tell you whether your messaging makes sense, whether your CTAs are in the right place, or why your competitor is outranking you. This is a manual review done by a real person.",
-  },
-  {
-    q: "What do you need from me?",
-    a: "Just your website URL and a brief description of your business and goals. If you want, you can share access to GA4 for a deeper analytics review — but it's not required.",
-  },
-  {
-    q: "How long does it take?",
-    a: "We deliver most audits within 48 hours of receiving your request. If we need more time, we'll let you know upfront.",
-  },
-  {
-    q: "Do I need to be an Ohio business?",
-    a: "We focus on locally owned Ohio businesses, but we're happy to help any small business owner who wants an honest look at their digital presence.",
-  },
+const fallbackRequestBullets = [
+  "Completely free \u2014 no credit card, no commitment",
+  "Delivered as a written report within 48 hours",
+  "Covers all 10 areas listed above",
+  "Specific to your site \u2014 not a generic checklist",
+  "We respond to every request personally",
 ];
 
-export default function AuditPage() {
+const fallbackFaqs = [
+  { q: "Is the audit really free?", a: "Yes, completely. There\u2019s no catch, no hidden fee, and no obligation to hire us afterward. We offer it because it\u2019s a useful way for business owners to understand where they stand \u2014 and for us to show you what we actually know." },
+  { q: "How is this different from an automated audit tool?", a: "Automated tools flag technical issues \u2014 they can\u2019t tell you whether your messaging makes sense, whether your CTAs are in the right place, or why your competitor is outranking you. This is a manual review done by a real person." },
+  { q: "What do you need from me?", a: "Just your website URL and a brief description of your business and goals. If you want, you can share access to GA4 for a deeper analytics review \u2014 but it\u2019s not required." },
+  { q: "How long does it take?", a: "We deliver most audits within 48 hours of receiving your request. If we need more time, we\u2019ll let you know upfront." },
+  { q: "Do I need to be an Ohio business?", a: "We focus on locally owned Ohio businesses, but we\u2019re happy to help any small business owner who wants an honest look at their digital presence." },
+];
+
+// ── Metadata ──────────────────────────────────────────────────────────────────
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await client.fetch(auditPageQuery);
+  return {
+    title: page?.seoTitle ?? "Free Website Audit | Spark Street Digital \u2014 Ohio",
+    description:
+      page?.seoDescription ??
+      "Get a free, no-fluff website audit covering 10 key areas: performance, SEO, GEO/AEO, mobile, content, conversions, and more. Delivered within 48 hours.",
+  };
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+export default async function AuditPage() {
+  const page = await client.fetch(auditPageQuery);
+
+  const heroBadge = page?.heroBadge ?? "Free \u2014 No obligation \u2014 Delivered within 48 hours";
+  const heroHeadline = page?.heroHeadline ?? "Find out exactly what\u2019s holding your";
+  const heroHeadlineHighlight = page?.heroHeadlineHighlight ?? "website back.";
+  const heroSubheadline =
+    page?.heroSubheadline ??
+    "A free, hands-on audit of your website across 10 key areas \u2014 performance, SEO, GEO/AEO, mobile, content, conversions, and more. Written by a real person, not a robot.";
+  const heroPrimaryCtaText = page?.heroPrimaryCtaText ?? "Get My Free Audit";
+  const heroSecondaryCtaText = page?.heroSecondaryCtaText ?? "See what\u2019s included";
+
+  const includedBadge = page?.includedBadge ?? "What\u2019s covered";
+  const includedHeadline = page?.includedHeadline ?? "10 areas. One honest report.";
+  const includedHeadlineHighlight = page?.includedHeadlineHighlight ?? "No fluff.";
+  const includedSubheadline =
+    page?.includedSubheadline ??
+    "Most website audits are automated reports full of technical jargon. This is a manual review \u2014 I look at every dimension of your online presence and tell you what\u2019s actually going on.";
+  const auditAreas = page?.auditAreas?.length ? page.auditAreas : fallbackAuditAreas;
+
+  const deliverableBadge = page?.deliverableBadge ?? "The deliverable";
+  const deliverableHeadline = page?.deliverableHeadline ?? "A report you can actually";
+  const deliverableHeadlineHighlight = page?.deliverableHeadlineHighlight ?? "do something with.";
+  const deliverableBody =
+    page?.deliverableBody ??
+    "You won\u2019t get a 40-page PDF full of screenshots and technical scores. You\u2019ll get a clear, written report that tells you what matters, what to fix first, and what to invest in next.";
+  const deliverables = page?.deliverables?.length ? page.deliverables : fallbackDeliverables;
+
+  const stepsBadge = page?.stepsBadge ?? "How it works";
+  const stepsHeadline = page?.stepsHeadline ?? "Simple, fast, and";
+  const stepsHeadlineHighlight = page?.stepsHeadlineHighlight ?? "genuinely useful.";
+  const stepsSubheadline =
+    page?.stepsSubheadline ?? "Three steps. No hoops to jump through. No sales call required.";
+  const steps = page?.steps?.length ? page.steps : fallbackSteps;
+
+  const requestBadge = page?.requestBadge ?? "Request your audit";
+  const requestHeadline = page?.requestHeadline ?? "Let\u2019s see what your site is";
+  const requestHeadlineHighlight = page?.requestHeadlineHighlight ?? "actually doing.";
+  const requestBody =
+    page?.requestBody ??
+    "Fill out the form and we\u2019ll get started within one business day. The more context you give us about your business, the more useful the audit will be.";
+  const requestBullets = page?.requestBullets?.length ? page.requestBullets : fallbackRequestBullets;
+
+  const faqHeadline = page?.faqHeadline ?? "Common questions";
+  const faqSubheadline = page?.faqSubheadline ?? "Straight answers, no runaround.";
+  const faqs = page?.faqs?.length ? page.faqs : fallbackFaqs;
+
   return (
     <>
       {/* Hero */}
@@ -135,16 +123,14 @@ export default function AuditPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
-              Free — No obligation — Delivered within 48 hours
+              {heroBadge}
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6">
-              Find out exactly what&apos;s holding your{" "}
-              <span className="gradient-text">website back.</span>
+              {heroHeadline}{" "}
+              <span className="gradient-text">{heroHeadlineHighlight}</span>
             </h1>
             <p className="text-white text-xl leading-relaxed mb-10 max-w-2xl">
-              A free, hands-on audit of your website across 10 key areas —
-              performance, SEO, GEO/AEO, mobile, content, conversions, and more.
-              Written by a real person, not a robot.
+              {heroSubheadline}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -152,13 +138,13 @@ export default function AuditPage() {
                 className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0A1628] font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 group"
               >
                 <Zap className="w-5 h-5 fill-current" />
-                Get My Free Audit
+                {heroPrimaryCtaText}
               </a>
               <a
                 href="#whats-included"
                 className="inline-flex items-center justify-center gap-2 text-white font-semibold text-base px-4 py-4 border-b border-white/20 hover:border-white/60 transition-colors"
               >
-                See what&apos;s included
+                {heroSecondaryCtaText}
                 <ChevronDown className="w-4 h-4" />
               </a>
             </div>
@@ -171,29 +157,25 @@ export default function AuditPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-14">
             <div className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1D4ED8] text-sm font-semibold px-4 py-2 rounded-full mb-6">
-              What&apos;s covered
+              {includedBadge}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight mb-4">
-              10 areas. One honest report.{" "}
-              <span className="text-[#1D4ED8]">No fluff.</span>
+              {includedHeadline}{" "}
+              <span className="text-[#1D4ED8]">{includedHeadlineHighlight}</span>
             </h2>
-            <p className="text-[#475569] text-lg leading-relaxed">
-              Most website audits are automated reports full of technical jargon.
-              This is a manual review — I look at every dimension of your online
-              presence and tell you what&apos;s actually going on.
-            </p>
+            <p className="text-[#475569] text-lg leading-relaxed">{includedSubheadline}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {auditAreas.map((area, i) => {
-              const Icon = area.icon;
+            {auditAreas.map((area: { icon?: string; color?: string; title: string; desc: string }, i: number) => {
+              const Icon = getIcon(area.icon);
               return (
                 <div
                   key={i}
                   className="bg-white rounded-2xl border border-gray-100 p-6 hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-300"
                 >
-                  <div className={`w-10 h-10 rounded-xl ${area.color} flex items-center justify-center mb-4`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-10 h-10 rounded-xl ${area.color ?? "bg-blue-50 text-blue-600"} flex items-center justify-center mb-4`}>
+                    {Icon && <Icon className="w-5 h-5" />}
                   </div>
                   <h3 className="text-[#0A1628] font-bold mb-2">{area.title}</h3>
                   <p className="text-[#475569] text-sm leading-relaxed">{area.desc}</p>
@@ -210,19 +192,15 @@ export default function AuditPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 text-white text-sm font-semibold px-4 py-2 rounded-full mb-6">
-                The deliverable
+                {deliverableBadge}
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-                A report you can actually{" "}
-                <span className="text-[#F59E0B]">do something with.</span>
+                {deliverableHeadline}{" "}
+                <span className="text-[#F59E0B]">{deliverableHeadlineHighlight}</span>
               </h2>
-              <p className="text-white text-lg leading-relaxed mb-8">
-                You won&apos;t get a 40-page PDF full of screenshots and technical
-                scores. You&apos;ll get a clear, written report that tells you what
-                matters, what to fix first, and what to invest in next.
-              </p>
+              <p className="text-white text-lg leading-relaxed mb-8">{deliverableBody}</p>
               <ul className="space-y-3">
-                {deliverables.map((d, i) => (
+                {deliverables.map((d: string, i: number) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
                     <span className="text-white text-sm">{d}</span>
@@ -272,19 +250,17 @@ export default function AuditPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1D4ED8] text-sm font-semibold px-4 py-2 rounded-full mb-6">
-              How it works
+              {stepsBadge}
             </div>
             <h2 className="text-4xl font-bold text-[#0A1628] mb-4">
-              Simple, fast, and{" "}
-              <span className="text-[#1D4ED8]">genuinely useful.</span>
+              {stepsHeadline}{" "}
+              <span className="text-[#1D4ED8]">{stepsHeadlineHighlight}</span>
             </h2>
-            <p className="text-[#475569] text-lg">
-              Three steps. No hoops to jump through. No sales call required.
-            </p>
+            <p className="text-[#475569] text-lg">{stepsSubheadline}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
+            {steps.map((step: { number: string; title: string; desc: string }, i: number) => (
               <div key={i} className="relative">
                 {i < steps.length - 1 && (
                   <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] right-[-calc(50%-2rem)] h-px bg-gray-200" />
@@ -319,28 +295,17 @@ export default function AuditPage() {
       <section id="request" className="py-20 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left */}
             <div>
               <div className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1D4ED8] text-sm font-semibold px-4 py-2 rounded-full mb-6">
-                Request your audit
+                {requestBadge}
               </div>
               <h2 className="text-4xl font-bold text-[#0A1628] leading-tight mb-4">
-                Let&apos;s see what your site is{" "}
-                <span className="text-[#1D4ED8]">actually doing.</span>
+                {requestHeadline}{" "}
+                <span className="text-[#1D4ED8]">{requestHeadlineHighlight}</span>
               </h2>
-              <p className="text-[#475569] text-lg leading-relaxed mb-8">
-                Fill out the form and we&apos;ll get started within one business day.
-                The more context you give us about your business, the more useful
-                the audit will be.
-              </p>
+              <p className="text-[#475569] text-lg leading-relaxed mb-8">{requestBody}</p>
               <div className="space-y-4">
-                {[
-                  "Completely free — no credit card, no commitment",
-                  "Delivered as a written report within 48 hours",
-                  "Covers all 10 areas listed above",
-                  "Specific to your site — not a generic checklist",
-                  "We respond to every request personally",
-                ].map((item, i) => (
+                {requestBullets.map((item: string, i: number) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#1D4ED8] shrink-0 mt-0.5" />
                     <span className="text-[#475569]">{item}</span>
@@ -348,8 +313,6 @@ export default function AuditPage() {
                 ))}
               </div>
             </div>
-
-            {/* Form */}
             <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
               <AuditForm />
             </div>
@@ -361,11 +324,11 @@ export default function AuditPage() {
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#0A1628] mb-3">Common questions</h2>
-            <p className="text-[#475569]">Straight answers, no runaround.</p>
+            <h2 className="text-3xl font-bold text-[#0A1628] mb-3">{faqHeadline}</h2>
+            <p className="text-[#475569]">{faqSubheadline}</p>
           </div>
           <div className="space-y-4">
-            {faqs.map((faq, i) => (
+            {faqs.map((faq: { q: string; a: string }, i: number) => (
               <div key={i} className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-6">
                 <h3 className="text-[#0A1628] font-bold mb-2">{faq.q}</h3>
                 <p className="text-[#475569] text-sm leading-relaxed">{faq.a}</p>

@@ -32,6 +32,9 @@ const iconList = [
   { title: "Monitor", value: "Monitor" },
   { title: "Thumbs Down", value: "ThumbsDown" },
   { title: "Eye Off", value: "EyeOff" },
+  { title: "Smartphone", value: "Smartphone" },
+  { title: "Message Square", value: "MessageSquare" },
+  { title: "Mouse Pointer", value: "MousePointerClick" },
 ];
 
 // ── 1. heroSection ─────────────────────────────────────────────────────────────
@@ -139,6 +142,8 @@ const iconBgList = [
   { title: "Orange", value: "bg-orange-50 text-orange-600" },
   { title: "Yellow", value: "bg-yellow-50 text-yellow-600" },
   { title: "Pink", value: "bg-pink-50 text-pink-600" },
+  { title: "Red", value: "bg-red-50 text-red-600" },
+  { title: "Cyan", value: "bg-cyan-50 text-cyan-600" },
   { title: "Amber", value: "bg-amber-50 text-amber-600" },
 ];
 
