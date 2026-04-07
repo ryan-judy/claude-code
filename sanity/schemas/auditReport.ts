@@ -9,7 +9,6 @@ const richTextBlock = {
       { title: "Bold", value: "strong" },
       { title: "Italic", value: "em" },
     ],
-    annotations: [],
   },
 };
 

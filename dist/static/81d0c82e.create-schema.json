@@ -1,0 +1,3797 @@
+[
+  {
+    "fields": [
+      {
+        "name": "language",
+        "type": "string"
+      },
+      {
+        "name": "filename",
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "type": "number",
+            "title": "Highlighted line"
+          }
+        ],
+        "name": "highlightedLines",
+        "type": "array",
+        "title": "Highlighted lines"
+      }
+    ],
+    "name": "code",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Ryan Judy",
+        "description": "Displayed in the browser tab and SEO titles",
+        "name": "siteName",
+        "type": "string"
+      },
+      {
+        "initialValue": "Digital Marketing for Columbus Businesses",
+        "description": "Short tagline used in various places across the site",
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "initialValue": "ryan@ryanjudy.com",
+        "name": "email",
+        "type": "string",
+        "title": "Email Address"
+      },
+      {
+        "initialValue": "(614) 555-0100",
+        "description": "Displayed on site (e.g. (614) 555-0100)",
+        "name": "phone",
+        "type": "string",
+        "title": "Phone Number"
+      },
+      {
+        "initialValue": "+16145550100",
+        "description": "Used in tel: links (e.g. +16145550100)",
+        "name": "phoneHref",
+        "type": "string"
+      },
+      {
+        "initialValue": "Columbus, Ohio",
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "initialValue": "Serving Columbus & beyond",
+        "name": "locationSubtext",
+        "type": "string"
+      },
+      {
+        "initialValue": "Within 1 business day",
+        "name": "responseTime",
+        "type": "string"
+      },
+      {
+        "initialValue": "Free audit: within 48 hours",
+        "name": "auditDeliveryTime",
+        "type": "string"
+      },
+      {
+        "initialValue": "https://linkedin.com/in/rjudy",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedin",
+        "type": "url",
+        "title": "LinkedIn URL"
+      },
+      {
+        "initialValue": "https://twitter.com/ryanjudy",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "twitter",
+        "type": "url",
+        "title": "Twitter / X URL"
+      },
+      {
+        "initialValue": "Ryan Judy | Digital Marketing for Columbus Businesses",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Used when a page doesn't define its own SEO title",
+        "name": "defaultSeoTitle",
+        "type": "string",
+        "title": "Default SEO Title"
+      },
+      {
+        "rows": 3,
+        "initialValue": "10+ years of digital marketing experience helping Columbus businesses grow online. Specializing in websites, AI integration, SEM, SEO, and full digital marketing strategy.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "defaultSeoDescription",
+        "type": "text",
+        "title": "Default SEO Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Fallback social sharing image (1200×630 recommended)",
+        "name": "defaultOgImage",
+        "type": "image",
+        "title": "Default OG Image"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Ryan Judy",
+        "description": "Name shown next to the logo icon",
+        "name": "logoText",
+        "type": "string"
+      },
+      {
+        "initialValue": [
+          {
+            "_key": "home",
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "_key": "services",
+            "label": "Services",
+            "href": "/services"
+          },
+          {
+            "_key": "about",
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "_key": "blog",
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "_key": "contact",
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. /services",
+                "name": "href",
+                "type": "string",
+                "title": "Path"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "navLinks",
+        "type": "array",
+        "title": "Navigation Links"
+      },
+      {
+        "initialValue": "Get a Free Audit",
+        "name": "ctaText",
+        "type": "string",
+        "title": "CTA Button Text"
+      },
+      {
+        "initialValue": "/contact",
+        "name": "ctaHref",
+        "type": "string",
+        "title": "CTA Button Link"
+      }
+    ],
+    "name": "navigation",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": [
+          {
+            "_type": "heroSection",
+            "_key": "hero"
+          },
+          {
+            "_type": "statsSection",
+            "_key": "stats"
+          },
+          {
+            "_type": "servicesSection",
+            "_key": "services"
+          },
+          {
+            "_type": "processSection",
+            "_key": "process"
+          },
+          {
+            "_type": "industriesSection",
+            "_key": "industries"
+          },
+          {
+            "_type": "whySection",
+            "_key": "why"
+          },
+          {
+            "_type": "pricingSection",
+            "_key": "pricing"
+          },
+          {
+            "_type": "ctaSection",
+            "_key": "cta"
+          }
+        ],
+        "description": "Add, reorder, and configure sections to build the page layout.",
+        "of": [
+          {
+            "type": "heroSection",
+            "title": "Hero (Full)"
+          },
+          {
+            "type": "pageHeroSection",
+            "title": "Page Hero"
+          },
+          {
+            "type": "statsSection",
+            "title": "Stats Bar"
+          },
+          {
+            "type": "servicesSection",
+            "title": "Services Grid"
+          },
+          {
+            "type": "processSection",
+            "title": "Process Steps"
+          },
+          {
+            "type": "industriesSection",
+            "title": "Industries"
+          },
+          {
+            "type": "whySection"
+          },
+          {
+            "type": "pricingSection",
+            "title": "Pricing"
+          },
+          {
+            "type": "ctaSection",
+            "title": "CTA Block"
+          },
+          {
+            "type": "richTextSection",
+            "title": "Rich Text"
+          },
+          {
+            "type": "profileStorySection",
+            "title": "Profile + Story"
+          },
+          {
+            "type": "experienceSection",
+            "title": "Experience & Expertise"
+          },
+          {
+            "type": "valuesSection",
+            "title": "Values"
+          },
+          {
+            "type": "servicesDetailSection",
+            "title": "Services (Detail View)"
+          },
+          {
+            "type": "contactFormSection",
+            "title": "Contact Form"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Page Sections"
+      },
+      {
+        "initialValue": "Ryan Judy | Digital Marketing for Columbus Businesses",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 3,
+        "initialValue": "10+ years of digital marketing experience helping Columbus businesses grow online. Specializing in websites, AI integration, SEM, SEO, and full digital marketing strategy.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "homePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": [
+          {
+            "_type": "pageHeroSection",
+            "_key": "hero"
+          },
+          {
+            "_type": "profileStorySection",
+            "_key": "story"
+          },
+          {
+            "_type": "experienceSection",
+            "_key": "experience"
+          },
+          {
+            "_type": "valuesSection",
+            "_key": "values"
+          },
+          {
+            "_type": "ctaSection",
+            "_key": "cta"
+          }
+        ],
+        "description": "Add, reorder, and configure sections to build the page layout.",
+        "of": [
+          {
+            "type": "heroSection",
+            "title": "Hero (Full)"
+          },
+          {
+            "type": "pageHeroSection",
+            "title": "Page Hero"
+          },
+          {
+            "type": "statsSection",
+            "title": "Stats Bar"
+          },
+          {
+            "type": "servicesSection",
+            "title": "Services Grid"
+          },
+          {
+            "type": "processSection",
+            "title": "Process Steps"
+          },
+          {
+            "type": "industriesSection",
+            "title": "Industries"
+          },
+          {
+            "type": "whySection"
+          },
+          {
+            "type": "pricingSection",
+            "title": "Pricing"
+          },
+          {
+            "type": "ctaSection",
+            "title": "CTA Block"
+          },
+          {
+            "type": "richTextSection",
+            "title": "Rich Text"
+          },
+          {
+            "type": "profileStorySection",
+            "title": "Profile + Story"
+          },
+          {
+            "type": "experienceSection",
+            "title": "Experience & Expertise"
+          },
+          {
+            "type": "valuesSection",
+            "title": "Values"
+          },
+          {
+            "type": "servicesDetailSection",
+            "title": "Services (Detail View)"
+          },
+          {
+            "type": "contactFormSection",
+            "title": "Contact Form"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Page Sections"
+      },
+      {
+        "initialValue": "About Ryan Judy | Digital Marketing Strategist, Columbus OH",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 3,
+        "initialValue": "10+ years of digital marketing experience across financial services, higher education, real estate, and startups. Based in Columbus, OH.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "aboutPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": [
+          {
+            "_type": "pageHeroSection",
+            "_key": "hero"
+          },
+          {
+            "_type": "servicesDetailSection",
+            "_key": "servicesDetail"
+          },
+          {
+            "_type": "ctaSection",
+            "_key": "cta"
+          }
+        ],
+        "description": "Add, reorder, and configure sections to build the page layout.",
+        "of": [
+          {
+            "type": "heroSection",
+            "title": "Hero (Full)"
+          },
+          {
+            "type": "pageHeroSection",
+            "title": "Page Hero"
+          },
+          {
+            "type": "statsSection",
+            "title": "Stats Bar"
+          },
+          {
+            "type": "servicesSection",
+            "title": "Services Grid"
+          },
+          {
+            "type": "processSection",
+            "title": "Process Steps"
+          },
+          {
+            "type": "industriesSection",
+            "title": "Industries"
+          },
+          {
+            "type": "whySection"
+          },
+          {
+            "type": "pricingSection",
+            "title": "Pricing"
+          },
+          {
+            "type": "ctaSection",
+            "title": "CTA Block"
+          },
+          {
+            "type": "richTextSection",
+            "title": "Rich Text"
+          },
+          {
+            "type": "profileStorySection",
+            "title": "Profile + Story"
+          },
+          {
+            "type": "experienceSection",
+            "title": "Experience & Expertise"
+          },
+          {
+            "type": "valuesSection",
+            "title": "Values"
+          },
+          {
+            "type": "servicesDetailSection",
+            "title": "Services (Detail View)"
+          },
+          {
+            "type": "contactFormSection",
+            "title": "Contact Form"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Page Sections"
+      },
+      {
+        "initialValue": "Services | Ryan Judy Digital Marketing — Columbus, OH",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Full-stack digital marketing services for Columbus businesses: websites, AI integration, SEM, SEO, content strategy, analytics, and more.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "servicesPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": [
+          {
+            "_type": "pageHeroSection",
+            "_key": "hero"
+          },
+          {
+            "_type": "contactFormSection",
+            "_key": "form"
+          }
+        ],
+        "description": "Add, reorder, and configure sections to build the page layout.",
+        "of": [
+          {
+            "type": "heroSection",
+            "title": "Hero (Full)"
+          },
+          {
+            "type": "pageHeroSection",
+            "title": "Page Hero"
+          },
+          {
+            "type": "statsSection",
+            "title": "Stats Bar"
+          },
+          {
+            "type": "servicesSection",
+            "title": "Services Grid"
+          },
+          {
+            "type": "processSection",
+            "title": "Process Steps"
+          },
+          {
+            "type": "industriesSection",
+            "title": "Industries"
+          },
+          {
+            "type": "whySection"
+          },
+          {
+            "type": "pricingSection",
+            "title": "Pricing"
+          },
+          {
+            "type": "ctaSection",
+            "title": "CTA Block"
+          },
+          {
+            "type": "richTextSection",
+            "title": "Rich Text"
+          },
+          {
+            "type": "profileStorySection",
+            "title": "Profile + Story"
+          },
+          {
+            "type": "experienceSection",
+            "title": "Experience & Expertise"
+          },
+          {
+            "type": "valuesSection",
+            "title": "Values"
+          },
+          {
+            "type": "servicesDetailSection",
+            "title": "Services (Detail View)"
+          },
+          {
+            "type": "contactFormSection",
+            "title": "Contact Form"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Page Sections"
+      },
+      {
+        "initialValue": "Contact Ryan Judy | Free Website Audit — Columbus, Ohio",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Get a free website audit or start a conversation about your digital marketing. Based in Columbus, OH.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "contactPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The URL path for this page (e.g. 'landing-page' → /landing-page)",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "description": "Add, reorder, and configure sections to build the page layout.",
+        "of": [
+          {
+            "type": "heroSection",
+            "title": "Hero (Full)"
+          },
+          {
+            "type": "pageHeroSection",
+            "title": "Page Hero"
+          },
+          {
+            "type": "statsSection",
+            "title": "Stats Bar"
+          },
+          {
+            "type": "servicesSection",
+            "title": "Services Grid"
+          },
+          {
+            "type": "processSection",
+            "title": "Process Steps"
+          },
+          {
+            "type": "industriesSection",
+            "title": "Industries"
+          },
+          {
+            "type": "whySection"
+          },
+          {
+            "type": "pricingSection",
+            "title": "Pricing"
+          },
+          {
+            "type": "ctaSection",
+            "title": "CTA Block"
+          },
+          {
+            "type": "richTextSection",
+            "title": "Rich Text"
+          },
+          {
+            "type": "profileStorySection",
+            "title": "Profile + Story"
+          },
+          {
+            "type": "experienceSection",
+            "title": "Experience & Expertise"
+          },
+          {
+            "type": "valuesSection",
+            "title": "Values"
+          },
+          {
+            "type": "servicesDetailSection",
+            "title": "Services (Detail View)"
+          },
+          {
+            "type": "contactFormSection",
+            "title": "Contact Form"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Page Sections"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "flexPage",
+    "type": "document",
+    "title": "Flexible Page"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string",
+        "title": "Badge Text"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "subheadline",
+        "type": "text"
+      },
+      {
+        "name": "primaryCtaText",
+        "type": "string",
+        "title": "Primary CTA Text"
+      },
+      {
+        "name": "secondaryCtaText",
+        "type": "string",
+        "title": "Secondary CTA Text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "value",
+                "type": "string"
+              },
+              {
+                "name": "label",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "proofStats",
+        "type": "array"
+      }
+    ],
+    "name": "heroSection",
+    "type": "object",
+    "title": "Hero (Full)"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string",
+        "title": "Badge Text"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Map Pin",
+              "value": "MapPin"
+            },
+            {
+              "title": "Shield Check",
+              "value": "ShieldCheck"
+            },
+            {
+              "title": "Lightbulb",
+              "value": "Lightbulb"
+            },
+            {
+              "title": "Line Chart",
+              "value": "LineChart"
+            },
+            {
+              "title": "Users",
+              "value": "Users"
+            },
+            {
+              "title": "Clock",
+              "value": "Clock"
+            },
+            {
+              "title": "Globe",
+              "value": "Globe"
+            },
+            {
+              "title": "Bot",
+              "value": "Bot"
+            },
+            {
+              "title": "Search",
+              "value": "Search"
+            },
+            {
+              "title": "Trending Up",
+              "value": "TrendingUp"
+            },
+            {
+              "title": "Bar Chart",
+              "value": "BarChart2"
+            },
+            {
+              "title": "Megaphone",
+              "value": "Megaphone"
+            },
+            {
+              "title": "Building",
+              "value": "Building2"
+            },
+            {
+              "title": "Graduation Cap",
+              "value": "GraduationCap"
+            },
+            {
+              "title": "Home",
+              "value": "Home"
+            },
+            {
+              "title": "Leaf",
+              "value": "Leaf"
+            },
+            {
+              "title": "Rocket",
+              "value": "Rocket"
+            },
+            {
+              "title": "Heart",
+              "value": "Heart"
+            },
+            {
+              "title": "Award",
+              "value": "Award"
+            },
+            {
+              "title": "Check Circle",
+              "value": "CheckCircle2"
+            },
+            {
+              "title": "Mail",
+              "value": "Mail"
+            },
+            {
+              "title": "Phone",
+              "value": "Phone"
+            },
+            {
+              "title": "Message Circle",
+              "value": "MessageCircle"
+            }
+          ]
+        },
+        "name": "badgeIcon",
+        "type": "string",
+        "title": "Badge Icon (optional)"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "subheadline",
+        "type": "text"
+      }
+    ],
+    "name": "pageHeroSection",
+    "type": "object",
+    "title": "Page Hero"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "value",
+                "type": "string"
+              },
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "stats",
+        "type": "array"
+      }
+    ],
+    "name": "statsSection",
+    "type": "object",
+    "title": "Stats Bar"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Blue",
+                      "value": "bg-blue-50 text-blue-600"
+                    },
+                    {
+                      "title": "Purple",
+                      "value": "bg-purple-50 text-purple-600"
+                    },
+                    {
+                      "title": "Green",
+                      "value": "bg-green-50 text-green-600"
+                    },
+                    {
+                      "title": "Orange",
+                      "value": "bg-orange-50 text-orange-600"
+                    },
+                    {
+                      "title": "Pink",
+                      "value": "bg-pink-50 text-pink-600"
+                    },
+                    {
+                      "title": "Amber",
+                      "value": "bg-amber-50 text-amber-600"
+                    }
+                  ]
+                },
+                "name": "color",
+                "type": "string",
+                "title": "Icon Color"
+              },
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "highlights",
+                "type": "array",
+                "title": "Highlight Tags"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "Link URL"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "services",
+        "type": "array"
+      }
+    ],
+    "name": "servicesSection",
+    "type": "object",
+    "title": "Services Grid"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "subheadline",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "number",
+                "type": "string",
+                "title": "Step Number (e.g. 01)"
+              },
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "name": "deliverable",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "steps",
+        "type": "array"
+      }
+    ],
+    "name": "processSection",
+    "type": "object",
+    "title": "Process Steps"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "subheadline",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "title": "Industry Name"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "wins",
+                "type": "array",
+                "title": "Key Wins"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "list",
+        "type": "array",
+        "title": "Industries"
+      },
+      {
+        "name": "moreCardHeadline",
+        "type": "string",
+        "title": "\"More\" Card Headline"
+      },
+      {
+        "rows": 2,
+        "name": "moreCardBody",
+        "type": "text",
+        "title": "\"More\" Card Body"
+      },
+      {
+        "name": "moreCardCta",
+        "type": "string",
+        "title": "\"More\" Card CTA Text"
+      }
+    ],
+    "name": "industriesSection",
+    "type": "object",
+    "title": "Industries"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "body",
+        "type": "text",
+        "title": "Body Text"
+      },
+      {
+        "rows": 2,
+        "name": "quote",
+        "type": "text"
+      },
+      {
+        "name": "quoteAuthor",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "reasons",
+        "type": "array"
+      }
+    ],
+    "name": "whySection",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "subheadline",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "title": "Plan Name"
+              },
+              {
+                "name": "tagline",
+                "type": "string"
+              },
+              {
+                "name": "price",
+                "type": "string"
+              },
+              {
+                "name": "priceNote",
+                "type": "string"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "features",
+                "type": "array"
+              },
+              {
+                "name": "ctaText",
+                "type": "string",
+                "title": "CTA Text"
+              },
+              {
+                "name": "isPrimary",
+                "type": "boolean",
+                "title": "Primary Plan?"
+              },
+              {
+                "name": "badge",
+                "type": "string",
+                "title": "Badge (e.g. Most Popular)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "plans",
+        "type": "array"
+      },
+      {
+        "rows": 2,
+        "name": "footerNote",
+        "type": "text"
+      }
+    ],
+    "name": "pricingSection",
+    "type": "object",
+    "title": "Pricing"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "body",
+        "type": "text",
+        "title": "Body Text"
+      },
+      {
+        "name": "primaryCtaText",
+        "type": "string",
+        "title": "CTA Button Text"
+      },
+      {
+        "name": "ctaFinePrint",
+        "type": "string",
+        "title": "Fine Print"
+      }
+    ],
+    "name": "ctaSection",
+    "type": "object",
+    "title": "CTA Block"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      }
+    ],
+    "name": "richTextSection",
+    "type": "object",
+    "title": "Rich Text"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "profileImage",
+        "type": "image"
+      },
+      {
+        "name": "profileBadge",
+        "type": "string",
+        "title": "Profile Badge Text"
+      },
+      {
+        "name": "storyBadge",
+        "type": "string"
+      },
+      {
+        "name": "storyHeadline",
+        "type": "string"
+      },
+      {
+        "name": "storyHeadlineHighlight",
+        "type": "string"
+      },
+      {
+        "name": "storyHeadlineLine2",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "storyBody",
+        "type": "array"
+      },
+      {
+        "name": "storyCtaText",
+        "type": "string",
+        "title": "CTA Button Text"
+      },
+      {
+        "name": "storyLinkedinText",
+        "type": "string",
+        "title": "LinkedIn Link Text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "storyLinkedinUrl",
+        "type": "url",
+        "title": "LinkedIn URL"
+      }
+    ],
+    "name": "profileStorySection",
+    "type": "object",
+    "title": "Profile + Story"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "subheadline",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "years",
+                "type": "string",
+                "title": "Years (e.g. 10+)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "expertiseItems",
+        "type": "array",
+        "title": "Expertise Grid"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "period",
+                "type": "string",
+                "title": "Period (e.g. 2020 — 2024)"
+              },
+              {
+                "name": "role",
+                "type": "string",
+                "title": "Role / Title"
+              },
+              {
+                "name": "company",
+                "type": "string",
+                "title": "Company / Industry"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "name": "highlight",
+                "type": "string",
+                "title": "Highlight Tag"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Gold",
+                      "value": "gold"
+                    },
+                    {
+                      "title": "Blue",
+                      "value": "blue"
+                    },
+                    {
+                      "title": "Gray",
+                      "value": "gray"
+                    }
+                  ]
+                },
+                "name": "accentColor",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "experienceItems",
+        "type": "array",
+        "title": "Experience Timeline"
+      }
+    ],
+    "name": "experienceSection",
+    "type": "object",
+    "title": "Experience & Expertise"
+  },
+  {
+    "fields": [
+      {
+        "name": "badge",
+        "type": "string"
+      },
+      {
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "name": "headlineHighlight",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Values"
+      }
+    ],
+    "name": "valuesSection",
+    "type": "object",
+    "title": "Values"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "source": "title"
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Used for #anchor links (e.g. websites, ai, sem)",
+                "name": "id",
+                "type": "slug",
+                "title": "Anchor ID"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Map Pin",
+                      "value": "MapPin"
+                    },
+                    {
+                      "title": "Shield Check",
+                      "value": "ShieldCheck"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Line Chart",
+                      "value": "LineChart"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    },
+                    {
+                      "title": "Clock",
+                      "value": "Clock"
+                    },
+                    {
+                      "title": "Globe",
+                      "value": "Globe"
+                    },
+                    {
+                      "title": "Bot",
+                      "value": "Bot"
+                    },
+                    {
+                      "title": "Search",
+                      "value": "Search"
+                    },
+                    {
+                      "title": "Trending Up",
+                      "value": "TrendingUp"
+                    },
+                    {
+                      "title": "Bar Chart",
+                      "value": "BarChart2"
+                    },
+                    {
+                      "title": "Megaphone",
+                      "value": "Megaphone"
+                    },
+                    {
+                      "title": "Building",
+                      "value": "Building2"
+                    },
+                    {
+                      "title": "Graduation Cap",
+                      "value": "GraduationCap"
+                    },
+                    {
+                      "title": "Home",
+                      "value": "Home"
+                    },
+                    {
+                      "title": "Leaf",
+                      "value": "Leaf"
+                    },
+                    {
+                      "title": "Rocket",
+                      "value": "Rocket"
+                    },
+                    {
+                      "title": "Heart",
+                      "value": "Heart"
+                    },
+                    {
+                      "title": "Award",
+                      "value": "Award"
+                    },
+                    {
+                      "title": "Check Circle",
+                      "value": "CheckCircle2"
+                    },
+                    {
+                      "title": "Mail",
+                      "value": "Mail"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "Phone"
+                    },
+                    {
+                      "title": "Message Circle",
+                      "value": "MessageCircle"
+                    }
+                  ]
+                },
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Blue",
+                      "value": "bg-blue-50 text-blue-600"
+                    },
+                    {
+                      "title": "Purple",
+                      "value": "bg-purple-50 text-purple-600"
+                    },
+                    {
+                      "title": "Green",
+                      "value": "bg-green-50 text-green-600"
+                    },
+                    {
+                      "title": "Orange",
+                      "value": "bg-orange-50 text-orange-600"
+                    },
+                    {
+                      "title": "Pink",
+                      "value": "bg-pink-50 text-pink-600"
+                    },
+                    {
+                      "title": "Amber",
+                      "value": "bg-amber-50 text-amber-600"
+                    }
+                  ]
+                },
+                "name": "iconBg",
+                "type": "string",
+                "title": "Icon Background"
+              },
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "tagline",
+                "type": "string"
+              },
+              {
+                "rows": 4,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "capabilities",
+                "type": "array",
+                "title": "Capabilities List"
+              },
+              {
+                "initialValue": "Get Started",
+                "name": "ctaText",
+                "type": "string",
+                "title": "CTA Text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "services",
+        "type": "array"
+      }
+    ],
+    "name": "servicesDetailSection",
+    "type": "object",
+    "title": "Services (Detail View)"
+  },
+  {
+    "fields": [
+      {
+        "name": "contactInfoHeadline",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "contactInfoSubheadline",
+        "type": "text"
+      },
+      {
+        "name": "formHeadline",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "name": "formSubheadline",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "serviceOptions",
+        "type": "array",
+        "title": "Service Dropdown Options"
+      },
+      {
+        "name": "submitText",
+        "type": "string",
+        "title": "Submit Button Text"
+      },
+      {
+        "name": "auditCheckboxLabel",
+        "type": "string"
+      },
+      {
+        "name": "auditCheckboxSub",
+        "type": "string",
+        "title": "Audit Checkbox Subtext"
+      },
+      {
+        "name": "formFinePrint",
+        "type": "string"
+      }
+    ],
+    "name": "contactFormSection",
+    "type": "object",
+    "title": "Contact Form"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 300
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Short summary displayed in listings (1-2 sentences)",
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "coverImage",
+        "type": "image"
+      },
+      {
+        "name": "publishedAt",
+        "type": "datetime"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Websites",
+              "value": "websites"
+            },
+            {
+              "title": "SEO",
+              "value": "seo"
+            },
+            {
+              "title": "SEM / Paid Search",
+              "value": "sem"
+            },
+            {
+              "title": "AI & Automation",
+              "value": "ai"
+            },
+            {
+              "title": "Digital Strategy",
+              "value": "strategy"
+            },
+            {
+              "title": "Analytics",
+              "value": "analytics"
+            },
+            {
+              "title": "Ohio Business",
+              "value": "ohio"
+            }
+          ]
+        },
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "description": "Estimated reading time in minutes",
+        "name": "readTime",
+        "type": "number",
+        "title": "Read Time (minutes)"
+      },
+      {
+        "initialValue": false,
+        "description": "Show prominently on the blog page",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Post"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    },
+                    {
+                      "name": "blank",
+                      "type": "boolean",
+                      "title": "Open in new tab"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object",
+                  "title": "URL"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h2",
+                "title": "H2"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "h4",
+                "title": "H4"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt text"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "image"
+          },
+          {
+            "type": "code",
+            "title": "Code Block"
+          }
+        ],
+        "name": "body",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Overrides post title for search engines (max 60 chars)",
+        "name": "seoTitle",
+        "type": "string",
+        "title": "SEO Title"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Meta description for search engines (max 160 chars)",
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "post",
+    "type": "document",
+    "title": "Blog Post"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "1. User Experience",
+              "value": "user-experience"
+            },
+            {
+              "title": "2. Website Performance & Speed",
+              "value": "performance"
+            },
+            {
+              "title": "3. Technical SEO",
+              "value": "technical-seo"
+            },
+            {
+              "title": "4. On-Page SEO & Content",
+              "value": "onpage-seo"
+            },
+            {
+              "title": "5. GEO & AEO — AI Search Visibility",
+              "value": "geo-aeo"
+            },
+            {
+              "title": "6. Local Search & Google Business Profile",
+              "value": "local-search"
+            },
+            {
+              "title": "7. Content & Site Structure",
+              "value": "content-structure"
+            },
+            {
+              "title": "8. Conversion Optimization",
+              "value": "conversion"
+            },
+            {
+              "title": "9. Tech Stack",
+              "value": "tech-stack"
+            },
+            {
+              "title": "10. Competitor Snapshot",
+              "value": "competitor"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "user-experience",
+                  "performance",
+                  "technical-seo",
+                  "onpage-seo",
+                  "geo-aeo",
+                  "local-search",
+                  "content-structure",
+                  "conversion",
+                  "tech-stack",
+                  "competitor"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "sectionKey",
+        "type": "string",
+        "title": "Section"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "✅ Excellent",
+              "value": "excellent"
+            },
+            {
+              "title": "🟢 Good",
+              "value": "good"
+            },
+            {
+              "title": "🟡 Needs Attention",
+              "value": "needs-attention"
+            },
+            {
+              "title": "🔴 Issues Found",
+              "value": "issues-found"
+            },
+            {
+              "title": "⚫ N/A",
+              "value": "na"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "excellent",
+                  "good",
+                  "needs-attention",
+                  "issues-found",
+                  "na"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "High",
+              "value": "high"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "Low",
+              "value": "low"
+            }
+          ]
+        },
+        "name": "priority",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "findings",
+        "type": "array",
+        "title": "Key Findings"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "recommendations",
+        "type": "array"
+      }
+    ],
+    "name": "auditSection",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "clientName",
+        "type": "string",
+        "title": "Business Name"
+      },
+      {
+        "options": {
+          "source": "clientName",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "clientUrl",
+        "type": "url",
+        "title": "Website URL"
+      },
+      {
+        "name": "industry",
+        "type": "string"
+      },
+      {
+        "name": "preparedAt",
+        "type": "date",
+        "title": "Date Prepared"
+      },
+      {
+        "initialValue": "1.0",
+        "name": "reportVersion",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Excellent",
+              "value": "excellent"
+            },
+            {
+              "title": "Good",
+              "value": "good"
+            },
+            {
+              "title": "Needs Attention",
+              "value": "needs-attention"
+            },
+            {
+              "title": "Issues Found",
+              "value": "issues-found"
+            }
+          ]
+        },
+        "name": "overallStatus",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Up to 3 priority quick wins",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "quickWins",
+        "type": "array",
+        "title": "Top Priority Quick Wins"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "executiveSummary",
+        "type": "array"
+      },
+      {
+        "description": "Add each of the 10 audit areas",
+        "of": [
+          {
+            "type": "auditSection"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Audit Sections"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "actionQuickWins",
+        "type": "array",
+        "title": "Action Plan — Quick Wins (Do Now)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "actionShortTerm",
+        "type": "array",
+        "title": "Action Plan — Short-Term (30–90 days)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Bold"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "actionStrategic",
+        "type": "array",
+        "title": "Action Plan — Strategic (90+ days)"
+      }
+    ],
+    "name": "auditReport",
+    "type": "document"
+  }
+]

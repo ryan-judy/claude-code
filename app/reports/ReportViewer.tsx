@@ -158,11 +158,7 @@ function ReportLayout({ report }: { report: AuditReport }) {
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none" className="w-10 h-10">
-                <path d="M 445 148 L 445 58 L 115 58 A 95 95 0 0 0 115 248 L 255 248" stroke="#2563EB" strokeWidth="22" strokeLinecap="square" strokeLinejoin="miter" />
-                <path d="M 255 252 L 385 252 A 95 95 0 0 1 385 442 L 55 442 L 55 348" stroke="#2563EB" strokeWidth="22" strokeLinecap="square" strokeLinejoin="miter" />
-                <path d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z" fill="#F59E0B" />
-              </svg>
+              <img src="/logo.png" alt="Spark Street Digital" className="h-10 w-auto" />
               <div>
                 <p className="text-white font-semibold text-sm leading-tight">Spark Street Digital</p>
                 <p className="text-blue-400 text-xs">sparkstreet.digital</p>
@@ -317,9 +313,7 @@ function ReportLayout({ report }: { report: AuditReport }) {
       <footer style={{ background: "#0A1628" }} className="mt-8 py-6">
         <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none" className="w-5 h-5">
-              <path d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z" fill="#F59E0B" />
-            </svg>
+            <img src="/logo.png" alt="Spark Street Digital" className="h-5 w-auto" />
             <p className="text-slate-400 text-xs">
               Prepared by{" "}
               <span className="text-white font-medium">Spark Street Digital</span>

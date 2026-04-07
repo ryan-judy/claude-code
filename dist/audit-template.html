@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Website Audit Report — Spark Street Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1628;
+      --blue: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --amber: #F59E0B;
+      --amber-dark: #D97706;
+      --slate: #475569;
+      --slate-light: #94A3B8;
+      --bg: #F8FAFC;
+      --border: #E2E8F0;
+      --c-excellent: #16A34A;
+      --c-good: #0D9488;
+      --c-attention: #D97706;
+      --c-issues: #DC2626;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── TOOLBAR ─────────────────────────────── */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 2px 16px rgba(10,22,40,0.4);
+    }
+    .toolbar-main {
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .toolbar-brand svg { width: 26px; height: 26px; }
+    .toolbar-hint { font-size: 12px; color: rgba(255,255,255,0.4); margin-left: 12px; }
+    .toolbar-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* Format bar — second row, hidden until a field is focused */
+    .toolbar-format {
+      display: none;
+      align-items: center;
+      gap: 2px;
+      padding: 5px 24px 8px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    body.field-focused .toolbar-format { display: flex; }
+    .fmt-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      margin-right: 6px;
+    }
+    .fmt-btn {
+      width: 28px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.65);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s, color 0.1s;
+    }
+    .fmt-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+    .fmt-btn.active { background: var(--blue); color: white; }
+    .fmt-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.12); margin: 0 3px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+    .btn-amber { background: var(--amber); color: var(--navy); }
+    .btn-amber:hover { background: var(--amber-dark); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
+
+    .save-indicator { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .save-indicator.saved { color: #34D399; }
+
+    /* ─── REPORT ─────────────────────────────── */
+    .report { max-width: 940px; margin: 28px auto 64px; padding: 0 20px; }
+
+    .report-header {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .header-logo { display: flex; align-items: center; gap: 12px; }
+    .header-logo svg { width: 44px; height: 44px; }
+    .header-logo-name { color: white; font-size: 15px; font-weight: 700; }
+    .header-logo-tagline { color: rgba(255,255,255,0.45); font-size: 11px; margin-top: 2px; }
+    .header-right { text-align: right; }
+    .report-title { font-size: 20px; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .confidential-badge {
+      display: inline-block;
+      margin-top: 7px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.35);
+      color: var(--amber);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    /* ─── CARDS ─────────────────────────────── */
+    .card {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .card-section-header {
+      padding: 11px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-section-title { font-size: 12px; font-weight: 700; color: var(--navy); }
+    .card-section-hint { font-size: 10px; color: var(--slate-light); }
+
+    /* ─── CLIENT INFO ───────────────────────── */
+    .client-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .info-cell {
+      padding: 13px 18px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .info-cell:nth-child(3n) { border-right: none; }
+    .info-cell:nth-last-child(-n+3) { border-bottom: none; }
+    .info-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate-light); margin-bottom: 3px;
+    }
+    .info-value {
+      font-size: 13px; font-weight: 500; color: var(--navy);
+      outline: none; min-height: 19px; display: block;
+    }
+    .info-value:empty::before { content: attr(data-placeholder); color: #CBD5E1; font-weight: 400; }
+    .info-value:focus { color: var(--blue); }
+
+    /* ─── SNAPSHOT ──────────────────────────── */
+    .snapshot-grid { display: grid; grid-template-columns: 200px 1fr; }
+    .snapshot-cell { padding: 14px 18px; border-right: 1px solid var(--border); }
+    .snapshot-cell:last-child { border-right: none; }
+    .snapshot-summary { padding: 14px 18px; border-top: 1px solid var(--border); }
+    .snapshot-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate-light); margin-bottom: 8px;
+    }
+    .overall-status-select {
+      width: 100%; padding: 7px 10px; border: 1.5px solid var(--border);
+      border-radius: 7px; font-size: 13px; font-weight: 600; font-family: inherit;
+      outline: none; cursor: pointer; color: var(--navy); background: white;
+    }
+    .quick-win { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 6px; }
+    .quick-win-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--amber); margin-top: 6px; flex-shrink: 0;
+    }
+    .quick-win-text {
+      font-size: 12px; color: var(--navy); outline: none;
+      flex: 1; min-height: 16px; line-height: 1.5;
+    }
+    .quick-win-text:empty::before { content: attr(data-placeholder); color: #CBD5E1; }
+
+    /* ─── SECTION DIVIDER ───────────────────── */
+    .section-divider {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate-light);
+      margin: 18px 0 8px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── AUDIT CARD ────────────────────────── */
+    .audit-card { border-left: 3px solid var(--border); transition: border-color 0.2s; }
+    .audit-card-header {
+      padding: 13px 18px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .audit-num {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: var(--blue-light); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .audit-title-block { flex: 1; min-width: 0; }
+    .audit-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .audit-subtitle { font-size: 11px; color: var(--slate); margin-top: 1px; }
+    .audit-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .status-select, .priority-select {
+      border: none; padding: 4px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; outline: none;
+    }
+    .badge { display: none; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; }
+
+    .audit-card-body { padding: 13px 18px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate-light);
+    }
+    .field-content {
+      min-height: 68px; padding: 8px 11px; border: 1px solid var(--border);
+      border-radius: 7px; outline: none; font-size: 12px; line-height: 1.6;
+      color: var(--navy); font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .field-content:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(29,78,216,0.07);
+    }
+    .field-content:empty::before { content: attr(data-placeholder); color: #CBD5E1; pointer-events: none; }
+    /* Restore list indentation inside editable fields (reset by * rule) */
+    .field-content ul, .field-content ol,
+    .action-list ul, .action-list ol,
+    .exec-content ul, .exec-content ol,
+    .quick-win-text ul, .quick-win-text ol { padding-left: 1.4em; margin: 2px 0; }
+    .field-content li, .action-list li, .exec-content li { padding-left: 0.15em; }
+
+    /* ─── ACTION PLAN ───────────────────────── */
+    .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .action-col { padding: 14px 18px; border-right: 1px solid var(--border); }
+    .action-col:last-child { border-right: none; }
+    .action-col-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .action-col-sub { font-size: 10px; color: var(--slate-light); margin-bottom: 10px; }
+    .action-stripe { display: block; width: 28px; height: 3px; border-radius: 2px; margin-bottom: 8px; }
+    .action-list {
+      min-height: 100px; outline: none; font-size: 12px; line-height: 1.7;
+      color: var(--slate); padding: 8px 11px; border: 1px solid var(--border);
+      border-radius: 7px; font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .action-list:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,0.07); }
+    .action-list:empty::before { content: attr(data-placeholder); color: #CBD5E1; }
+
+    /* ─── EXEC SUMMARY ──────────────────────── */
+    .exec-body { padding: 14px 18px; }
+    .exec-content {
+      min-height: 110px; padding: 10px 13px; border: 1px solid var(--border);
+      border-radius: 7px; outline: none; font-size: 13px; line-height: 1.7;
+      color: var(--navy); font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .exec-content:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,0.07); }
+    .exec-content:empty::before { content: attr(data-placeholder); color: #CBD5E1; }
+
+    /* ─── FOOTER ────────────────────────────── */
+    .report-footer {
+      background: var(--navy); border-radius: 10px; padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between; margin-top: 10px;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 8px; color: white; font-size: 13px; font-weight: 600; }
+    .footer-brand svg { width: 22px; height: 22px; }
+    .footer-url { color: rgba(255,255,255,0.5); font-size: 11px; }
+    .print-date { display: none; font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+    /* ─── VIEW MODE (shared read-only link) ─── */
+    body.view-mode .toolbar { display: none; }
+    body.view-mode .report { margin-top: 28px; }
+    body.view-mode [contenteditable] { pointer-events: none; border-color: transparent !important; box-shadow: none !important; background: transparent; padding-left: 0; }
+    body.view-mode .status-select,
+    body.view-mode .priority-select,
+    body.view-mode .overall-status-select { display: none !important; }
+    body.view-mode .badge { display: inline-flex !important; }
+    .view-banner {
+      display: none;
+      background: var(--blue-light);
+      border-bottom: 1px solid var(--blue-mid, #BFDBFE);
+      padding: 10px 24px;
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 500;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    body.view-mode .view-banner { display: flex; }
+    .view-banner-left { display: flex; align-items: center; gap: 8px; }
+    .view-banner svg { flex-shrink: 0; }
+
+    /* ─── PRINT ─────────────────────────────── */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; font-size: 11px; }
+      .report { max-width: 100%; margin: 0; padding: 0; }
+      .report-header { border-radius: 0; margin-bottom: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .card { border-radius: 0; border-left: none; border-right: none; border-top: none; margin-bottom: 0; border-bottom: 1px solid var(--border); }
+      .audit-card { break-inside: avoid; page-break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .field-content, .exec-content, .action-list { border: none; padding: 0; min-height: auto; box-shadow: none; }
+      .snapshot-summary { border-top: 1px solid var(--border); }
+      .field-content:empty::before, .exec-content:empty::before,
+      .action-list:empty::before, .quick-win-text:empty::before,
+      .info-value:empty::before { content: '—'; color: #CBD5E1; }
+      .status-select, .priority-select, .overall-status-select { display: none !important; }
+      .badge { display: inline-flex !important; }
+      .print-date { display: block; }
+      .report-footer { print-color-adjust: exact; -webkit-print-color-adjust: exact; border-radius: 0; margin-top: 0; }
+      .section-divider { margin-top: 8px; }
+      @page { margin: 0.65in; size: letter; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- View-mode banner (only visible in shared/read-only links) -->
+<div class="view-banner no-print">
+  <div class="view-banner-left">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    You're viewing a shared audit report from Spark Street Digital. This is a read-only view.
+  </div>
+  <a href="https://sparkstreet.digital/audit/" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:12px;">Get your free audit →</a>
+</div>
+
+<!-- ═══ TOOLBAR ════════════════════════════════════════════════════ -->
+<div class="toolbar no-print">
+  <div class="toolbar-main">
+    <div class="toolbar-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+        <path d="M 445 148 L 445 58 L 115 58 A 95 95 0 0 0 115 248 L 255 248" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 255 252 L 385 252 A 95 95 0 0 1 385 442 L 55 442 L 55 348" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z" fill="#F59E0B"/>
+      </svg>
+      Audit Report Builder
+      <span class="toolbar-hint">· Click any field to edit · Auto-saves in browser</span>
+    </div>
+    <div class="toolbar-actions">
+      <span class="save-indicator" id="saveIndicator">All changes saved</span>
+      <button class="btn btn-ghost" onclick="newReport()">+ New Report</button>
+      <button class="btn btn-ghost" onclick="shareReport()" id="shareBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share Report
+      </button>
+      <button class="btn btn-amber" onclick="window.print()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Save as PDF
+      </button>
+    </div>
+  </div>
+  <!-- Format bar: appears as second row when a text field is focused -->
+  <div class="toolbar-format">
+    <span class="fmt-label">FORMAT</span>
+    <button class="fmt-btn" id="fmt-bold" title="Bold (⌘B)" onmousedown="applyFmt(event,'bold')"><b>B</b></button>
+    <button class="fmt-btn" id="fmt-italic" title="Italic (⌘I)" onmousedown="applyFmt(event,'italic')"><i style="font-style:italic">I</i></button>
+    <button class="fmt-btn" id="fmt-underline" title="Underline (⌘U)" onmousedown="applyFmt(event,'underline')"><u>U</u></button>
+    <div class="fmt-sep"></div>
+    <button class="fmt-btn" id="fmt-ul" title="Bullet list" onmousedown="applyFmt(event,'insertUnorderedList')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ REPORT ════════════════════════════════════════════════════ -->
+<div class="report">
+
+  <div class="report-header">
+    <div class="header-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+        <path d="M 445 148 L 445 58 L 115 58 A 95 95 0 0 0 115 248 L 255 248" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 255 252 L 385 252 A 95 95 0 0 1 385 442 L 55 442 L 55 348" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z" fill="#F59E0B"/>
+      </svg>
+      <div>
+        <div class="header-logo-name">Spark Street Digital</div>
+        <div class="header-logo-tagline">Digital Marketing for Ohio Businesses</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="report-title">Website Audit Report</div>
+      <div class="confidential-badge">CONFIDENTIAL</div>
+    </div>
+  </div>
+
+  <!-- Client Info -->
+  <div class="card">
+    <div class="client-grid">
+      <div class="info-cell">
+        <div class="info-label">Business Name</div>
+        <div class="info-value" contenteditable="true" data-field="client-name" data-placeholder="Client Business Name"></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">Website URL</div>
+        <div class="info-value" contenteditable="true" data-field="client-url" data-placeholder="https://example.com"></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">Industry</div>
+        <div class="info-value" contenteditable="true" data-field="client-industry" data-placeholder="e.g. HVAC, Law, Retail"></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">Date Prepared</div>
+        <div class="info-value" contenteditable="true" data-field="report-date" id="reportDate" data-placeholder="—"></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">Prepared By</div>
+        <div class="info-value" contenteditable="true" data-field="prepared-by" data-placeholder="Spark Street Digital">Spark Street Digital</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">Report Version</div>
+        <div class="info-value" contenteditable="true" data-field="report-version" data-placeholder="v1.0">v1.0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overall Snapshot -->
+  <div class="card">
+    <div class="card-section-header">
+      <div class="card-section-title">Overall Snapshot</div>
+      <div class="card-section-hint">Quick summary before diving into detail</div>
+    </div>
+    <div class="snapshot-grid">
+      <div class="snapshot-cell">
+        <div class="snapshot-label">Overall Status</div>
+        <select class="overall-status-select" data-field="overall-status" id="overallStatusSelect" onchange="updateOverallStatus(this)">
+          <option value="">— Select —</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+        </select>
+        <span class="badge" id="overallStatusBadge" style="margin-top:8px;"></span>
+      </div>
+      <div class="snapshot-cell">
+        <div class="snapshot-label">Top Priority Quick Wins</div>
+        <div class="quick-win">
+          <div class="quick-win-dot"></div>
+          <div class="quick-win-text" contenteditable="true" data-field="qw-1" data-placeholder="Quick win #1…"></div>
+        </div>
+        <div class="quick-win">
+          <div class="quick-win-dot"></div>
+          <div class="quick-win-text" contenteditable="true" data-field="qw-2" data-placeholder="Quick win #2…"></div>
+        </div>
+        <div class="quick-win">
+          <div class="quick-win-dot"></div>
+          <div class="quick-win-text" contenteditable="true" data-field="qw-3" data-placeholder="Quick win #3…"></div>
+        </div>
+      </div>
+    </div>
+    <div class="snapshot-summary">
+      <div class="snapshot-label">Executive Summary</div>
+      <div class="exec-content" contenteditable="true" data-field="exec-summary" data-placeholder="Plain-English summary for the client — what's the overall picture, what matters most, what are the key next steps?"></div>
+    </div>
+  </div>
+
+  <div class="section-divider">10 Audit Areas</div>
+
+  <!-- 1 -->
+  <div class="card audit-card" id="section-1">
+    <div class="audit-card-header">
+      <div class="audit-num">01</div>
+      <div class="audit-title-block">
+        <div class="audit-title">User Experience</div>
+        <div class="audit-subtitle">Overall design quality, layout, readability, and mobile responsiveness</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s1-status" onchange="updateAuditStatus(1,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s1-status-badge"></span>
+        <select class="priority-select" data-field="s1-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s1-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s1-findings" data-placeholder="Describe what was found — design quality, mobile experience, layout issues, readability…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s1-recs" data-placeholder="List specific, actionable recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card audit-card" id="section-2">
+    <div class="audit-card-header">
+      <div class="audit-num">02</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Website Performance &amp; Speed</div>
+        <div class="audit-subtitle">Core Web Vitals, load times, hosting quality</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s2-status" onchange="updateAuditStatus(2,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s2-status-badge"></span>
+        <select class="priority-select" data-field="s2-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s2-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s2-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s2-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card audit-card" id="section-3">
+    <div class="audit-card-header">
+      <div class="audit-num">03</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Technical SEO</div>
+        <div class="audit-subtitle">Crawlability, indexing, site structure, meta tags, schema markup</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s3-status" onchange="updateAuditStatus(3,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s3-status-badge"></span>
+        <select class="priority-select" data-field="s3-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s3-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s3-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s3-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card audit-card" id="section-4">
+    <div class="audit-card-header">
+      <div class="audit-num">04</div>
+      <div class="audit-title-block">
+        <div class="audit-title">On-Page SEO &amp; Content</div>
+        <div class="audit-subtitle">Keyword targeting, heading structure, internal linking</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s4-status" onchange="updateAuditStatus(4,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s4-status-badge"></span>
+        <select class="priority-select" data-field="s4-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s4-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s4-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s4-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card audit-card" id="section-5">
+    <div class="audit-card-header">
+      <div class="audit-num">05</div>
+      <div class="audit-title-block">
+        <div class="audit-title">GEO &amp; AEO — AI Search Visibility</div>
+        <div class="audit-subtitle">ChatGPT, Google AI Overviews, Perplexity, AI-generated answers</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s5-status" onchange="updateAuditStatus(5,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s5-status-badge"></span>
+        <select class="priority-select" data-field="s5-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s5-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s5-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s5-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card audit-card" id="section-6">
+    <div class="audit-card-header">
+      <div class="audit-num">06</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Local Search &amp; Google Business Profile</div>
+        <div class="audit-subtitle">GBP completeness, reviews, citations, map rankings</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s6-status" onchange="updateAuditStatus(6,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s6-status-badge"></span>
+        <select class="priority-select" data-field="s6-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s6-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s6-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s6-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card audit-card" id="section-7">
+    <div class="audit-card-header">
+      <div class="audit-num">07</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Content &amp; Site Structure</div>
+        <div class="audit-subtitle">Messaging clarity, page organization, and whether structure serves both users and search engines</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s7-status" onchange="updateAuditStatus(7,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s7-status-badge"></span>
+        <select class="priority-select" data-field="s7-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s7-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s7-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s7-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card audit-card" id="section-8">
+    <div class="audit-card-header">
+      <div class="audit-num">08</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Conversion Optimization</div>
+        <div class="audit-subtitle">CTAs, forms, user flow, and lead generation design</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s8-status" onchange="updateAuditStatus(8,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s8-status-badge"></span>
+        <select class="priority-select" data-field="s8-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s8-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s8-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s8-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card audit-card" id="section-9">
+    <div class="audit-card-header">
+      <div class="audit-num">09</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Tech Stack</div>
+        <div class="audit-subtitle">Platform, hosting, CMS, and whether the underlying tools are serving the business well</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s9-status" onchange="updateAuditStatus(9,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s9-status-badge"></span>
+        <select class="priority-select" data-field="s9-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s9-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s9-findings" data-placeholder="Describe the platform, hosting setup, CMS, key plugins or tools, and any limitations observed…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s9-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card audit-card" id="section-10">
+    <div class="audit-card-header">
+      <div class="audit-num">10</div>
+      <div class="audit-title-block">
+        <div class="audit-title">Competitor Snapshot</div>
+        <div class="audit-subtitle">How top local competitors compare online</div>
+      </div>
+      <div class="audit-controls">
+        <select class="status-select" data-field="s10-status" onchange="updateAuditStatus(10,this)">
+          <option value="">Status…</option>
+          <option value="excellent">✅ Excellent</option>
+          <option value="good">🟢 Good</option>
+          <option value="attention">🟡 Needs Attention</option>
+          <option value="issues">🔴 Issues Found</option>
+          <option value="na">⚫ N/A</option>
+        </select>
+        <span class="badge" id="s10-status-badge"></span>
+        <select class="priority-select" data-field="s10-priority" onchange="updatePriority(this)">
+          <option value="">Priority…</option>
+          <option value="high">🔴 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <span class="badge" id="s10-priority-badge"></span>
+      </div>
+    </div>
+    <div class="audit-card-body">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Key Findings</div>
+          <div class="field-content" contenteditable="true" data-field="s10-findings" data-placeholder="Describe what was found…"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Recommendations</div>
+          <div class="field-content" contenteditable="true" data-field="s10-recs" data-placeholder="List specific recommendations…"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Plan -->
+  <div class="section-divider">Action Plan</div>
+  <div class="card">
+    <div class="action-grid">
+      <div class="action-col">
+        <span class="action-stripe" style="background:var(--c-issues);"></span>
+        <div class="action-col-title">Quick Wins</div>
+        <div class="action-col-sub">Do now — low effort, high impact</div>
+        <div class="action-list" contenteditable="true" data-field="ap-quick" data-placeholder="• Fix broken contact form&#10;• Update GBP hours&#10;• Add missing meta titles…"></div>
+      </div>
+      <div class="action-col">
+        <span class="action-stripe" style="background:var(--c-attention);"></span>
+        <div class="action-col-title">Short-Term</div>
+        <div class="action-col-sub">30–90 days — meaningful improvements</div>
+        <div class="action-list" contenteditable="true" data-field="ap-short" data-placeholder="• Redesign homepage hero&#10;• Set up GA4 properly&#10;• Build out service pages…"></div>
+      </div>
+      <div class="action-col">
+        <span class="action-stripe" style="background:var(--c-excellent);"></span>
+        <div class="action-col-title">Strategic</div>
+        <div class="action-col-sub">90+ days — longer investment</div>
+        <div class="action-list" contenteditable="true" data-field="ap-strategic" data-placeholder="• Launch ongoing content strategy&#10;• Start paid media campaign&#10;• Build review generation system…"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="report-footer">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+        <path d="M 445 148 L 445 58 L 115 58 A 95 95 0 0 0 115 248 L 255 248" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 255 252 L 385 252 A 95 95 0 0 1 385 442 L 55 442 L 55 348" stroke="#2563EB" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter"/>
+        <path d="M 362 52 L 230 242 L 268 242 L 148 450 L 300 258 L 260 258 Z" fill="#F59E0B"/>
+      </svg>
+      Spark Street Digital
+    </div>
+    <div class="footer-meta">
+      <div class="footer-url">sparkstreet.digital</div>
+      <div class="print-date" id="printDate"></div>
+    </div>
+  </div>
+
+</div><!-- /report -->
+
+<script>
+  // ── Status / priority colors ───────────────────────────────────────
+  const STATUS = {
+    excellent: { bg:'#DCFCE7', color:'#16A34A', label:'Excellent' },
+    good:      { bg:'#CCFBF1', color:'#0D9488', label:'Good' },
+    attention: { bg:'#FEF3C7', color:'#D97706', label:'Needs Attention' },
+    issues:    { bg:'#FEE2E2', color:'#DC2626', label:'Issues Found' },
+    na:        { bg:'#F1F5F9', color:'#6B7280', label:'N/A' },
+  };
+  const PRIORITY = {
+    high:   { bg:'#FEE2E2', color:'#DC2626', label:'High' },
+    medium: { bg:'#FEF3C7', color:'#D97706', label:'Medium' },
+    low:    { bg:'#DCFCE7', color:'#16A34A', label:'Low' },
+  };
+  const BORDER = { excellent:'#16A34A', good:'#0D9488', attention:'#D97706', issues:'#DC2626', na:'#CBD5E1' };
+
+  function setBadge(el, map, val) {
+    if (!el) return;
+    const c = map[val];
+    if (!c) { el.style.display = 'none'; return; }
+    el.style.cssText = `display:inline-flex;background:${c.bg};color:${c.color}`;
+    el.textContent = c.label;
+  }
+
+  function updateAuditStatus(n, sel) {
+    setBadge(document.getElementById('s'+n+'-status-badge'), STATUS, sel.value);
+    const card = document.getElementById('section-'+n);
+    if (card) card.style.borderLeftColor = BORDER[sel.value] || '#E2E8F0';
+    save();
+  }
+
+  function updatePriority(sel) {
+    const n = sel.dataset.field.match(/\d+/)[0];
+    setBadge(document.getElementById('s'+n+'-priority-badge'), PRIORITY, sel.value);
+    save();
+  }
+
+  function updateOverallStatus(sel) {
+    setBadge(document.getElementById('overallStatusBadge'), STATUS, sel.value);
+    save();
+  }
+
+  // ── Storage (single report, localStorage with file:// fallback) ────
+  const STORAGE_KEY = 'ssd-audit-v1';
+  let memoryStore = {};
+
+  function save() {
+    const data = collectData();
+    memoryStore = data;
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+    const ind = document.getElementById('saveIndicator');
+    if (ind) {
+      ind.textContent = 'Saved ✓';
+      ind.classList.add('saved');
+      clearTimeout(ind._t);
+      ind._t = setTimeout(() => { ind.textContent = 'All changes saved'; ind.classList.remove('saved'); }, 2000);
+    }
+  }
+
+  function load() {
+    let data;
+    try { data = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) {}
+    if (!data) return;
+    document.querySelectorAll('[data-field][contenteditable]').forEach(el => {
+      if (data[el.dataset.field] !== undefined) el.innerHTML = data[el.dataset.field];
+    });
+    document.querySelectorAll('select[data-field]').forEach(el => {
+      if (data[el.dataset.field]) el.value = data[el.dataset.field];
+    });
+    // Reapply visual states
+    for (let i = 1; i <= 10; i++) {
+      const ss = document.querySelector(`select[data-field="s${i}-status"]`);
+      if (ss && ss.value) updateAuditStatus(i, ss);
+      const ps = document.querySelector(`select[data-field="s${i}-priority"]`);
+      if (ps && ps.value) updatePriority(ps);
+    }
+    const os = document.getElementById('overallStatusSelect');
+    if (os && os.value) updateOverallStatus(os);
+  }
+
+  function newReport() {
+    if (!confirm('Clear this report and start fresh? This cannot be undone.')) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    location.reload();
+  }
+
+  // ── Share (encode report into a URL for read-only public view) ─────
+  function encodeData(data) {
+    try { return btoa(unescape(encodeURIComponent(JSON.stringify(data)))); } catch(e) { return null; }
+  }
+  function decodeData(str) {
+    try { return JSON.parse(decodeURIComponent(escape(atob(str)))); } catch(e) { return null; }
+  }
+
+  function collectData() {
+    const data = {};
+    document.querySelectorAll('[data-field][contenteditable]').forEach(el => {
+      data[el.dataset.field] = el.innerHTML;
+    });
+    document.querySelectorAll('select[data-field]').forEach(el => {
+      data[el.dataset.field] = el.value;
+    });
+    return data;
+  }
+
+  function shareReport() {
+    const data = collectData();
+    const encoded = encodeData(data);
+    if (!encoded) { alert('Could not encode report data.'); return; }
+    const base = location.href.split('?')[0];
+    const url = base + '?share=' + encodeURIComponent(encoded);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.getElementById('shareBtn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Link copied!';
+        setTimeout(() => { btn.innerHTML = orig; }, 2500);
+      });
+    } else {
+      prompt('Copy this link to share the report:', url);
+    }
+  }
+
+  // ── View mode (read-only shared link) ─────────────────────────────
+  function initViewMode(encoded) {
+    const data = decodeData(encoded);
+    if (!data) return;
+    document.body.classList.add('view-mode');
+    // Populate contenteditable fields
+    document.querySelectorAll('[data-field][contenteditable]').forEach(el => {
+      if (data[el.dataset.field] !== undefined) el.innerHTML = data[el.dataset.field];
+      el.removeAttribute('contenteditable');
+    });
+    // Populate selects and show badges
+    document.querySelectorAll('select[data-field]').forEach(el => {
+      if (data[el.dataset.field]) el.value = data[el.dataset.field];
+    });
+    // Apply visual states
+    for (let i = 1; i <= 10; i++) {
+      const ss = document.querySelector(`select[data-field="s${i}-status"]`);
+      if (ss && ss.value) updateAuditStatus(i, ss);
+      const ps = document.querySelector(`select[data-field="s${i}-priority"]`);
+      if (ps && ps.value) updatePriority(ps);
+    }
+    const os = document.getElementById('overallStatusSelect');
+    if (os && os.value) updateOverallStatus(os);
+  }
+
+  // ── Auto-save on edit ──────────────────────────────────────────────
+  let saveTimer;
+  function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(save, 800); }
+  document.addEventListener('input', scheduleSave);
+
+  // ── Format bar ─────────────────────────────────────────────────────
+  function applyFmt(e, cmd) {
+    e.preventDefault(); // keep focus in the contenteditable
+    document.execCommand(cmd, false, null);
+    updateFmtState();
+    scheduleSave();
+  }
+
+  function updateFmtState() {
+    ['bold','italic','underline'].forEach(cmd => {
+      const btn = document.getElementById('fmt-' + cmd);
+      if (btn) {
+        try { btn.classList.toggle('active', document.queryCommandState(cmd)); } catch(e) {}
+      }
+    });
+  }
+
+  document.addEventListener('focusin', function(e) {
+    if (e.target.hasAttribute('contenteditable')) {
+      document.body.classList.add('field-focused');
+      updateFmtState();
+    }
+  });
+
+  document.addEventListener('focusout', function(e) {
+    if (e.target.hasAttribute('contenteditable')) {
+      // Small delay so clicking a format button doesn't immediately hide the bar
+      setTimeout(function() {
+        if (!document.activeElement || !document.activeElement.hasAttribute('contenteditable')) {
+          document.body.classList.remove('field-focused');
+        }
+      }, 200);
+    }
+  });
+
+  document.addEventListener('keyup', updateFmtState);
+  document.addEventListener('mouseup', updateFmtState);
+
+  // ── Init ───────────────────────────────────────────────────────────
+  const shareParam = new URLSearchParams(location.search).get('share');
+  if (shareParam) {
+    initViewMode(shareParam);
+  } else {
+    const rd = document.getElementById('reportDate');
+    if (rd && !rd.textContent.trim()) {
+      rd.textContent = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+    }
+    load();
+  }
+  const pd = document.getElementById('printDate');
+  if (pd) pd.textContent = 'Printed ' + new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+</script>
+</body>
+</html>
