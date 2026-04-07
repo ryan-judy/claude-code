@@ -26,6 +26,9 @@ import {
   Wrench,
   Sparkles,
   Zap,
+  Monitor,
+  ThumbsDown,
+  EyeOff,
   type LucideIcon,
 } from "lucide-react";
 
@@ -57,6 +60,9 @@ export const iconMap: Record<string, LucideIcon> = {
   Wrench,
   Sparkles,
   Zap,
+  Monitor,
+  ThumbsDown,
+  EyeOff,
 };
 
 export function getIcon(name: string | undefined): LucideIcon | null {

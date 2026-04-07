@@ -26,6 +26,12 @@ const iconList = [
   { title: "Mail", value: "Mail" },
   { title: "Phone", value: "Phone" },
   { title: "Message Circle", value: "MessageCircle" },
+  { title: "Refresh", value: "RefreshCw" },
+  { title: "Sparkles", value: "Sparkles" },
+  { title: "Zap", value: "Zap" },
+  { title: "Monitor", value: "Monitor" },
+  { title: "Thumbs Down", value: "ThumbsDown" },
+  { title: "Eye Off", value: "EyeOff" },
 ];
 
 // ── 1. heroSection ─────────────────────────────────────────────────────────────
@@ -125,10 +131,13 @@ export const statsSection = defineType({
 // ── 4. servicesSection ─────────────────────────────────────────────────────────
 
 const iconBgList = [
+  { title: "Teal", value: "bg-teal-50 text-teal-600" },
   { title: "Blue", value: "bg-blue-50 text-blue-600" },
+  { title: "Indigo", value: "bg-indigo-50 text-indigo-600" },
   { title: "Purple", value: "bg-purple-50 text-purple-600" },
   { title: "Green", value: "bg-green-50 text-green-600" },
   { title: "Orange", value: "bg-orange-50 text-orange-600" },
+  { title: "Yellow", value: "bg-yellow-50 text-yellow-600" },
   { title: "Pink", value: "bg-pink-50 text-pink-600" },
   { title: "Amber", value: "bg-amber-50 text-amber-600" },
 ];
@@ -552,6 +561,42 @@ export const contactFormSection = defineType({
   },
 });
 
+// ── 16. whoIHelpSection ────────────────────────────────────────────────────────
+
+export const whoIHelpSection = defineType({
+  name: "whoIHelpSection",
+  title: "Who I Help",
+  type: "object",
+  fields: [
+    defineField({ name: "badge", title: "Badge", type: "string" }),
+    defineField({ name: "headline", title: "Headline", type: "string" }),
+    defineField({ name: "headlineHighlight", title: "Headline Highlight", type: "string" }),
+    defineField({ name: "body", title: "Subheadline", type: "text", rows: 2 }),
+    defineField({
+      name: "personas",
+      title: "Persona Cards",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "icon", title: "Icon", type: "string", options: { list: iconList } }),
+            defineField({ name: "quote", title: "Quote", type: "string" }),
+            defineField({ name: "detail", title: "Detail", type: "text", rows: 2 }),
+          ],
+          preview: { select: { title: "quote" } },
+        },
+      ],
+    }),
+    defineField({ name: "ctaHeadline", title: "CTA Headline", type: "string" }),
+    defineField({ name: "ctaBody", title: "CTA Body", type: "text", rows: 2 }),
+    defineField({ name: "primaryCtaText", title: "CTA Button Text", type: "string" }),
+  ],
+  preview: {
+    prepare: () => ({ title: "Who I Help" }),
+  },
+});
+
 // ── Export all ─────────────────────────────────────────────────────────────────
 
 export const sectionTypes = [
@@ -570,4 +615,5 @@ export const sectionTypes = [
   valuesSection,
   servicesDetailSection,
   contactFormSection,
+  whoIHelpSection,
 ];

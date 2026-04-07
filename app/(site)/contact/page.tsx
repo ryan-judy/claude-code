@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
+import { client } from "@/lib/sanity/client";
+import { contactPageQuery, siteSettingsQuery } from "@/lib/sanity/queries";
 import SectionRenderer, { type SanitySection } from "@/components/SectionRenderer";
 
-export const metadata: Metadata = {
-  title: "Contact | Spark Street Digital — Free Website Audit — Ohio",
-  description:
-    "Get a free website audit or start a conversation about your digital marketing. Based in Columbus, serving Ohio businesses.",
-};
-
-const sections: SanitySection[] = [
+const fallbackSections: SanitySection[] = [
   {
     _type: "pageHeroSection",
     _key: "hero",
@@ -21,6 +17,25 @@ const sections: SanitySection[] = [
   { _type: "contactFormSection", _key: "form" },
 ];
 
-export default function ContactPage() {
-  return <SectionRenderer sections={sections} />;
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await client.fetch(contactPageQuery);
+  return {
+    title:
+      page?.seoTitle ??
+      "Contact | Spark Street Digital \u2014 Free Website Audit \u2014 Ohio",
+    description:
+      page?.seoDescription ??
+      "Get a free website audit or start a conversation about your digital marketing. Based in Columbus, serving Ohio businesses.",
+  };
+}
+
+export default async function ContactPage() {
+  const [page, siteSettings] = await Promise.all([
+    client.fetch(contactPageQuery),
+    client.fetch(siteSettingsQuery),
+  ]);
+
+  const sections: SanitySection[] = page?.sections ?? fallbackSections;
+
+  return <SectionRenderer sections={sections} siteSettings={siteSettings} />;
 }

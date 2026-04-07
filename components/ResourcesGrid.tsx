@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight, Tag } from "lucide-react";
-import type { BlogPost } from "@/lib/blog/posts";
+import type { SanityPost } from "@/lib/sanity/queries";
 
 const categoryColors: Record<string, string> = {
   websites: "bg-blue-100 text-blue-700",
@@ -43,13 +43,13 @@ function formatDate(dateString: string) {
   });
 }
 
-export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
+export default function ResourcesGrid({ posts }: { posts: SanityPost[] }) {
   const [active, setActive] = useState("all");
 
   const featured = active === "all" ? posts.find((p) => p.featured) : null;
   const grid =
     active === "all"
-      ? posts.filter((p) => p.id !== featured?.id)
+      ? posts.filter((p) => p._id !== featured?._id)
       : posts.filter((p) => p.category === active);
 
   return (
@@ -79,14 +79,14 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
             Featured
           </div>
           <Link
-            href={`/resources/${featured.slug}`}
+            href={`/resources/${featured.slug.current}`}
             className="group grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#BFDBFE] hover:shadow-xl transition-all duration-300"
           >
             <div className="aspect-[16/9] lg:aspect-auto bg-gradient-to-br from-[#1D4ED8] to-[#0A1628] min-h-[240px] overflow-hidden">
-              {featured.coverImage ? (
+              {featured.coverImage?.asset?.url ? (
                 <img
-                  src={featured.coverImage}
-                  alt={featured.title}
+                  src={featured.coverImage.asset.url}
+                  alt={featured.coverImage.alt ?? featured.title}
                   className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
@@ -116,14 +116,18 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
               </h2>
               <p className="text-[#475569] leading-relaxed mb-6">{featured.excerpt}</p>
               <div className="flex items-center gap-4 text-[#475569] text-sm">
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4" />
-                  {formatDate(featured.publishedAt)}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  {featured.readTime} min read
-                </div>
+                {featured.publishedAt && (
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4" />
+                    {formatDate(featured.publishedAt)}
+                  </div>
+                )}
+                {featured.readTime && (
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" />
+                    {featured.readTime} min read
+                  </div>
+                )}
               </div>
               <div className="mt-6 inline-flex items-center gap-1.5 text-[#1D4ED8] font-semibold text-sm group-hover:gap-3 transition-all duration-200">
                 Read Article
@@ -139,15 +143,15 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {grid.map((post) => (
             <Link
-              key={post.id}
-              href={`/resources/${post.slug}`}
+              key={post._id}
+              href={`/resources/${post.slug.current}`}
               className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-300 flex flex-col"
             >
               <div className="aspect-[16/9] bg-gradient-to-br from-[#1D4ED8]/80 to-[#0A1628] overflow-hidden">
-                {post.coverImage ? (
+                {post.coverImage?.asset?.url ? (
                   <img
-                    src={post.coverImage}
-                    alt={post.title}
+                    src={post.coverImage.asset.url}
+                    alt={post.coverImage.alt ?? post.title}
                     className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
@@ -181,7 +185,7 @@ export default function ResourcesGrid({ posts }: { posts: BlogPost[] }) {
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                   <div className="flex items-center gap-1.5 text-[#475569] text-xs">
                     <Calendar className="w-3 h-3" />
-                    {formatDate(post.publishedAt)}
+                    {post.publishedAt ? formatDate(post.publishedAt) : ""}
                   </div>
                   <div className="flex items-center gap-1 text-[#1D4ED8] text-xs font-semibold group-hover:gap-2 transition-all">
                     Read

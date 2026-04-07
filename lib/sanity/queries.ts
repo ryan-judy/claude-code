@@ -1,5 +1,25 @@
 import { groq } from "next-sanity";
 
+// ── Blog Post Types ───────────────────────────────────────────────────────────
+
+export type SanityPost = {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  publishedAt?: string;
+  category?: string;
+  readTime?: number;
+  featured?: boolean;
+  coverImage?: {
+    asset?: { _id: string; url: string };
+    alt?: string;
+  };
+  body?: unknown[];
+  seoTitle?: string;
+  seoDescription?: string;
+};
+
 // ── Blog Posts ────────────────────────────────────────────────────────────────
 
 export const postsQuery = groq`
@@ -75,6 +95,10 @@ export const postSlugsQuery = groq`
   *[_type == "post"] { "slug": slug.current }
 `;
 
+export const postSitemapQuery = groq`
+  *[_type == "post"] { "slug": slug.current, publishedAt }
+`;
+
 // ── Site Settings ─────────────────────────────────────────────────────────────
 
 export const siteSettingsQuery = groq`
@@ -148,6 +172,10 @@ const sectionsProjection = groq`
     quote,
     quoteAuthor,
     reasons[] { icon, title, description },
+    // whoIHelpSection
+    personas[] { icon, quote, detail },
+    ctaHeadline,
+    ctaBody,
     // industriesSection
     list[] { icon, name, description, wins },
     moreCardHeadline,

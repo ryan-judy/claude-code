@@ -309,8 +309,33 @@ function ReportLayout({ report }: { report: AuditReport }) {
         )}
       </div>
 
+      {/* CTA */}
+      <div className="max-w-4xl mx-auto px-6 pb-8">
+        <div className="rounded-xl px-8 py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          style={{ background: "linear-gradient(135deg, #0A1628 0%, #1D4ED8 100%)" }}>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#F59E0B" }}>
+              Ready to take action?
+            </p>
+            <p className="text-white font-bold text-lg mb-1">Let&apos;s fix these issues together.</p>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Get a personalized plan from Spark Street Digital &mdash; no pressure, no pitch deck.
+            </p>
+          </div>
+          <a
+            href="https://sparkstreet.digital/contact/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 inline-block font-bold text-sm px-6 py-3 rounded-xl transition-colors"
+            style={{ background: "#F59E0B", color: "#0A1628" }}
+          >
+            Get Started →
+          </a>
+        </div>
+      </div>
+
       {/* Footer */}
-      <footer style={{ background: "#0A1628" }} className="mt-8 py-6">
+      <footer style={{ background: "#0A1628" }} className="py-6">
         <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src="/logo.png" alt="Spark Street Digital" className="h-5 w-auto" />

@@ -1,16 +1,17 @@
 import { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog/posts";
+import { client } from "@/lib/sanity/client";
+import { postSitemapQuery } from "@/lib/sanity/queries";
 
 export const dynamic = "force-static";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sparkstreet.digital";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts: { slug: string; publishedAt?: string }[] = await client.fetch(postSitemapQuery);
 
   const blogRoutes = posts.map((post) => ({
     url: `${BASE_URL}/resources/${post.slug}/`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

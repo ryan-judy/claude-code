@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BookOpen } from "lucide-react";
-import { getAllPosts } from "@/lib/blog/posts";
+import { client } from "@/lib/sanity/client";
+import { postsQuery, type SanityPost } from "@/lib/sanity/queries";
 import ResourcesGrid from "@/components/ResourcesGrid";
 import CTA from "@/components/sections/CTA";
 
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
     "Practical digital marketing insights, Ohio business tips, and expert takes on websites, AI, SEO, and paid media. From the team at Spark Street Digital.",
 };
 
-export default function ResourcesPage() {
-  const posts = getAllPosts();
+export default async function ResourcesPage() {
+  const posts: SanityPost[] = await client.fetch(postsQuery);
 
   return (
     <>

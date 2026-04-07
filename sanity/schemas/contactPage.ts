@@ -16,6 +16,7 @@ const allSectionTypes = [
   { type: "valuesSection" },
   { type: "servicesDetailSection" },
   { type: "contactFormSection" },
+  { type: "whoIHelpSection" },
 ];
 
 export default defineType({
